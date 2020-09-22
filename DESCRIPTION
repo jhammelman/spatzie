@@ -1,0 +1,19 @@
+Package: motifInteractR
+Type: Package
+Title: Identification of enriched motif pairs from chromatin interaction data
+Version: 0.1.0
+Authors@R: person("Jennifer", "Hammelman", email = "jhammelm@mit.edu", 
+  role = c("aut", "cre"))
+Maintainer: Jennifer Hammelman <jhammelm@mit.ed>
+Description: Looks for motifs which are significantly co-enriched from
+    interaction data, such as HiC, ChIA-PET, etc. It can also look for
+    differentially enriched motif pairs between to interaction 
+    experiments.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.1.0)
+Imports: motifmatchr,
+         GenomicInteractions,
+         GenomicFeatures
+RoxygenNote: 7.1.1
