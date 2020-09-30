@@ -1,4 +1,4 @@
-Package: motifInteractR
+Package: spatzie
 Type: Package
 Title: Identification of enriched motif pairs from chromatin interaction data
 Version: 0.1.0
