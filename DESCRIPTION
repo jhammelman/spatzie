@@ -6,7 +6,7 @@ Authors@R: person("Jennifer", "Hammelman", email = "jhammelm@mit.edu",
   role = c("aut", "cre"))
 Maintainer: Jennifer Hammelman <jhammelm@mit.ed>
 Description: Looks for motifs which are significantly co-enriched from
-    interaction data, such as HiC, ChIA-PET, etc. It can also look for
+    enhancer-promoter interaction data, such as HiC, ChIA-PET, etc. It can also look for
     differentially enriched motif pairs between to interaction 
     experiments.
 License: GPL-3
