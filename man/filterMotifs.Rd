@@ -24,6 +24,7 @@ filterMotifs(interactionData, threshold)
 }
 \value{
 an interactionData object where obj$anchorOneMotifIndices and obj$anchorTwoMotifIndices have been filtered to motifs that are present in a threshold fraction of interactions
+}
 \references{
 %% ~put references to the literature/web site here ~
 }

@@ -1,4 +1,4 @@
-anchorPairEnrich <- function(interactionData,method="countCorrelation"){
+anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom")){
   significance = matrix(data=NA,nrow=length(interactionData$anchorOneMotifIndices),
                         ncol=length(interactionData$anchorTwoMotifIndices))
   indr=1
@@ -21,12 +21,16 @@ anchorPairEnrich <- function(interactionData,method="countCorrelation"){
     }
     indr= indr+1
   }
+  rownames(significance) <- names(interactionData$anchorOneMotifIndices)
+  colnames(significance) <- names(interactionData$anchorTwoMotifIndices)
+
   interactionData <- list(interactions = interactionData$interactions,
                           anchorOneMotifs = interactionData$anchorOneMotifs,
                           anchorTwoMotifs = interactionData$anchorTwoMotifs,
                           anchorOneMotifIndices = interactionData$anchorOneMotifIndices,
                           anchorTwoMotifIndices = interactionData$anchorTwoMotifIndices,
-                          pairMotifEnrich = significance)
+                          pairMotifEnrich = significance,
+                          is_multiple_hypothesis_corrected=FALSE)
   class(interactionData) <- "interactionData"
   return(interactionData)
 }

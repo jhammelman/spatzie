@@ -1,6 +1,5 @@
 \name{anchorPairEnrich}
 \alias{anchorPairEnrich}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Determine enriched motifs in anchors
 }
@@ -24,6 +23,7 @@ anchorPairEnrich(interactionData, method = "countCorrelation")
 }
 \value{
 an interactionData object where obj$pairMotifEnrich contains the p-values for significance of seeing a higher co-occurrence than what we get by chance.
+}
 \references{
 %% ~put references to the literature/web site here ~
 }
