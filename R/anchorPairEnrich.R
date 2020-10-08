@@ -1,4 +1,4 @@
-anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom")){
+anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom","countFisher")){
   significance = matrix(data=NA,nrow=length(interactionData$anchorOneMotifIndices),
                         ncol=length(interactionData$anchorTwoMotifIndices))
   indr=1
@@ -12,10 +12,19 @@ anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreC
         significance[indr,indc] <- cor.test(assays(interactionData$anchorOneMotifs)$motifScores[,i],assays(interactionData$anchorTwoMotifs)$motifScores[,j],alternative='greater',method='pearson')$p.value
       }
       if (method == "countHypergeom"){
-        significance[indr,indc] <- dhyper(sum((assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(assays(interactionData$anchorTwoMotifs)$motifMatches[,j])),
+        significance[indr,indc] <- phyper(sum((assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(assays(interactionData$anchorTwoMotifs)$motifMatches[,j])),
                sum(assays(interactionData$anchorOneMotifs)$motifMatches[,i]),
                length(assays(interactionData$anchorOneMotifs)$motifMatches[,i])-sum(assays(interactionData$anchorOneMotifs)$motifMatches[,i]),
-               sum(assays(interactionData$anchorTwoMotifs)$motifMatches[,j]))
+               sum(assays(interactionData$anchorTwoMotifs)$motifMatches[,j]),lower.tail=FALSE)
+      }
+      if (method == "countFisher"){
+        dobpos <- sum((assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(assays(interactionData$anchorTwoMotifs)$motifMatches[,j]))
+        dobneg <- sum((!assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(!assays(interactionData$anchorTwoMotifs)$motifMatches[,j]))
+        fisher_mat <- matrix(c(dobpos,
+                 sum(assays(interactionData$anchorOneMotifs)$motifMatches[,i])-dobpos,
+                 sum(assays(interactionData$anchorTwoMotifs)$motifMatches[,j])-dobpos,
+                 dobneg),nrow=2)
+        significance[indr,indc] <- fisher.test(fisher_mat,alternative="greater")$p.value
       }
       indc= indc+1
     }
