@@ -2,10 +2,10 @@
 \alias{plotDifferentialInteractions}
 \docType{data}
 \title{
-plotDifferentialInteractions
+Plot differential interactions
 }
 \description{
-plotDifferentialInteractions
+Plots clustered heatmap of log likelihood ration for motif interactions between two datasets
 }
 \usage{data("plotDifferentialInteractions")}
 \format{

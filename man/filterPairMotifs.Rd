@@ -2,10 +2,10 @@
 \alias{filterPairMotifs}
 \docType{data}
 \title{
-filterPairMotifs
+Filter significant motif interactions
 }
 \description{
-filterPairMotifs
+Multiple hypothesis correction applied to filter for significant motif interactions.
 }
 \usage{data("filterPairMotifs")}
 \format{

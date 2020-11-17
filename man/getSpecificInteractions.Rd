@@ -2,10 +2,10 @@
 \alias{getSpecificInteractions}
 \docType{data}
 \title{
-getSpecificInteractions
+Get interactions that contain a specific motif pair
 }
 \description{
-getSpecificInteractions
+Select interactions that contain anchorOneMotif within anchorOne and anchorTwoMotif within anchorTwo.
 }
 \usage{data("getSpecificInteractions")}
 \format{

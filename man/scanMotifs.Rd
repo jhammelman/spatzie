@@ -2,7 +2,7 @@
 \alias{scanMotifs}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-scans interactions for motifs
+Scans interaction file for motif instances
 }
 \description{
 Uses motifmatchR to scan interaction regions for given motifs.

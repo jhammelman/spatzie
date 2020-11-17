@@ -2,10 +2,10 @@
 \alias{plotMotifOccurrence}
 \docType{data}
 \title{
-plotMotifOccurrence
+Plot motif occurrence
 }
 \description{
-plotMotifOccurrence
+Plots a histogram of motif values (either counts, instances, or scores) for anchorOne and anchorTwo regions.
 }
 \usage{data("plotMotifOccurrence")}
 \format{

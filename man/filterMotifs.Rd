@@ -2,10 +2,10 @@
 \alias{filterMotifs}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Filter motifs based on occurrence within interaction data.
+Filter motifs based on occurrence within interaction data
 }
 \description{
-Select motifs that are in at least a threshold number of peaks to limit number of tested hypotheses.
+Select a subset of motifs that are in at least a threshold fraction of regions. Motif subsets are selected separately for anchor one and anchor two regions.
 }
 \usage{
 filterMotifs(interactionData, threshold)

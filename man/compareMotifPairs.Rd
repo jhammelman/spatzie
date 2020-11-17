@@ -2,10 +2,10 @@
 \alias{compareMotifPairs}
 \docType{data}
 \title{
-compareMotifPairs
+Compare pairs of motifs between two interaction datasets
 }
 \description{
-compareMotifPairs
+Compute the log-likelihood ratio that a motif pair is differential between two interaction datasets. Note that motif pair significance should have been computed using the same method for both datasets.
 }
 \usage{data("compareMotifPairs")}
 \format{
