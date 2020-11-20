@@ -1,4 +1,4 @@
-# spatzie: title
+# spatzie: Identification of enriched motif pairs from chromatin interaction data
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
