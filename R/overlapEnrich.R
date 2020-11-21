@@ -1,3 +1,4 @@
+#' @export
 overlapEnrich <- function(interactions,allInteractions,bedranges,anchor=c("anchorOne","anchorTwo")){
   if (anchor=="anchorOne"){
     all <- unique(anchorOne(allInteractions))

@@ -1,3 +1,4 @@
+#' @export
 scanMotifs <- function(interactions,motifs,genome){
   anchorOneMatches <- matchMotifs(motifs, anchorOne(interactions),
                                   genome = genome, out='scores',bg='subject')

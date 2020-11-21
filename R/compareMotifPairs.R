@@ -1,3 +1,4 @@
+#' @export
 compareMotifPairs <- function(interactionData1,interactionData2,differential_p=0.05){
   data1_anchor1 <- (rownames(interactionData1$pairMotifEnrich) %in% rownames(interactionData2$pairMotifEnrich))
   data1_anchor2 <- (colnames(interactionData1$pairMotifEnrich) %in% colnames(interactionData2$pairMotifEnrich))

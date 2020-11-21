@@ -1,3 +1,4 @@
+#' @export
 filterMotifs <- function(interactionData,threshold){
   anchorOneIndices <- which(colMeans(as.matrix(assays(interactionData$anchorOneMotifs)$motifMatches)) > threshold)
   anchorTwoIndices <- which(colMeans(as.matrix(assays(interactionData$anchorTwoMotifs)$motifMatches)) > threshold)

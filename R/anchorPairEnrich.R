@@ -1,3 +1,4 @@
+#' @export
 anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom","countFisher")){
   significance = matrix(data=NA,nrow=length(interactionData$anchorOneMotifIndices),
                         ncol=length(interactionData$anchorTwoMotifIndices))

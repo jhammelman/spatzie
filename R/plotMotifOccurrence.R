@@ -1,3 +1,4 @@
+#' @export
 plotMotifOccurrence <- function(interactionData,method=c("counts","matches","scores")){
   if (method == "counts"){
     anchor1_values <- colMeans(assays(interactionData$anchorOneMotifs)$motifCounts)

@@ -1,3 +1,4 @@
+#' @export
 getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoMotif=""){
   #TODO return a subset of interactions that are only containing
   #anchorOneMotif or anchorTwoMotif

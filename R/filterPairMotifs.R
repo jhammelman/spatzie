@@ -1,3 +1,4 @@
+#' @export
 filterPairMotifs <- function(interactionData,method=p.adjust.methods,threshold=0.05) {
   adjusted_p_interactions <- matrix(p.adjust(as.vector(as.matrix(interactionData$pairMotifEnrich,method=method))),ncol=dim(interactionData$pairMotifEnrich)[2])
   rownames(adjusted_p_interactions) <- names(interactionData$anchorOneMotifIndices)
