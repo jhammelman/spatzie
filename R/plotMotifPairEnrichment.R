@@ -6,7 +6,8 @@
 #' @param pairEnrichmentMatrix TODO
 #' @return TODO
 #' @author Jennifer Hammelman
+#' @importFrom pheatmap pheatmap
 #' @export
 plotMotifPairsHeatmap <- function(pairEnrichmentMatrix){
-  pheatmap(pairEnrichmentMatrix,fontsize=6)
+  pheatmap::pheatmap(pairEnrichmentMatrix,fontsize=6)
 }

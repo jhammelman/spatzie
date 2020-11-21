@@ -12,10 +12,11 @@
 #' and \code{obj$anchorTwoMotifIndices} have been filtered to motifs that are
 #' present in a threshold fraction of interactions
 #' @author Jennifer Hammelman
+#' @importFrom SummarizedExperiment assays
 #' @export
 filterMotifs <- function(interactionData,threshold){
-  anchorOneIndices <- which(colMeans(as.matrix(assays(interactionData$anchorOneMotifs)$motifMatches)) > threshold)
-  anchorTwoIndices <- which(colMeans(as.matrix(assays(interactionData$anchorTwoMotifs)$motifMatches)) > threshold)
+  anchorOneIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches)) > threshold)
+  anchorTwoIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches)) > threshold)
   interactionData <- list(interactions = interactionData$interactions,
                           anchorOneMotifs = interactionData$anchorOneMotifs,
                           anchorTwoMotifs = interactionData$anchorTwoMotifs,

@@ -9,6 +9,7 @@
 #' @param anchorTwoMotif TODO
 #' @return TODO
 #' @author Jennifer Hammelman
+#' @importFrom SummarizedExperiment assays
 #' @export
 getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoMotif=""){
   #TODO return a subset of interactions that are only containing
@@ -28,10 +29,10 @@ getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoM
   }
   else{
     findTwoMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
-    interactionsTwokeepMask <- (assays(interactionData$anchorTwoMotifs)$motifMatches[,findTwoMotif] == TRUE)
+    interactionsTwokeepMask <- (SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,findTwoMotif] == TRUE)
 
     findOneMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
-    interactionsOnekeepMask <- (assays(interactionData$anchorOneMotifs)$motifMatches[,findOneMotif] == TRUE)
+    interactionsOnekeepMask <- (SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,findOneMotif] == TRUE)
     return(interactionData$interactions[interactionsTwokeepMask & interactionsOnekeepMask])
   }
 }

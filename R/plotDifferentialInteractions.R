@@ -7,7 +7,8 @@
 #' @param comparedMotifPairs TODO
 #' @return TODO
 #' @author Jennifer Hammelman
+#' @importFrom pheatmap pheatmap
 #' @export
 plotDifferentialInteractions <- function(comparedMotifPairs){
-  pheatmap(comparedMotifPairs,fontsize=6)
+  pheatmap::pheatmap(comparedMotifPairs,fontsize=6)
 }

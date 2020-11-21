@@ -11,11 +11,14 @@
 #' \code{obj$anchorTwoMotifs} contain information about the scores and matches
 #' to motifs from anchor one and anchor two of interaction data genomic regions
 #' @author Jennifer Hammelman
+#' @importFrom motifmatchr matchMotifs
+#' @importFrom GenomicInteractions anchorOne
+#' @importFrom GenomicInteractions anchorTwo
 #' @export
 scanMotifs <- function(interactions,motifs,genome){
-  anchorOneMatches <- matchMotifs(motifs, anchorOne(interactions),
+  anchorOneMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
                                   genome = genome, out='scores',bg='subject')
-  anchorTwoMatches <- matchMotifs(motifs, anchorTwo(interactions),
+  anchorTwoMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
                                   genome = genome, out='scores',bg='subject')
   interactionData <- list(interactions = interactions,
                           anchorOneMotifs = anchorOneMatches,

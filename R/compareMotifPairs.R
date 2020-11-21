@@ -10,6 +10,8 @@
 #' @param differential_p TODO
 #' @return TODO
 #' @author Jennifer Hammelman
+#' @importFrom matrixStats rowMaxs
+#' @importFrom matrixStats colMaxs
 #' @export
 compareMotifPairs <- function(interactionData1,interactionData2,differential_p=0.05){
   data1_anchor1 <- (rownames(interactionData1$pairMotifEnrich) %in% rownames(interactionData2$pairMotifEnrich))
@@ -25,8 +27,8 @@ compareMotifPairs <- function(interactionData1,interactionData2,differential_p=0
   #print(dim(data2_mat))
 
   differential <- (-(log2(data1_mat+1e-100)-log2(data2_mat+1e-100)))
-  differential <- differential[rowMaxs(abs(differential)) > -log2(0.05),]
-  differential <- differential[,colMaxs(abs(differential)) > -log2(0.05)]
+  differential <- differential[matrixStats::rowMaxs(abs(differential)) > -log2(0.05),]
+  differential <- differential[,matrixStats::colMaxs(abs(differential)) > -log2(0.05)]
   return(differential)
 
 }
