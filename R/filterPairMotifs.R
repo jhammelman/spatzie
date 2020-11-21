@@ -1,3 +1,14 @@
+#' @title Filter significant motif interactions
+#'
+#' @description
+#' Multiple hypothesis correction applied to filter for significant motif
+#' interactions.
+#'
+#' @param interactionData TODO
+#' @param method TODO
+#' @param threshold TODO
+#' @return TODO
+#' @author Jennifer Hammelman
 #' @export
 filterPairMotifs <- function(interactionData,method=p.adjust.methods,threshold=0.05) {
   adjusted_p_interactions <- matrix(p.adjust(as.vector(as.matrix(interactionData$pairMotifEnrich,method=method))),ncol=dim(interactionData$pairMotifEnrich)[2])

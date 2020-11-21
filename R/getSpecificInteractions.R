@@ -1,3 +1,14 @@
+#' @title Get interactions that contain a specific motif pair
+#'
+#' @description
+#' Select interactions that contain anchorOneMotif within anchorOne and
+#' anchorTwoMotif within anchorTwo.
+#'
+#' @param interactionData TODO
+#' @param anchorOneMotif TODO
+#' @param anchorTwoMotif TODO
+#' @return TODO
+#' @author Jennifer Hammelman
 #' @export
 getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoMotif=""){
   #TODO return a subset of interactions that are only containing

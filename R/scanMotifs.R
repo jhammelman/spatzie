@@ -1,3 +1,16 @@
+#' @title Scans interaction file for motif instances
+#'
+#' @description
+#' Uses motifmatchR to scan interaction regions for given motifs.
+#'
+#' @param interactions an interactionData object of paired genomic regions
+#' @param motifs a TFBS tools matrix of DNA binding motifs
+#' @param genome a Biostrings genome must match chromosomes from interaction
+#' data file
+#' @return an interaction data object where \code{obj$anchorOneMotifs} and
+#' \code{obj$anchorTwoMotifs} contain information about the scores and matches
+#' to motifs from anchor one and anchor two of interaction data genomic regions
+#' @author Jennifer Hammelman
 #' @export
 scanMotifs <- function(interactions,motifs,genome){
   anchorOneMatches <- matchMotifs(motifs, anchorOne(interactions),

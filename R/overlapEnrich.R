@@ -1,3 +1,14 @@
+#' @title TODO
+#'
+#' @description
+#' TODO
+#'
+#' @param interactions TODO
+#' @param allInteractions TODO
+#' @param bedranges TODO
+#' @param anchor TODO
+#' @return TODO
+#' @author Jennifer Hammelman
 #' @export
 overlapEnrich <- function(interactions,allInteractions,bedranges,anchor=c("anchorOne","anchorTwo")){
   if (anchor=="anchorOne"){

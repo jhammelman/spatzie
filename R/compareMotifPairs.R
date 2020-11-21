@@ -1,3 +1,15 @@
+#' @title Compare pairs of motifs between two interaction datasets
+#'
+#' @description
+#' Compute the log-likelihood ratio that a motif pair is differential between
+#' two interaction datasets. Note that motif pair significance should have
+#' been computed using the same method for both datasets.
+#'
+#' @param interactionData1 TODO
+#' @param interactionData2 TODO
+#' @param differential_p TODO
+#' @return TODO
+#' @author Jennifer Hammelman
 #' @export
 compareMotifPairs <- function(interactionData1,interactionData2,differential_p=0.05){
   data1_anchor1 <- (rownames(interactionData1$pairMotifEnrich) %in% rownames(interactionData2$pairMotifEnrich))

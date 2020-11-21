@@ -1,3 +1,13 @@
+#' @title Plot motif occurrence
+#'
+#' @description
+#' Plots a histogram of motif values (either counts, instances, or scores)
+#' for anchorOne and anchorTwo regions.
+#'
+#' @param interactionData TODO
+#' @param method TODO
+#' @return TODO
+#' @author Jennifer Hammelman
 #' @export
 plotMotifOccurrence <- function(interactionData,method=c("counts","matches","scores")){
   if (method == "counts"){

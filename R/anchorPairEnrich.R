@@ -1,3 +1,18 @@
+#' @title Determine enriched motifs in anchors
+#'
+#' @description
+#' Determine whether motifs between paired bed regions have a statistically
+#' significant relationship. Options for significance are motif score
+#' correlation, motif count correlation, or hypergeometric motif co-occurrence.
+#'
+#' @param interactionData an interactionData object of paired genomic regions
+#' @param method choice of method for co-occurrence include
+#' \code{countCorrelation}, \code{scoreCorrelation}, \code{countHypergeom}, or
+#' \code{countFisher}
+#' @return an interactionData object where \code{obj$pairMotifEnrich} contains
+#' the p-values for significance of seeing a higher co-occurrence than
+#' what we get by chance.
+#' @author Jennifer Hammelman
 #' @export
 anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom","countFisher")){
   significance = matrix(data=NA,nrow=length(interactionData$anchorOneMotifIndices),
