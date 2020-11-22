@@ -21,6 +21,7 @@
 #' @export
 plot_motif_occurrence <- function(interaction_data,
                                   method = c("counts", "matches", "scores")) {
+  id <- value <- NULL
   method <- match.arg(method, c("counts", "matches", "scores"))
   anchor1_motifs <- SummarizedExperiment::assays(
     interaction_data$anchor1_motifs)
