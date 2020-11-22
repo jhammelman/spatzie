@@ -17,8 +17,8 @@
 #' @importFrom matrixStats rowMins
 #' @importFrom matrixStats colMins
 #' @export
-filterPairMotifs <- function(interactionData, method=p.adjust.methods, threshold=0.05) {
-  adjusted_p_interactions <- matrix(stats::p.adjust(as.vector(as.matrix(interactionData$pairMotifEnrich, method=method))), ncol=dim(interactionData$pairMotifEnrich)[2])
+filterPairMotifs <- function(interactionData, method = p.adjust.methods, threshold = 0.05) {
+  adjusted_p_interactions <- matrix(stats::p.adjust(as.vector(as.matrix(interactionData$pairMotifEnrich, method = method))), ncol = dim(interactionData$pairMotifEnrich)[2])
   rownames(adjusted_p_interactions) <- names(interactionData$anchorOneMotifIndices)
   colnames(adjusted_p_interactions) <- names(interactionData$anchorTwoMotifIndices)
 
@@ -34,7 +34,7 @@ filterPairMotifs <- function(interactionData, method=p.adjust.methods, threshold
                           anchorTwoMotifIndices = interactionData$anchorTwoMotifIndices,
                           pairMotifEnrich = adjusted_p_interactions,
                           pairMotifEnrich.sig = adjusted_p_interactions_sig,
-                          is_multiple_hypothesis_corrected=FALSE)
+                          is_multiple_hypothesis_corrected = FALSE)
   class(interactionData) <- "interactionData"
   return(interactionData)
 }

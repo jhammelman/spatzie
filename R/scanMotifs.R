@@ -21,9 +21,9 @@
 #' @export
 scanMotifs <- function(interactions, motifs, genome){
   anchorOneMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
-                                  genome = genome, out='scores', bg='subject')
+                                  genome = genome, out = 'scores', bg = 'subject')
   anchorTwoMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
-                                  genome = genome, out='scores', bg='subject')
+                                  genome = genome, out = 'scores', bg = 'subject')
   interactionData <- list(interactions = interactions,
                           anchorOneMotifs = anchorOneMatches,
                           anchorTwoMotifs = anchorTwoMatches,

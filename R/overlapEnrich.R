@@ -19,20 +19,20 @@
 #' @importFrom stats phyper
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
-overlapEnrich <- function(interactions, allInteractions, bedranges, anchor=c("anchorOne", "anchorTwo")){
-  if (anchor=="anchorOne"){
+overlapEnrich <- function(interactions, allInteractions, bedranges, anchor = c("anchorOne", "anchorTwo")){
+  if (anchor == "anchorOne"){
     all <- unique(GenomicInteractions::anchorOne(allInteractions))
     allinterbed <- GenomicRanges::intersect(all, BiocGenerics::unique(bedranges))
     sel <- unique(GenomicInteractions::anchorOne(interactions))
     selinterbed <- GenomicRanges::intersect(sel, BiocGenerics::unique(bedranges))
     print(c(length(selinterbed),
             length(sel),
-            length(all)-length(sel),
+            length(all) - length(sel),
             length(allinterbed)))
     return(stats::phyper(length(selinterbed),
                   length(sel),
-                  length(all)-length(sel),
-                  length(allinterbed), lower.tail=FALSE))
+                  length(all) - length(sel),
+                  length(allinterbed), lower.tail = FALSE))
   }
   else{
     all <- unique(GenomicInteractions::anchorTwo(allInteractions))
@@ -41,11 +41,11 @@ overlapEnrich <- function(interactions, allInteractions, bedranges, anchor=c("an
     selinterbed <- GenomicRanges::intersect(sel, BiocGenerics::unique(bedranges))
     print(c(length(selinterbed),
             length(sel),
-            length(all)-length(sel),
+            length(all) - length(sel),
             length(allinterbed)))
     return(stats::phyper(length(selinterbed),
                   length(sel),
-                  length(all)-length(sel),
-                  length(allinterbed), lower.tail=FALSE))
+                  length(all) - length(sel),
+                  length(allinterbed), lower.tail = FALSE))
   }
 }

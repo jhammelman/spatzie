@@ -15,7 +15,7 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-getSpecificInteractions <- function(interactionData, anchorOneMotif="", anchorTwoMotif=""){
+getSpecificInteractions <- function(interactionData, anchorOneMotif = "", anchorTwoMotif = ""){
   #TODO return a subset of interactions that are only containing
   #anchorOneMotif or anchorTwoMotif
   if (anchorOneMotif == "" && anchorTwoMotif == ""){
