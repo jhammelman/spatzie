@@ -14,5 +14,5 @@
 #' @importFrom pheatmap pheatmap
 #' @export
 plot_differential_interactions <- function(compared_motif_pairs) {
-  pheatmap::pheatmap(compared_motif_pairs, fontsize = 6)
+  return(pheatmap::pheatmap(compared_motif_pairs, fontsize = 6))
 }

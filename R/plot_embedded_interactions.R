@@ -13,6 +13,7 @@
 #'
 #' @author Jennifer Hammelman
 #' @export
-plot_embedded_interactions <- function(interactions, color_by_motif, seed = 9302020) {
+plot_embedded_interactions <- function(interactions, color_by_motif,
+                                       seed = 9302020) {
   return(TRUE)
 }

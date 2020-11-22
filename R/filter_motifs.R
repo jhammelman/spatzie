@@ -19,13 +19,17 @@
 #' @importFrom SummarizedExperiment assays
 #' @export
 filter_motifs <- function(interaction_data, threshold) {
-  anchor1_indices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifMatches)) > threshold)
-  anchor2_indices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifMatches)) > threshold)
+  anchor1_motifs <- as.matrix(SummarizedExperiment::assays(
+    interaction_data$anchor1_motifs))
+  anchor2_motifs <- as.matrix(SummarizedExperiment::assays(
+    interaction_data$anchor2_motifs))
+  anchor1_indices <- which(colMeans(anchor1_motifs$motifMatches) > threshold)
+  anchor2_indices <- which(colMeans(anchor2_motifs$motifMatches) > threshold)
   interaction_data <- list(interactions = interaction_data$interactions,
-                          anchor1_motifs = interaction_data$anchor1_motifs,
-                          anchor2_motifs = interaction_data$anchor2_motifs,
-                          anchor1_motif_indices = anchor1_indices,
-                          anchor2_motif_indices = anchor2_indices)
+                           anchor1_motifs = interaction_data$anchor1_motifs,
+                           anchor2_motifs = interaction_data$anchor2_motifs,
+                           anchor1_motif_indices = anchor1_indices,
+                           anchor2_motif_indices = anchor2_indices)
   class(interaction_data) <- "interactionData"
   return(interaction_data)
 }

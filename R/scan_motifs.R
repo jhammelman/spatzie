@@ -20,15 +20,18 @@
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
 scan_motifs <- function(interactions, motifs, genome) {
-  anchor1_matches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
-                                  genome = genome, out = "scores", bg = "subject")
-  anchor2_matches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
-                                  genome = genome, out = "scores", bg = "subject")
-  interaction_data <- list(interactions = interactions,
-                          anchor1_motifs = anchor1_matches,
-                          anchor2_motifs = anchor2_matches,
-                          anchor1_motif_indices = seq(length(anchor1_matches$name)),
-                          anchor2_motif_indices = seq(length(anchor2_matches$name)))
+  anchor1_matches <- motifmatchr::matchMotifs(
+    motifs, GenomicInteractions::anchorOne(interactions),
+    genome = genome, out = "scores", bg = "subject")
+  anchor2_matches <- motifmatchr::matchMotifs(
+    motifs, GenomicInteractions::anchorTwo(interactions),
+    genome = genome, out = "scores", bg = "subject")
+  interaction_data <- list(
+    interactions = interactions,
+    anchor1_motifs = anchor1_matches,
+    anchor2_motifs = anchor2_matches,
+    anchor1_motif_indices = seq(length(anchor1_matches$name)),
+    anchor2_motif_indices = seq(length(anchor2_matches$name)))
   class(interaction_data) <- "interactionData"
   return(interaction_data)
 }

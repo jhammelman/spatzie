@@ -18,7 +18,8 @@ get_specific_interactions(
 \item{anchor2_motif}{TODO}
 }
 \value{
-TODO
+a subset of interactions that are only contain \code{anchor1_motif}
+in anchor 1 and \code{anchor2_motif} in anchor 2
 }
 \description{
 Select interactions that contain anchor1_motif within anchor 1 and

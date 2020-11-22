@@ -13,5 +13,5 @@
 #' @importFrom pheatmap pheatmap
 #' @export
 plot_motif_pairs_heatmap <- function(pair_enrichment_matrix) {
-  pheatmap::pheatmap(pair_enrichment_matrix, fontsize = 6)
+  return(pheatmap::pheatmap(pair_enrichment_matrix, fontsize = 6))
 }
