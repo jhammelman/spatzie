@@ -16,16 +16,16 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-get_specific_interactions <- function(interaction_data, anchor1_motif = "",
-                                      anchor2_motif = "") {
-  if (anchor1_motif == "" && anchor2_motif == "") {
+get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
+                                      anchor2_motif = NULL) {
+  if (is.null(anchor1_motif) && is.null(anchor2_motif)) {
     return(interaction_data)
-  } else if (anchor1_motif == "") {
+  } else if (is.null(anchor1_motif)) {
     motif_mask <- which(
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
     interaction_mask <- (interaction_data$anchor2_motifs$motifInstances[, motif_mask] == TRUE)
     return(interaction_data$interactions[interaction_mask])
-  } else if (anchor2_motif == "") {
+  } else if (is.null(anchor2_motif)) {
     motif_mask <- which(
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
     interaction_mask <- (interaction_data$anchor1_motifs$motifInstances[, motif_mask] == TRUE)
