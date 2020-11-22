@@ -40,7 +40,8 @@ Imports:
     SummarizedExperiment
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: 
     knitr
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection,
