@@ -12,6 +12,10 @@
 #' @return an interactionData object where \code{obj$pairMotifEnrich} contains
 #' the p-values for significance of seeing a higher co-occurrence than
 #' what we get by chance.
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom stats cor.test
 #' @importFrom SummarizedExperiment assays

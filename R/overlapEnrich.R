@@ -8,6 +8,10 @@
 #' @param bedranges TODO
 #' @param anchor TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom GenomicInteractions anchorOne
 #' @importFrom GenomicRanges intersect

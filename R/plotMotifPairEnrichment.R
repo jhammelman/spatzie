@@ -5,6 +5,10 @@
 #'
 #' @param pairEnrichmentMatrix TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom pheatmap pheatmap
 #' @export

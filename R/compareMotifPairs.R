@@ -9,6 +9,10 @@
 #' @param interactionData2 TODO
 #' @param differential_p TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs
 #' @importFrom matrixStats colMaxs

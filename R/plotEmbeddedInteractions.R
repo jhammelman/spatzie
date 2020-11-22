@@ -7,6 +7,10 @@
 #' @param color_by_motif TODO
 #' @param seed TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @export
 plotEmbeddedInteractions <- function(interactions,color_by_motif,seed=9302020) {

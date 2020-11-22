@@ -10,6 +10,10 @@
 #' @return an interaction data object where \code{obj$anchorOneMotifs} and
 #' \code{obj$anchorTwoMotifs} contain information about the scores and matches
 #' to motifs from anchor one and anchor two of interaction data genomic regions
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom motifmatchr matchMotifs
 #' @importFrom GenomicInteractions anchorOne

@@ -8,6 +8,10 @@
 #' @param method TODO
 #' @param threshold TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom stats p.adjust
 #' @importFrom matrixStats rowMins

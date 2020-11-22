@@ -7,6 +7,10 @@
 #' @param interactionData TODO
 #' @param method TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom BiocGenerics colMeans
 #' @importFrom SummarizedExperiment assays

@@ -8,6 +8,10 @@
 #' @param anchorOneMotif TODO
 #' @param anchorTwoMotif TODO
 #' @return TODO
+#'
+#' @examples
+#' # TODO
+#'
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
