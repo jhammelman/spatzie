@@ -15,7 +15,7 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoMotif=""){
+getSpecificInteractions <- function(interactionData, anchorOneMotif="", anchorTwoMotif=""){
   #TODO return a subset of interactions that are only containing
   #anchorOneMotif or anchorTwoMotif
   if (anchorOneMotif == "" && anchorTwoMotif == ""){
@@ -23,20 +23,20 @@ getSpecificInteractions <- function(interactionData,anchorOneMotif="",anchorTwoM
   }
   if (anchorOneMotif == ""){
     findMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
-    interactionskeepMask <- (interactionData$anchorTwoMotifs$motifInstances[,findMotif] == TRUE)
+    interactionskeepMask <- (interactionData$anchorTwoMotifs$motifInstances[, findMotif] == TRUE)
     return(interactionData$interactions[interactionskeepMask])
   }
   else if (anchorTwoMotif == ""){
     findMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
-    interactionskeepMask <- (interactionData$anchorOneMotifs$motifInstances[,findMotif] == TRUE)
+    interactionskeepMask <- (interactionData$anchorOneMotifs$motifInstances[, findMotif] == TRUE)
     return(interactionData$interactions[interactionskeepMask])
   }
   else{
     findTwoMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
-    interactionsTwokeepMask <- (SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,findTwoMotif] == TRUE)
+    interactionsTwokeepMask <- (SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, findTwoMotif] == TRUE)
 
     findOneMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
-    interactionsOnekeepMask <- (SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,findOneMotif] == TRUE)
+    interactionsOnekeepMask <- (SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, findOneMotif] == TRUE)
     return(interactionData$interactions[interactionsTwokeepMask & interactionsOnekeepMask])
   }
 }

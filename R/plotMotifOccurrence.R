@@ -19,7 +19,7 @@
 #' @importFrom ggplot2 facet_wrap
 #' @importFrom ggplot2 geom_bar
 #' @export
-plotMotifOccurrence <- function(interactionData,method=c("counts","matches","scores")){
+plotMotifOccurrence <- function(interactionData, method=c("counts", "matches", "scores")){
   if (method == "counts"){
     anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts)
     anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts)
@@ -30,11 +30,11 @@ plotMotifOccurrence <- function(interactionData,method=c("counts","matches","sco
     anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores)
     anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores)
   }
-  plottingdata <- data.frame(id=c(names(anchor1_values),names(anchor2_values)),
-                            value=c(anchor1_values,anchor2_values),
-                            variable=c(rep("anchor1",length(anchor1_values)),
-                                       rep("anchor2",length(anchor2_values))))
-  ggplot2::ggplot(plottingdata,ggplot2::aes(x=factor(id), y = value)) +
+  plottingdata <- data.frame(id=c(names(anchor1_values), names(anchor2_values)),
+                            value=c(anchor1_values, anchor2_values),
+                            variable=c(rep("anchor1", length(anchor1_values)),
+                                       rep("anchor2", length(anchor2_values))))
+  ggplot2::ggplot(plottingdata, ggplot2::aes(x=factor(id), y = value)) +
     ggplot2::facet_wrap(~variable) +
-    ggplot2::geom_bar(ggplot2::aes(fill = factor(id)),ylab=method)
+    ggplot2::geom_bar(ggplot2::aes(fill = factor(id)), ylab=method)
 }

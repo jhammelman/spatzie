@@ -22,33 +22,33 @@
 #' @importFrom stats phyper
 #' @importFrom stats fisher.test
 #' @export
-anchorPairEnrich <- function(interactionData,method=c("countCorrelation","scoreCorrelation","countHypergeom","countFisher")){
-  significance = matrix(data=NA,nrow=length(interactionData$anchorOneMotifIndices),
+anchorPairEnrich <- function(interactionData, method=c("countCorrelation", "scoreCorrelation", "countHypergeom", "countFisher")){
+  significance = matrix(data=NA, nrow=length(interactionData$anchorOneMotifIndices),
                         ncol=length(interactionData$anchorTwoMotifIndices))
   indr=1
   for (i in interactionData$anchorOneMotifIndices){
     indc=1
     for (j in interactionData$anchorTwoMotifIndices){
       if (method == "countCorrelation"){
-        significance[indr,indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts[,i],SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts[,j],alternative='greater',method='pearson')$p.value
+        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts[, j], alternative='greater', method='pearson')$p.value
       }
       if (method == "scoreCorrelation"){
-        significance[indr,indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores[,i],SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores[,j],alternative='greater',method='pearson')$p.value
+        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores[, j], alternative='greater', method='pearson')$p.value
       }
       if (method == "countHypergeom"){
-        significance[indr,indc] <- stats::phyper(sum((SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,j])),
-               sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i]),
-               length(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i])-sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i]),
-               sum(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,j]),lower.tail=FALSE)
+        significance[indr, indc] <- stats::phyper(sum((SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i])*(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j])),
+               sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i]),
+               length(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i])-sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i]),
+               sum(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j]), lower.tail=FALSE)
       }
       if (method == "countFisher"){
-        dobpos <- sum((SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,j]))
-        dobneg <- sum((!SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i])*(!SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,j]))
+        dobpos <- sum((SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i])*(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j]))
+        dobneg <- sum((!SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i])*(!SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j]))
         fisher_mat <- matrix(c(dobpos,
-                 sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[,i])-dobpos,
-                 sum(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[,j])-dobpos,
-                 dobneg),nrow=2)
-        significance[indr,indc] <- stats::fisher.test(fisher_mat,alternative="greater")$p.value
+                 sum(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i])-dobpos,
+                 sum(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j])-dobpos,
+                 dobneg), nrow=2)
+        significance[indr, indc] <- stats::fisher.test(fisher_mat, alternative="greater")$p.value
       }
       indc= indc+1
     }

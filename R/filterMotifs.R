@@ -18,7 +18,7 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-filterMotifs <- function(interactionData,threshold){
+filterMotifs <- function(interactionData, threshold){
   anchorOneIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches)) > threshold)
   anchorTwoIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches)) > threshold)
   interactionData <- list(interactions = interactionData$interactions,
