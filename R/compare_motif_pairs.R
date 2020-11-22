@@ -33,8 +33,12 @@ compare_motif_pairs <- function(interaction_data1, interaction_data2,
   data2_mat <- interaction_data2$pair_motif_enrich[data2_anchor1, ]
   data2_mat <- data2_mat[, data2_anchor2]
 
-  differential <- (-(log2(data1_mat + 1e-100) - log2(data2_mat + 1e-100)))
-  differential <- differential[matrixStats::rowMaxs(abs(differential)) > -log2(differential_p), ]
-  differential <- differential[, matrixStats::colMaxs(abs(differential)) > -log2(differential_p)]
+  pseudocount <- 1e-100
+  differential <- (-(log2(data1_mat + pseudocount) -
+                       log2(data2_mat + pseudocount)))
+  differential <- differential[matrixStats::rowMaxs(abs(differential)) >
+                                 -log2(differential_p), ]
+  differential <- differential[, matrixStats::colMaxs(abs(differential)) >
+                                 -log2(differential_p)]
   return(differential)
 }
