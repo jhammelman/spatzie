@@ -6,7 +6,7 @@
 \usage{
 filter_pair_motifs(
   interaction_data,
-  method = p.adjust.methods,
+  method = stats::p.adjust.methods,
   threshold = 0.05
 )
 }

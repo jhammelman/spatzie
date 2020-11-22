@@ -14,10 +14,12 @@
 #'
 #' @author Jennifer Hammelman
 #' @importFrom stats p.adjust
+#' @importFrom stats p.adjust.methods
 #' @importFrom matrixStats rowMins
 #' @importFrom matrixStats colMins
 #' @export
-filter_pair_motifs <- function(interaction_data, method = p.adjust.methods,
+filter_pair_motifs <- function(interaction_data,
+                               method = stats::p.adjust.methods,
                                threshold = 0.05) {
   adjusted_p_interactions <- matrix(stats::p.adjust(
     as.vector(as.matrix(interaction_data$pair_motif_enrich, method = method))),
