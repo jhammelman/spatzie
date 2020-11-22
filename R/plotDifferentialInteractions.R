@@ -13,6 +13,6 @@
 #' @author Jennifer Hammelman
 #' @importFrom pheatmap pheatmap
 #' @export
-plotDifferentialInteractions <- function(comparedMotifPairs) {
+plot_differential_interactions <- function(comparedMotifPairs) {
   pheatmap::pheatmap(comparedMotifPairs, fontsize = 6)
 }

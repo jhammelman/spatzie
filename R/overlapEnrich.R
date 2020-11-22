@@ -19,7 +19,7 @@
 #' @importFrom stats phyper
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
-overlapEnrich <- function(interactions, allInteractions, bedranges, anchor = c("anchorOne", "anchorTwo")) {
+overlap_enrich <- function(interactions, allInteractions, bedranges, anchor = c("anchorOne", "anchorTwo")) {
   if (anchor == "anchorOne") {
     all <- unique(GenomicInteractions::anchorOne(allInteractions))
     allinterbed <- GenomicRanges::intersect(all, BiocGenerics::unique(bedranges))

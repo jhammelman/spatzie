@@ -12,6 +12,6 @@
 #' @author Jennifer Hammelman
 #' @importFrom pheatmap pheatmap
 #' @export
-plotMotifPairsHeatmap <- function(pairEnrichmentMatrix) {
+plot_motif_pairs_heatmap <- function(pairEnrichmentMatrix) {
   pheatmap::pheatmap(pairEnrichmentMatrix, fontsize = 6)
 }

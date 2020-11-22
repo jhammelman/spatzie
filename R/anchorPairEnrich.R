@@ -22,7 +22,7 @@
 #' @importFrom stats phyper
 #' @importFrom stats fisher.test
 #' @export
-anchorPairEnrich <- function(interactionData, method = c("countCorrelation", "scoreCorrelation", "countHypergeom", "countFisher")) {
+anchor_pair_enrich <- function(interactionData, method = c("countCorrelation", "scoreCorrelation", "countHypergeom", "countFisher")) {
   significance <- matrix(data = NA, nrow = length(interactionData$anchorOneMotifIndices),
                         ncol = length(interactionData$anchorTwoMotifIndices))
   indr <- 1
