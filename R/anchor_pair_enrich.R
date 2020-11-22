@@ -27,6 +27,10 @@ anchor_pair_enrich <- function(interaction_data,
                                           "scoreCorrelation",
                                           "countHypergeom",
                                           "countFisher")) {
+  method <- match.arg(method, c("countCorrelation",
+                                "scoreCorrelation",
+                                "countHypergeom",
+                                "countFisher"))
   significance <- matrix(data = NA,
                          nrow = length(interaction_data$anchor1_motif_indices),
                          ncol = length(interaction_data$anchor2_motif_indices))

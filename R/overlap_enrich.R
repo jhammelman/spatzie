@@ -21,6 +21,7 @@
 #' @export
 overlap_enrich <- function(interactions, all_interactions, bedranges,
                            anchor = c("anchorOne", "anchorTwo")) {
+  anchor <- match.arg(anchor, c("anchorOne", "anchorTwo"))
   if (anchor == "anchorOne") {
     all <- unique(GenomicInteractions::anchorOne(all_interactions))
     allinterbed <- GenomicRanges::intersect(all,
