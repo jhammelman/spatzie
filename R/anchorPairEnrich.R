@@ -23,11 +23,11 @@
 #' @importFrom stats fisher.test
 #' @export
 anchorPairEnrich <- function(interactionData, method=c("countCorrelation", "scoreCorrelation", "countHypergeom", "countFisher")){
-  significance = matrix(data=NA, nrow=length(interactionData$anchorOneMotifIndices),
+  significance <- matrix(data=NA, nrow=length(interactionData$anchorOneMotifIndices),
                         ncol=length(interactionData$anchorTwoMotifIndices))
-  indr=1
+  indr <- 1
   for (i in interactionData$anchorOneMotifIndices){
-    indc=1
+    indc <- 1
     for (j in interactionData$anchorTwoMotifIndices){
       if (method == "countCorrelation"){
         significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts[, j], alternative='greater', method='pearson')$p.value
@@ -50,9 +50,9 @@ anchorPairEnrich <- function(interactionData, method=c("countCorrelation", "scor
                  dobneg), nrow=2)
         significance[indr, indc] <- stats::fisher.test(fisher_mat, alternative="greater")$p.value
       }
-      indc= indc+1
+      indc <- indc+1
     }
-    indr= indr+1
+    indr <- indr+1
   }
   rownames(significance) <- names(interactionData$anchorOneMotifIndices)
   colnames(significance) <- names(interactionData$anchorTwoMotifIndices)
