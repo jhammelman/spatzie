@@ -4,10 +4,10 @@
 \alias{plot_differential_interactions}
 \title{Plot differential interactions}
 \usage{
-plot_differential_interactions(comparedMotifPairs)
+plot_differential_interactions(compared_motif_pairs)
 }
 \arguments{
-\item{comparedMotifPairs}{TODO}
+\item{compared_motif_pairs}{TODO}
 }
 \value{
 TODO

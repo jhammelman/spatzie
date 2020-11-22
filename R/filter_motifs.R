@@ -5,11 +5,11 @@
 #' regions. Motif subsets are selected separately for anchor one and anchor
 #' two regions.
 #'
-#' @param interactionData an interactionData object of paired genomic regions
+#' @param interaction_data an interactionData object of paired genomic regions
 #' @param threshold fraction of interactions that should contain a motif for a
 #' motif to be considered
-#' @return an interactionData object where \code{obj$anchorOneMotifIndices}
-#' and \code{obj$anchorTwoMotifIndices} have been filtered to motifs that are
+#' @return an interactionData object where \code{obj$anchor1_motif_indices}
+#' and \code{obj$anchor2_motif_indices} have been filtered to motifs that are
 #' present in a threshold fraction of interactions
 #'
 #' @examples
@@ -18,14 +18,14 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-filter_motifs <- function(interactionData, threshold) {
-  anchorOneIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches)) > threshold)
-  anchorTwoIndices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches)) > threshold)
-  interactionData <- list(interactions = interactionData$interactions,
-                          anchorOneMotifs = interactionData$anchorOneMotifs,
-                          anchorTwoMotifs = interactionData$anchorTwoMotifs,
-                          anchorOneMotifIndices = anchorOneIndices,
-                          anchorTwoMotifIndices = anchorTwoIndices)
-  class(interactionData) <- "interactionData"
-  return(interactionData)
+filter_motifs <- function(interaction_data, threshold) {
+  anchor1_indices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifMatches)) > threshold)
+  anchor2_indices <- which(colMeans(as.matrix(SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifMatches)) > threshold)
+  interaction_data <- list(interactions = interaction_data$interactions,
+                          anchor1_motifs = interaction_data$anchor1_motifs,
+                          anchor2_motifs = interaction_data$anchor2_motifs,
+                          anchor1_motif_indices = anchor1_indices,
+                          anchor2_motif_indices = anchor2_indices)
+  class(interaction_data) <- "interactionData"
+  return(interaction_data)
 }

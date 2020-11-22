@@ -5,24 +5,24 @@
 \title{Get interactions that contain a specific motif pair}
 \usage{
 get_specific_interactions(
-  interactionData,
-  anchorOneMotif = "",
-  anchorTwoMotif = ""
+  interaction_data,
+  anchor1_motif = "",
+  anchor2_motif = ""
 )
 }
 \arguments{
-\item{interactionData}{TODO}
+\item{interaction_data}{TODO}
 
-\item{anchorOneMotif}{TODO}
+\item{anchor1_motif}{TODO}
 
-\item{anchorTwoMotif}{TODO}
+\item{anchor2_motif}{TODO}
 }
 \value{
 TODO
 }
 \description{
-Select interactions that contain anchorOneMotif within anchorOne and
-anchorTwoMotif within anchorTwo.
+Select interactions that contain anchor1_motif within anchor 1 and
+anchor2_motif within anchor 2.
 }
 \examples{
 # TODO

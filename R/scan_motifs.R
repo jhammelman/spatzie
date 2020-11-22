@@ -7,8 +7,8 @@
 #' @param motifs a TFBS tools matrix of DNA binding motifs
 #' @param genome a Biostrings genome must match chromosomes from interaction
 #' data file
-#' @return an interaction data object where \code{obj$anchorOneMotifs} and
-#' \code{obj$anchorTwoMotifs} contain information about the scores and matches
+#' @return an interaction data object where \code{obj$anchor1_motifs} and
+#' \code{obj$anchor2_motifs} contain information about the scores and matches
 #' to motifs from anchor one and anchor two of interaction data genomic regions
 #'
 #' @examples
@@ -20,15 +20,15 @@
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
 scan_motifs <- function(interactions, motifs, genome) {
-  anchorOneMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
+  anchor1_matches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
                                   genome = genome, out = "scores", bg = "subject")
-  anchorTwoMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
+  anchor2_matches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
                                   genome = genome, out = "scores", bg = "subject")
-  interactionData <- list(interactions = interactions,
-                          anchorOneMotifs = anchorOneMatches,
-                          anchorTwoMotifs = anchorTwoMatches,
-                          anchorOneMotifIndices = seq(length(anchorOneMatches$name)),
-                          anchorTwoMotifIndices = seq(length(anchorTwoMatches$name)))
-  class(interactionData) <- "interactionData"
-  return(interactionData)
+  interaction_data <- list(interactions = interactions,
+                          anchor1_motifs = anchor1_matches,
+                          anchor2_motifs = anchor2_matches,
+                          anchor1_motif_indices = seq(length(anchor1_matches$name)),
+                          anchor2_motif_indices = seq(length(anchor2_matches$name)))
+  class(interaction_data) <- "interactionData"
+  return(interaction_data)
 }

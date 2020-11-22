@@ -5,12 +5,12 @@
 \title{Plot motif occurrence}
 \usage{
 plot_motif_occurrence(
-  interactionData,
+  interaction_data,
   method = c("counts", "matches", "scores")
 )
 }
 \arguments{
-\item{interactionData}{TODO}
+\item{interaction_data}{TODO}
 
 \item{method}{TODO}
 }
@@ -19,7 +19,7 @@ TODO
 }
 \description{
 Plots a histogram of motif values (either counts, instances, or scores)
-for anchorOne and anchorTwo regions.
+for anchor 1 and anchor 2 regions.
 }
 \examples{
 # TODO

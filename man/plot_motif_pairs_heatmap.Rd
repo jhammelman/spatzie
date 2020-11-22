@@ -4,10 +4,10 @@
 \alias{plot_motif_pairs_heatmap}
 \title{Plot motif pair occurrence}
 \usage{
-plot_motif_pairs_heatmap(pairEnrichmentMatrix)
+plot_motif_pairs_heatmap(pair_enrichment_matrix)
 }
 \arguments{
-\item{pairEnrichmentMatrix}{TODO}
+\item{pair_enrichment_matrix}{TODO}
 }
 \value{
 TODO

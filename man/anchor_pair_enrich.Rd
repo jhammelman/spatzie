@@ -5,19 +5,19 @@
 \title{Determine enriched motifs in anchors}
 \usage{
 anchor_pair_enrich(
-  interactionData,
+  interaction_data,
   method = c("countCorrelation", "scoreCorrelation", "countHypergeom", "countFisher")
 )
 }
 \arguments{
-\item{interactionData}{an interactionData object of paired genomic regions}
+\item{interaction_data}{an interactionData object of paired genomic regions}
 
 \item{method}{choice of method for co-occurrence include
 \code{countCorrelation}, \code{scoreCorrelation}, \code{countHypergeom}, or
 \code{countFisher}}
 }
 \value{
-an interactionData object where \code{obj$pairMotifEnrich} contains
+an interactionData object where \code{obj$pair_motif_enrich} contains
 the p-values for significance of seeing a higher co-occurrence than
 what we get by chance.
 }

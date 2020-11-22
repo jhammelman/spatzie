@@ -15,8 +15,8 @@ scan_motifs(interactions, motifs, genome)
 data file}
 }
 \value{
-an interaction data object where \code{obj$anchorOneMotifs} and
-\code{obj$anchorTwoMotifs} contain information about the scores and matches
+an interaction data object where \code{obj$anchor1_motifs} and
+\code{obj$anchor2_motifs} contain information about the scores and matches
 to motifs from anchor one and anchor two of interaction data genomic regions
 }
 \description{

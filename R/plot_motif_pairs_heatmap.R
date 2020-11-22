@@ -3,7 +3,7 @@
 #' @description
 #' TODO
 #'
-#' @param pairEnrichmentMatrix TODO
+#' @param pair_enrichment_matrix TODO
 #' @return TODO
 #'
 #' @examples
@@ -12,6 +12,6 @@
 #' @author Jennifer Hammelman
 #' @importFrom pheatmap pheatmap
 #' @export
-plot_motif_pairs_heatmap <- function(pairEnrichmentMatrix) {
-  pheatmap::pheatmap(pairEnrichmentMatrix, fontsize = 6)
+plot_motif_pairs_heatmap <- function(pair_enrichment_matrix) {
+  pheatmap::pheatmap(pair_enrichment_matrix, fontsize = 6)
 }

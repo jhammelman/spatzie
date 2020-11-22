@@ -4,12 +4,16 @@
 \alias{compare_motif_pairs}
 \title{Compare pairs of motifs between two interaction datasets}
 \usage{
-compare_motif_pairs(interactionData1, interactionData2, differential_p = 0.05)
+compare_motif_pairs(
+  interaction_data1,
+  interaction_data2,
+  differential_p = 0.05
+)
 }
 \arguments{
-\item{interactionData1}{TODO}
+\item{interaction_data1}{TODO}
 
-\item{interactionData2}{TODO}
+\item{interaction_data2}{TODO}
 
 \item{differential_p}{TODO}
 }

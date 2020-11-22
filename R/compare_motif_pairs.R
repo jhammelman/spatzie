@@ -5,8 +5,8 @@
 #' two interaction datasets. Note that motif pair significance should have
 #' been computed using the same method for both datasets.
 #'
-#' @param interactionData1 TODO
-#' @param interactionData2 TODO
+#' @param interaction_data1 TODO
+#' @param interaction_data2 TODO
 #' @param differential_p TODO
 #' @return TODO
 #'
@@ -17,15 +17,15 @@
 #' @importFrom matrixStats rowMaxs
 #' @importFrom matrixStats colMaxs
 #' @export
-compare_motif_pairs <- function(interactionData1, interactionData2, differential_p = 0.05) {
-  data1_anchor1 <- (rownames(interactionData1$pairMotifEnrich) %in% rownames(interactionData2$pairMotifEnrich))
-  data1_anchor2 <- (colnames(interactionData1$pairMotifEnrich) %in% colnames(interactionData2$pairMotifEnrich))
-  data1_mat <- interactionData1$pairMotifEnrich[data1_anchor1, ]
+compare_motif_pairs <- function(interaction_data1, interaction_data2, differential_p = 0.05) {
+  data1_anchor1 <- (rownames(interaction_data1$pair_motif_enrich) %in% rownames(interaction_data2$pair_motif_enrich))
+  data1_anchor2 <- (colnames(interaction_data1$pair_motif_enrich) %in% colnames(interaction_data2$pair_motif_enrich))
+  data1_mat <- interaction_data1$pair_motif_enrich[data1_anchor1, ]
   data1_mat <- data1_mat[, data1_anchor2]
 
-  data2_anchor1 <- (rownames(interactionData2$pairMotifEnrich) %in% rownames(interactionData1$pairMotifEnrich))
-  data2_anchor2 <- (colnames(interactionData2$pairMotifEnrich) %in% colnames(interactionData1$pairMotifEnrich))
-  data2_mat <- interactionData2$pairMotifEnrich[data2_anchor1, ]
+  data2_anchor1 <- (rownames(interaction_data2$pair_motif_enrich) %in% rownames(interaction_data1$pair_motif_enrich))
+  data2_anchor2 <- (colnames(interaction_data2$pair_motif_enrich) %in% colnames(interaction_data1$pair_motif_enrich))
+  data2_mat <- interaction_data2$pair_motif_enrich[data2_anchor1, ]
   data2_mat <- data2_mat[, data2_anchor2]
   #print(dim(data1_mat))
   #print(dim(data2_mat))

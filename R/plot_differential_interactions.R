@@ -4,7 +4,7 @@
 #' Plots clustered heatmap of log likelihood ration for motif interactions
 #' between two datasets
 #'
-#' @param comparedMotifPairs TODO
+#' @param compared_motif_pairs TODO
 #' @return TODO
 #'
 #' @examples
@@ -13,6 +13,6 @@
 #' @author Jennifer Hammelman
 #' @importFrom pheatmap pheatmap
 #' @export
-plot_differential_interactions <- function(comparedMotifPairs) {
-  pheatmap::pheatmap(comparedMotifPairs, fontsize = 6)
+plot_differential_interactions <- function(compared_motif_pairs) {
+  pheatmap::pheatmap(compared_motif_pairs, fontsize = 6)
 }

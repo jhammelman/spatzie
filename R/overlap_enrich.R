@@ -4,7 +4,7 @@
 #' TODO
 #'
 #' @param interactions TODO
-#' @param allInteractions TODO
+#' @param all_interactions TODO
 #' @param bedranges TODO
 #' @param anchor TODO
 #' @return TODO
@@ -19,9 +19,9 @@
 #' @importFrom stats phyper
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
-overlap_enrich <- function(interactions, allInteractions, bedranges, anchor = c("anchorOne", "anchorTwo")) {
+overlap_enrich <- function(interactions, all_interactions, bedranges, anchor = c("anchorOne", "anchorTwo")) {
   if (anchor == "anchorOne") {
-    all <- unique(GenomicInteractions::anchorOne(allInteractions))
+    all <- unique(GenomicInteractions::anchorOne(all_interactions))
     allinterbed <- GenomicRanges::intersect(all, BiocGenerics::unique(bedranges))
     sel <- unique(GenomicInteractions::anchorOne(interactions))
     selinterbed <- GenomicRanges::intersect(sel, BiocGenerics::unique(bedranges))
@@ -35,7 +35,7 @@ overlap_enrich <- function(interactions, allInteractions, bedranges, anchor = c(
                   length(allinterbed), lower.tail = FALSE))
   }
   else{
-    all <- unique(GenomicInteractions::anchorTwo(allInteractions))
+    all <- unique(GenomicInteractions::anchorTwo(all_interactions))
     allinterbed <- GenomicRanges::intersect(all, BiocGenerics::unique(bedranges))
     sel <- unique(GenomicInteractions::anchorTwo(interactions))
     selinterbed <- GenomicRanges::intersect(sel, BiocGenerics::unique(bedranges))

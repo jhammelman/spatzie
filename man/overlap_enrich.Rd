@@ -6,7 +6,7 @@
 \usage{
 overlap_enrich(
   interactions,
-  allInteractions,
+  all_interactions,
   bedranges,
   anchor = c("anchorOne", "anchorTwo")
 )
@@ -14,7 +14,7 @@ overlap_enrich(
 \arguments{
 \item{interactions}{TODO}
 
-\item{allInteractions}{TODO}
+\item{all_interactions}{TODO}
 
 \item{bedranges}{TODO}
 

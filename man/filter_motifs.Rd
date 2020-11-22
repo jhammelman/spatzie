@@ -4,17 +4,17 @@
 \alias{filter_motifs}
 \title{Filter motifs based on occurrence within interaction data}
 \usage{
-filter_motifs(interactionData, threshold)
+filter_motifs(interaction_data, threshold)
 }
 \arguments{
-\item{interactionData}{an interactionData object of paired genomic regions}
+\item{interaction_data}{an interactionData object of paired genomic regions}
 
 \item{threshold}{fraction of interactions that should contain a motif for a
 motif to be considered}
 }
 \value{
-an interactionData object where \code{obj$anchorOneMotifIndices}
-and \code{obj$anchorTwoMotifIndices} have been filtered to motifs that are
+an interactionData object where \code{obj$anchor1_motif_indices}
+and \code{obj$anchor2_motif_indices} have been filtered to motifs that are
 present in a threshold fraction of interactions
 }
 \description{

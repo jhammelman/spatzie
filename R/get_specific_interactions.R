@@ -1,12 +1,12 @@
 #' @title Get interactions that contain a specific motif pair
 #'
 #' @description
-#' Select interactions that contain anchorOneMotif within anchorOne and
-#' anchorTwoMotif within anchorTwo.
+#' Select interactions that contain anchor1_motif within anchor 1 and
+#' anchor2_motif within anchor 2.
 #'
-#' @param interactionData TODO
-#' @param anchorOneMotif TODO
-#' @param anchorTwoMotif TODO
+#' @param interaction_data TODO
+#' @param anchor1_motif TODO
+#' @param anchor2_motif TODO
 #' @return TODO
 #'
 #' @examples
@@ -15,28 +15,28 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-get_specific_interactions <- function(interactionData, anchorOneMotif = "", anchorTwoMotif = "") {
+get_specific_interactions <- function(interaction_data, anchor1_motif = "", anchor2_motif = "") {
   #TODO return a subset of interactions that are only containing
-  #anchorOneMotif or anchorTwoMotif
-  if (anchorOneMotif == "" && anchorTwoMotif == "") {
-    return(interactionData)
+  #anchor1_motif or anchor2_motif
+  if (anchor1_motif == "" && anchor2_motif == "") {
+    return(interaction_data)
   }
-  if (anchorOneMotif == "") {
-    findMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
-    interactionskeepMask <- (interactionData$anchorTwoMotifs$motifInstances[, findMotif] == TRUE)
-    return(interactionData$interactions[interactionskeepMask])
+  if (anchor1_motif == "") {
+    motif_mask <- which(anchor2_motif == colnames(interaction_data$anchor2_motifs))
+    interaction_mask <- (interaction_data$anchor2_motifs$motifInstances[, motif_mask] == TRUE)
+    return(interaction_data$interactions[interaction_mask])
   }
-  else if (anchorTwoMotif == "") {
-    findMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
-    interactionskeepMask <- (interactionData$anchorOneMotifs$motifInstances[, findMotif] == TRUE)
-    return(interactionData$interactions[interactionskeepMask])
+  else if (anchor2_motif == "") {
+    motif_mask <- which(anchor1_motif == colnames(interaction_data$anchor1_motifs))
+    interaction_mask <- (interaction_data$anchor1_motifs$motifInstances[, motif_mask] == TRUE)
+    return(interaction_data$interactions[interaction_mask])
   }
   else{
-    findTwoMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
-    interactionsTwokeepMask <- (SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, findTwoMotif] == TRUE)
+    motif_mask_anchor2 <- which(anchor2_motif == colnames(interaction_data$anchor2_motifs))
+    interaction_mask_anchor2 <- (SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifMatches[, motif_mask_anchor2] == TRUE)
 
-    findOneMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
-    interactionsOnekeepMask <- (SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, findOneMotif] == TRUE)
-    return(interactionData$interactions[interactionsTwokeepMask & interactionsOnekeepMask])
+    motif_mask_anchor1 <- which(anchor1_motif == colnames(interaction_data$anchor1_motifs))
+    interaction_mask_anchor1 <- (SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifMatches[, motif_mask_anchor1] == TRUE)
+    return(interaction_data$interactions[interaction_mask_anchor2 & interaction_mask_anchor1])
   }
 }

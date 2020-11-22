@@ -2,9 +2,9 @@
 #'
 #' @description
 #' Plots a histogram of motif values (either counts, instances, or scores)
-#' for anchorOne and anchorTwo regions.
+#' for anchor 1 and anchor 2 regions.
 #'
-#' @param interactionData TODO
+#' @param interaction_data TODO
 #' @param method TODO
 #' @return TODO
 #'
@@ -19,16 +19,16 @@
 #' @importFrom ggplot2 facet_wrap
 #' @importFrom ggplot2 geom_bar
 #' @export
-plot_motif_occurrence <- function(interactionData, method = c("counts", "matches", "scores")) {
+plot_motif_occurrence <- function(interaction_data, method = c("counts", "matches", "scores")) {
   if (method == "counts") {
-    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts)
-    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts)
+    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifCounts)
+    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifCounts)
   }else if (method == "matches") {
-    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches)
-    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches)
+    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifMatches)
+    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifMatches)
   }else{
-    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores)
-    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores)
+    anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor1_motifs)$motifScores)
+    anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interaction_data$anchor2_motifs)$motifScores)
   }
   plottingdata <- data.frame(id = c(names(anchor1_values), names(anchor2_values)),
                             value = c(anchor1_values, anchor2_values),

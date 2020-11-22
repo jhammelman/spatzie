@@ -5,13 +5,13 @@
 \title{Filter significant motif interactions}
 \usage{
 filter_pair_motifs(
-  interactionData,
+  interaction_data,
   method = p.adjust.methods,
   threshold = 0.05
 )
 }
 \arguments{
-\item{interactionData}{TODO}
+\item{interaction_data}{TODO}
 
 \item{method}{TODO}
 
