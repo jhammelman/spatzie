@@ -30,10 +30,10 @@ anchorPairEnrich <- function(interactionData, method = c("countCorrelation", "sc
     indc <- 1
     for (j in interactionData$anchorTwoMotifIndices) {
       if (method == "countCorrelation") {
-        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts[, j], alternative = 'greater', method = 'pearson')$p.value
+        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts[, j], alternative = "greater", method = "pearson")$p.value
       }
       if (method == "scoreCorrelation") {
-        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores[, j], alternative = 'greater', method = 'pearson')$p.value
+        significance[indr, indc] <- stats::cor.test(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifScores[, i], SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifScores[, j], alternative = "greater", method = "pearson")$p.value
       }
       if (method == "countHypergeom") {
         significance[indr, indc] <- stats::phyper(sum((SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches[, i]) * (SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches[, j])),
