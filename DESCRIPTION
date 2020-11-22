@@ -38,6 +38,11 @@ Imports:
     motifmatchr,
     pheatmap,
     SummarizedExperiment
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: 
+    knitr
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection,
     Epigenetics, FunctionalGenomics, Classification, HiC
 Encoding: UTF-8
