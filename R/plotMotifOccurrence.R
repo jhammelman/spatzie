@@ -19,11 +19,11 @@
 #' @importFrom ggplot2 facet_wrap
 #' @importFrom ggplot2 geom_bar
 #' @export
-plotMotifOccurrence <- function(interactionData, method = c("counts", "matches", "scores")){
-  if (method == "counts"){
+plotMotifOccurrence <- function(interactionData, method = c("counts", "matches", "scores")) {
+  if (method == "counts") {
     anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifCounts)
     anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifCounts)
-  }else if (method == "matches"){
+  }else if (method == "matches") {
     anchor1_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorOneMotifs)$motifMatches)
     anchor2_values <- BiocGenerics::colMeans(SummarizedExperiment::assays(interactionData$anchorTwoMotifs)$motifMatches)
   }else{

@@ -15,18 +15,18 @@
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
 #' @export
-getSpecificInteractions <- function(interactionData, anchorOneMotif = "", anchorTwoMotif = ""){
+getSpecificInteractions <- function(interactionData, anchorOneMotif = "", anchorTwoMotif = "") {
   #TODO return a subset of interactions that are only containing
   #anchorOneMotif or anchorTwoMotif
-  if (anchorOneMotif == "" && anchorTwoMotif == ""){
+  if (anchorOneMotif == "" && anchorTwoMotif == "") {
     return(interactionData)
   }
-  if (anchorOneMotif == ""){
+  if (anchorOneMotif == "") {
     findMotif <- which(anchorTwoMotif == colnames(interactionData$anchorTwoMotifs))
     interactionskeepMask <- (interactionData$anchorTwoMotifs$motifInstances[, findMotif] == TRUE)
     return(interactionData$interactions[interactionskeepMask])
   }
-  else if (anchorTwoMotif == ""){
+  else if (anchorTwoMotif == "") {
     findMotif <- which(anchorOneMotif == colnames(interactionData$anchorOneMotifs))
     interactionskeepMask <- (interactionData$anchorOneMotifs$motifInstances[, findMotif] == TRUE)
     return(interactionData$interactions[interactionskeepMask])

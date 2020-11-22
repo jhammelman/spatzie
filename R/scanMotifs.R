@@ -19,7 +19,7 @@
 #' @importFrom GenomicInteractions anchorOne
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
-scanMotifs <- function(interactions, motifs, genome){
+scanMotifs <- function(interactions, motifs, genome) {
   anchorOneMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorOne(interactions),
                                   genome = genome, out = 'scores', bg = 'subject')
   anchorTwoMatches <- motifmatchr::matchMotifs(motifs, GenomicInteractions::anchorTwo(interactions),
