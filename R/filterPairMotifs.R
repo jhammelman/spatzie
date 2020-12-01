@@ -4,7 +4,12 @@ filterPairMotifs <- function(interactionData,method=p.adjust.methods,threshold=0
   colnames(adjusted_p_interactions) <- names(interactionData$anchorTwoMotifIndices)
 
   significant_anchor1 <- which(rowMins(adjusted_p_interactions) < threshold)
-  adjusted_p_interactions_sig <- adjusted_p_interactions[significant_anchor1,]
+  print(significant_anchor1)
+  adjusted_p_interactions_sig <- as.matrix(adjusted_p_interactions[significant_anchor1,])
+  if (length(significant_anchor1)==1){
+    adjusted_p_interactions_sig = t(adjusted_p_interactions_sig)
+    names
+  }
   significant_anchor2 <- which(colMins(adjusted_p_interactions) < threshold)
   adjusted_p_interactions_sig <- adjusted_p_interactions_sig[,significant_anchor2]
 
