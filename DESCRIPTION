@@ -39,9 +39,14 @@ Imports:
     pheatmap,
     SummarizedExperiment
 Suggests: 
+    biomaRt,
+    BSgenome.Mmusculus.UCSC.mm9,
     knitr,
     rmarkdown,
-    testthat
+    S4Vectors,
+    testthat,
+    TFBSTools,
+    TxDb.Mmusculus.UCSC.mm9.knownGene
 VignetteBuilder: 
     knitr
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection,
