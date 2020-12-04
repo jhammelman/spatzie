@@ -31,7 +31,11 @@ filter_pair_motifs <- function(interaction_data,
 
   anchor1_mask <- which(
     matrixStats::rowMins(adjusted_p_interactions) < threshold)
-  adjusted_p_interactions_sig <- adjusted_p_interactions[anchor1_mask, ]
+  adjusted_p_interactions_sig <- as.matrix(
+    adjusted_p_interactions[anchor1_mask, ])
+  if (length(anchor1_mask) == 1) {
+    adjusted_p_interactions_sig <- t(adjusted_p_interactions_sig)
+  }
   anchor2_mask <- which(
     matrixStats::colMins(adjusted_p_interactions) < threshold)
   adjusted_p_interactions_sig <- adjusted_p_interactions_sig[, anchor2_mask]
