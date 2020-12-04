@@ -6,8 +6,8 @@
 \usage{
 get_specific_interactions(
   interaction_data,
-  anchor1_motif = "",
-  anchor2_motif = ""
+  anchor1_motif = NULL,
+  anchor2_motif = NULL
 )
 }
 \arguments{
