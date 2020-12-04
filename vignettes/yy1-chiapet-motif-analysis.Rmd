@@ -65,7 +65,7 @@ names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
 
 # Annotate interactions with promoters
 
-```{r annotate_interactions}
+```{r annotate_interactions, message=FALSE, warning=FALSE}
 annotation_features <- list(promoter = promoter_ranges)
 GenomicInteractions::annotateInteractions(yy1_interactions, annotation_features)
 GenomicInteractions::plotInteractionAnnotations(yy1_interactions)
