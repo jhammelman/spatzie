@@ -23,7 +23,13 @@ regions. Motif subsets are selected separately for anchor one and anchor
 two regions.
 }
 \examples{
-# TODO
+genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+motif_file <- system.file(
+  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq", package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+
+yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 
 }
 \author{

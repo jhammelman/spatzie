@@ -94,7 +94,7 @@ yy1_pd <- GenomicInteractions::GenomicInteractions(promoter_ranges,
 
 ```{r scan_motifs}
 motif_file <- system.file("extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
-                         package = "spatzie")
+                          package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
 yy1_pd_interaction <- scan_motifs(yy1_pd, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)

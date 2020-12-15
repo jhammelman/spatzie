@@ -12,7 +12,13 @@
 #' to motifs from anchor one and anchor two of interaction data genomic regions
 #'
 #' @examples
-#' # TODO
+#' genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+#' motif_file <- system.file(
+#'   "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+#'   package = "spatzie")
+#' motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+#'
+#' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom motifmatchr matchMotifs
