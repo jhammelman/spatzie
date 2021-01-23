@@ -5,13 +5,19 @@
 #' two interaction datasets. Note that motif pair significance should have
 #' been computed using the same method for both datasets.
 #'
-#' @param interaction_data1 TODO
-#' @param interaction_data2 TODO
-#' @param differential_p TODO
-#' @return TODO
+#' @param interaction_data1 an interactionData object of paired genomic regions
+#'                          that has been scanned for significant motif:motif
+#'                          interactions
+#' @param interaction_data2 an interactionData object of paired genomic regions
+#'                          that has been scanned for significant motif:motif
+#'                          interactions
+#' @param differential_p threshold for significance of differential p-value
+#' @return a matrix of the log likelihood ratio of motif pairs that are
+#'         significantly differential between between two interactionData sets
 #'
 #' @examples
-#' # TODO
+#' #  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataMSFIB,
+#' #                                                spatzie:::interactionDataMSIPS))
 #'
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs

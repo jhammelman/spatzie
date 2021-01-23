@@ -4,12 +4,23 @@
 #' Plots a histogram of motif values (either counts, instances, or scores)
 #' for anchor 1 and anchor 2 regions.
 #'
-#' @param interaction_data TODO
-#' @param method TODO
-#' @return TODO
+#' @param interaction_data an interactionData object of paired genomic regions
+#' @param method way to interpret motif matching for each anchor region as
+#'               "counts" number of motifs per region, "instances" motif
+#'               present or absent each region, or "scores" maximum motif PWM
+#'               match score for each region
+#' @return plot containing histogram for each anchor
 #'
 #' @examples
-#' # TODO
+#' genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+#' motif_file <- system.file(
+#'   "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+#'   package = "spatzie")
+#' motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+#'
+#' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+#' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
+#' plot_motif_occurrence(yy1_pd_interaction)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom BiocGenerics colMeans
@@ -20,9 +31,9 @@
 #' @importFrom ggplot2 geom_bar
 #' @export
 plot_motif_occurrence <- function(interaction_data,
-                                  method = c("counts", "matches", "scores")) {
+                                  method = c("counts", "instances", "scores")) {
   id <- value <- NULL
-  method <- match.arg(method, c("counts", "matches", "scores"))
+  method <- match.arg(method, c("counts", "instances", "scores"))
   anchor1_motifs <- SummarizedExperiment::assays(
     interaction_data$anchor1_motifs)
   anchor2_motifs <- SummarizedExperiment::assays(

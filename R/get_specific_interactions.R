@@ -4,14 +4,26 @@
 #' Select interactions that contain anchor1_motif within anchor 1 and
 #' anchor2_motif within anchor 2.
 #'
-#' @param interaction_data TODO
-#' @param anchor1_motif TODO
-#' @param anchor2_motif TODO
-#' @return a subset of interactions that are only contain \code{anchor1_motif}
+#' @param interaction_data an interactionData object of paired genomic regions
+#' @param anchor1_motif Motif name from \code{interactionData$anchor1_motifs}
+#' @param anchor2_motif Motif name from \code{interactionData$anchor2_motifs}
+#' @return a subset of interactions that only contain \code{anchor1_motif}
 #' in anchor 1 and \code{anchor2_motif} in anchor 2
 #'
 #' @examples
-#' # TODO
+#' genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+#' motif_file <- system.file(
+#'   "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+#'   package = "spatzie")
+#' motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+#'
+#' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+#' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
+#' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
+#'                                         method = "scoreCorrelation")
+#' yy1_pd_count_corr_adj <- get_specific_interactions(yy1_pd_interaction,
+#'                                                   anchor1_motif="YY1",
+#'                                                   anchor2_motif="YY1",)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
