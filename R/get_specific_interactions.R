@@ -21,9 +21,9 @@
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 #' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
 #'                                         method = "scoreCorrelation")
-#' yy1_pd_count_corr_adj <- get_specific_interactions(yy1_pd_interaction,
-#'                                                   anchor1_motif="YY1",
-#'                                                   anchor2_motif="YY1",)
+#' yy1_yy1_interactions <- get_specific_interactions(yy1_pd_interaction,
+#'                                                   anchor1_motif="TYY1_MOUSE.H11MO.0.A",
+#'                                                   anchor2_motif="TYY1_MOUSE.H11MO.0.A")
 #'
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays
@@ -36,11 +36,13 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
     motif_mask <- which(
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
     interaction_mask <- (interaction_data$anchor2_motifs$motifInstances[, motif_mask] == TRUE)
+    if(motif_mask_anchor2==0){stop(paste('No match found for motif ',anchor2_motif))}
     return(interaction_data$interactions[interaction_mask])
   } else if (is.null(anchor2_motif)) {
     motif_mask <- which(
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
     interaction_mask <- (interaction_data$anchor1_motifs$motifInstances[, motif_mask] == TRUE)
+    if(motif_mask_anchor1==0){stop(paste('No match found for motif ',anchor1_motif))}
     return(interaction_data$interactions[interaction_mask])
   } else {
     anchor1_motifs <- SummarizedExperiment::assays(
@@ -50,10 +52,12 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
 
     motif_mask_anchor1 <- which(
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
+    if(motif_mask_anchor1==0){stop(paste('No match found for motif ',anchor1_motif))}
     interaction_mask_anchor1 <- (anchor1_motifs$motifMatches[, motif_mask_anchor1] == TRUE)
 
     motif_mask_anchor2 <- which(
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
+    if(motif_mask_anchor2==0){stop(paste('No match found for motif ',anchor2_motif))}
     interaction_mask_anchor2 <- (anchor2_motifs$motifMatches[, motif_mask_anchor2] == TRUE)
 
     return(interaction_data$interactions[interaction_mask_anchor1 & interaction_mask_anchor2])

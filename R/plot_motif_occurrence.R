@@ -20,7 +20,7 @@
 #'
 #' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
-#' plot_motif_occurrence(yy1_pd_interaction)
+#' plot_motif_occurrence(yy1_pd_interaction,"counts")
 #'
 #' @author Jennifer Hammelman
 #' @importFrom BiocGenerics colMeans
@@ -58,5 +58,5 @@ plot_motif_occurrence <- function(interaction_data,
   return(ggplot2::ggplot(plotting_data,
                          ggplot2::aes(x = factor(id), y = value)) +
     ggplot2::facet_wrap(~variable) +
-    ggplot2::geom_bar(ggplot2::aes(fill = factor(id)), ylab = method))
+    ggplot2::geom_bar(stat='identity',ggplot2::aes(fill = factor(id)), ylab = method))
 }
