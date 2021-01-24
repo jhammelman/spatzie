@@ -2,7 +2,7 @@
 
 [![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0)
 
-*TODO short summary*
+Given a database of DNA sequence motifs representing transcription factors and enhancer promoter interaction data, spatzie performs statistical analysis to identify co-enriched transcription factors.
 
 ## Installation
 
@@ -21,7 +21,7 @@ remotes::install_github("jhammelman/spatzie")
 If you use *spatzie* in your research, please cite:
 
 **spatzie paper**  
-Jennifer Hammelman, author 2, author 3, author n, and David Gifford  
+Jennifer Hammelman, Konstantin Krismer, and David Gifford  
 Journal name, Volume *TODO*, Issue *TODO*, *TODO*; DOI: https://doi.org/*TODO*
 
 ## Funding
