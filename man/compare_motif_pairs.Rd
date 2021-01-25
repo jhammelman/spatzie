@@ -11,14 +11,19 @@ compare_motif_pairs(
 )
 }
 \arguments{
-\item{interaction_data1}{TODO}
+\item{interaction_data1}{an interactionData object of paired genomic regions
+that has been scanned for significant motif:motif
+interactions}
 
-\item{interaction_data2}{TODO}
+\item{interaction_data2}{an interactionData object of paired genomic regions
+that has been scanned for significant motif:motif
+interactions}
 
-\item{differential_p}{TODO}
+\item{differential_p}{threshold for significance of differential p-value}
 }
 \value{
-TODO
+a matrix of the log likelihood ratio of motif pairs that are
+        significantly differential between between two interactionData sets
 }
 \description{
 Compute the log-likelihood ratio that a motif pair is differential between
@@ -26,7 +31,8 @@ two interaction datasets. Note that motif pair significance should have
 been computed using the same method for both datasets.
 }
 \examples{
-# TODO
+#  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataMSFIB,
+#                                                spatzie:::interactionDataMSIPS))
 
 }
 \author{

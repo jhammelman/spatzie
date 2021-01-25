@@ -6,23 +6,34 @@
 \usage{
 plot_motif_occurrence(
   interaction_data,
-  method = c("counts", "matches", "scores")
+  method = c("counts", "instances", "scores")
 )
 }
 \arguments{
-\item{interaction_data}{TODO}
+\item{interaction_data}{an interactionData object of paired genomic regions}
 
-\item{method}{TODO}
+\item{method}{way to interpret motif matching for each anchor region as
+"counts" number of motifs per region, "instances" motif
+present or absent each region, or "scores" maximum motif PWM
+match score for each region}
 }
 \value{
-TODO
+plot containing histogram for each anchor
 }
 \description{
 Plots a histogram of motif values (either counts, instances, or scores)
 for anchor 1 and anchor 2 regions.
 }
 \examples{
-# TODO
+genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+motif_file <- system.file(
+  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+  package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+
+yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
+plot_motif_occurrence(yy1_pd_interaction,"counts")
 
 }
 \author{

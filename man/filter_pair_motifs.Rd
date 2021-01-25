@@ -11,21 +11,34 @@ filter_pair_motifs(
 )
 }
 \arguments{
-\item{interaction_data}{TODO}
+\item{interaction_data}{an interactionData object of paired genomic regions}
 
-\item{method}{TODO}
+\item{method}{statistical method for multiple hypothesis correction (see stats package for options)}
 
-\item{threshold}{TODO}
+\item{threshold}{p-value threshold for significance cut-off}
 }
 \value{
-TODO
+an interactionData object where \code{obj$pair_motif_enrich} contains
+multiple hypothesis corrected p-values for significance of seeing a higher co-occurrence than
+what we get by chance and \code{obj$pair_motif_enrich_sig} contains only motifs that have at least one
+significant interaction.
 }
 \description{
 Multiple hypothesis correction applied to filter for significant motif
 interactions.
 }
 \examples{
-# TODO
+genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+motif_file <- system.file(
+  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+  package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+
+yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
+yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
+                                        method = "scoreCorrelation")
+yy1_pd_score_corr_adj <- filter_pair_motifs(yy1_pd_score_corr)
 
 }
 \author{

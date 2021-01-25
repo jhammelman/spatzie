@@ -7,13 +7,13 @@
 plot_motif_pairs_heatmap(pair_enrichment_matrix)
 }
 \arguments{
-\item{pair_enrichment_matrix}{TODO}
+\item{pair_enrichment_matrix}{matrix of format \code{obj$pair_motif_enrich} or \code{obj$pair_motif_enrich_sig}}
 }
 \value{
-TODO
+heatmap of input data
 }
 \description{
-TODO
+Creates heatmap to plot values associated with interaction pairs
 }
 \examples{
 genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
