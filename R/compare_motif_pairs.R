@@ -16,8 +16,8 @@
 #'         significantly differential between between two interactionData sets
 #'
 #' @examples
-#' #  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataMSFIB,
-#' #                                                spatzie:::interactionDataMSIPS))
+#' #  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::mslcl_inter,
+#' #                                                spatzie:::k562_inter))
 #'
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs
