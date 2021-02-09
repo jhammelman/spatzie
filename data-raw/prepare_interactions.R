@@ -50,6 +50,6 @@ promoter_ranges <- c(anchor1[promoter_left],
                      anchor2[promoter_right])
 enhancer_ranges <- c(anchor2[promoter_left],
                      anchor1[promoter_right])
-interactions <- GenomicInteractions::GenomicInteractions(promoter_ranges,
+yy1_interactions <- GenomicInteractions::GenomicInteractions(promoter_ranges,
                                                          enhancer_ranges)
-save(interactions, file = "data/interactions.rda", compress = "xz")
+save(yy1_interactions, file = "data/yy1_interactions.rda", compress = "xz")

@@ -32,6 +32,7 @@ Imports:
     BiocGenerics,
     GenomicFeatures,
     GenomicInteractions,
+    IRanges,
     GenomicRanges,
     ggplot2,
     matrixStats,
@@ -41,6 +42,7 @@ Imports:
 Suggests: 
     biomaRt,
     BSgenome.Mmusculus.UCSC.mm9,
+    BSgenome.Hsapiens.UCSC.hg19,
     knitr,
     rmarkdown,
     S4Vectors,

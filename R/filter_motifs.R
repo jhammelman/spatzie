@@ -18,7 +18,7 @@
 #'   "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq", package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
 #'
-#' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+#' yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 #'
 #' @author Jennifer Hammelman

@@ -12,5 +12,5 @@ NULL
 
 .onLoad <- function(libname = find.package("spatzie"), pkgname = "spatzie") {
   envir <- parent.env(environment())
-  utils::data("interactions", package = pkgname, envir = envir)
+  utils::data("yy1_interactions", package = pkgname, envir = envir)
 }

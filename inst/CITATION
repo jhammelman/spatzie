@@ -2,15 +2,17 @@ citHeader("To cite spatzie in publications use:")
 
 citEntry(
   entry    = "Article",
-  title    = ,
-  author   = ,
-  journal  = ,
-  year     = ,
-  volume   = ,
-  number   = ,
-  pages    = ,
-  url      = ,
-  textVersion = paste(
+  title    = "spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions",
+  author = personList(as.person("Jennifer Hammelman"),
+                       as.person("Konstanin Krismer"),
+                       as.person("David K. Gifford")),
+  journal  = "bioRxiv",
+  year     = 2021,
+  volume   = 1,
+  number   = 1,
+  pages    = 0,
+  url      = "",
+  textVersion = paste("","",""
 
   )
 )

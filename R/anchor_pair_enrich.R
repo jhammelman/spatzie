@@ -20,7 +20,7 @@
 #'   package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
 #'
-#' yy1_pd_interaction <- scan_motifs(spatzie:::interactions, motifs, genome)
+#' yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 #' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
 #'                                         method = "countCorrelation")
