@@ -7,9 +7,7 @@ test_that("plot_motif_pairs_heatmap produces output", {
     expect_equal(class(p), "pheatmap")
 })
 
-
 test_that("plot_motif_occurrence produces output", {
   p <- plot_motif_occurrence(anchor_pair_example_scorecorr)
   expect_equal(class(p), c("gg", "ggplot"))
 })
-

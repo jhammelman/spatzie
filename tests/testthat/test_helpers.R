@@ -13,22 +13,22 @@ test_that("compare_motifs_heatmap produces output", {
 })
 
 test_that("get_specific_interactions.R", {
-  yy1P_yy1E_test_interactions <- get_specific_interactions(
+  yy1p_yy1e_test_interactions <- get_specific_interactions(
     yy1_pd_interaction,
     anchor1_motif = "TYY1_MOUSE.H11MO.0.A",
     anchor2_motif = "TYY1_MOUSE.H11MO.0.A")
-  expect_equal(yy1P_yy1E_interactions, yy1P_yy1E_test_interactions)
-  expect_is(yy1P_yy1E_test_interactions, "GenomicInteractions")
+  expect_equal(yy1P_yy1E_interactions, yy1p_yy1e_test_interactions)
+  expect_is(yy1p_yy1e_test_interactions, "GenomicInteractions")
 
-  yy1P_test_interactions <- get_specific_interactions(
+  yy1p_test_interactions <- get_specific_interactions(
     yy1_pd_interaction, anchor1_motif = "TYY1_MOUSE.H11MO.0.A")
-  expect_equal(yy1P_interactions, yy1P_test_interactions)
+  expect_equal(yy1P_interactions, yy1p_test_interactions)
 
-  expect_is(yy1P_test_interactions, "GenomicInteractions")
-  yy1E_test_interactions <- get_specific_interactions(
+  expect_is(yy1p_test_interactions, "GenomicInteractions")
+  yy1e_test_interactions <- get_specific_interactions(
     yy1_pd_interaction, anchor2_motif = "TYY1_MOUSE.H11MO.0.A")
-  expect_equal(yy1E_interactions, yy1E_test_interactions)
-  expect_is(yy1E_test_interactions, "GenomicInteractions")
+  expect_equal(yy1E_interactions, yy1e_test_interactions)
+  expect_is(yy1e_test_interactions, "GenomicInteractions")
 
   yy1_pd_test_interactions <- get_specific_interactions(yy1_pd_interaction)
   expect_equal(yy1_pd_test_interactions, yy1_pd_interaction$interactions)

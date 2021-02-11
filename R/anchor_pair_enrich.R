@@ -78,10 +78,10 @@ anchor_pair_enrich <- function(interaction_data,
             sum(anchor1_motifs$motifMatches[, i]),
           sum(anchor2_motifs$motifMatches[, j]), lower.tail = FALSE)
         values[indr, indc] <- sum((anchor1_motifs$motifMatches[, i]) *
-                                   (anchor2_motifs$motifMatches[, j]))
-        maxEP <- min(sum(anchor1_motifs$motifMatches[, i]),
-                     sum(anchor2_motifs$motifMatches[, j]))
-        values[indr, indc] <- values[indr, indc] / maxEP
+                                    (anchor2_motifs$motifMatches[, j]))
+        max_ep <- min(sum(anchor1_motifs$motifMatches[, i]),
+                      sum(anchor2_motifs$motifMatches[, j]))
+        values[indr, indc] <- values[indr, indc] / max_ep
       } else if (method == "countFisher") {
         dobpos <- sum((anchor1_motifs$motifMatches[, i]) *
                         (anchor2_motifs$motifMatches[, j]))
@@ -94,10 +94,10 @@ anchor_pair_enrich <- function(interaction_data,
         significance[indr, indc] <- stats::fisher.test(
           fisher_mat, alternative = "greater")$p.value
         values[indr, indc] <- sum((anchor1_motifs$motifMatches[, i]) *
-                                   (anchor2_motifs$motifMatches[, j]))
-        maxEP <- min(sum(anchor1_motifs$motifMatches[, i]),
-                     sum(anchor2_motifs$motifMatches[, j]))
-        values[indr, indc] <- values[indr, indc] / maxEP
+                                    (anchor2_motifs$motifMatches[, j]))
+        max_ep <- min(sum(anchor1_motifs$motifMatches[, i]),
+                      sum(anchor2_motifs$motifMatches[, j]))
+        values[indr, indc] <- values[indr, indc] / max_ep
       }
       indc <- indc + 1
     }
