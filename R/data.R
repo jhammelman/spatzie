@@ -121,33 +121,36 @@
 #' @usage data(yy1_pd_interaction)
 "yy1_pd_interaction"
 
-#' yy1E_interactions
+#' yy1e_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
 #' ChIA-PET of interactions that contain a YY1 motif in the enhancer
 #' (anchor 2) region. It serves as unit test data.
 #'
-#' @format A GenomicInteractions object
-#' @usage data(yy1E_interactions)
-"yy1E_interactions"
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(yy1e_interactions)
+"yy1e_interactions"
 
-#' yy1P_interactions
+#' yy1p_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
 #' ChIA-PET of interactions that contain a YY1 motif in the promoter
 #' (anchor 1) region. It serves as unit test data.
 #'
-#' @format A GenomicInteractions object
-#' @usage data(yy1P_interactions)
-"yy1P_interactions"
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(yy1p_interactions)
+"yy1p_interactions"
 
-#' yy1P_yy1E_interactions
+#' yy1p_yy1e_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
 #' ChIA-PET of interactions that contain a YY1 motif in the promoter
 #' (anchor 1) region and a YY1 motif in the enhancer (anchor 2) region.
 #' It serves as unit test data.
 #'
-#' @format A GenomicInteractions object
-#' @usage data(yy1P_yy1E_interactions)
-"yy1P_yy1E_interactions"
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(yy1p_yy1e_interactions)
+"yy1p_yy1e_interactions"
