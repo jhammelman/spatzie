@@ -58,7 +58,7 @@ anchor_pair_enrich <- function(interaction_data,
           anchor1_motifs$motifCounts[, i],
           anchor2_motifs$motifCounts[, j],
           alternative = "greater", method = "pearson")$p.value
-        values[indr,indc] <- stats::cor(
+        values[indr, indc] <- stats::cor(
           anchor1_motifs$motifCounts[, i],
           anchor2_motifs$motifCounts[, j])
       } else if (method == "scoreCorrelation") {
@@ -66,7 +66,7 @@ anchor_pair_enrich <- function(interaction_data,
           anchor1_motifs$motifScores[, i],
           anchor2_motifs$motifScores[, j],
           alternative = "greater", method = "pearson")$p.value
-        values[indr,indc] <- stats::cor(
+        values[indr, indc] <- stats::cor(
           anchor1_motifs$motifScores[, i],
           anchor2_motifs$motifScores[, j])
       } else if (method == "countHypergeom") {
@@ -77,11 +77,11 @@ anchor_pair_enrich <- function(interaction_data,
           length(anchor1_motifs$motifMatches[, i]) -
             sum(anchor1_motifs$motifMatches[, i]),
           sum(anchor2_motifs$motifMatches[, j]), lower.tail = FALSE)
-        values[indr,indc] <- sum((anchor1_motifs$motifMatches[, i]) *
+        values[indr, indc] <- sum((anchor1_motifs$motifMatches[, i]) *
                                    (anchor2_motifs$motifMatches[, j]))
         maxEP <- min(sum(anchor1_motifs$motifMatches[, i]),
                      sum(anchor2_motifs$motifMatches[, j]))
-        values[indr,indc] <- values[indr,indc]/maxEP
+        values[indr, indc] <- values[indr, indc] / maxEP
       } else if (method == "countFisher") {
         dobpos <- sum((anchor1_motifs$motifMatches[, i]) *
                         (anchor2_motifs$motifMatches[, j]))
@@ -93,11 +93,11 @@ anchor_pair_enrich <- function(interaction_data,
                                dobneg), nrow = 2)
         significance[indr, indc] <- stats::fisher.test(
           fisher_mat, alternative = "greater")$p.value
-        values[indr,indc] <- sum((anchor1_motifs$motifMatches[, i]) *
+        values[indr, indc] <- sum((anchor1_motifs$motifMatches[, i]) *
                                    (anchor2_motifs$motifMatches[, j]))
         maxEP <- min(sum(anchor1_motifs$motifMatches[, i]),
                      sum(anchor2_motifs$motifMatches[, j]))
-        values[indr,indc] <- values[indr,indc]/maxEP
+        values[indr, indc] <- values[indr, indc] / maxEP
       }
       indc <- indc + 1
     }
