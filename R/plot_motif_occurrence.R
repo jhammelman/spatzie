@@ -58,7 +58,7 @@ plot_motif_occurrence <- function(interaction_data,
   return(ggplot2::ggplot(plotting_data,
                          ggplot2::aes(y = factor(id), x = value)) +
     ggplot2::facet_wrap(~variable) +
-    ggplot2::geom_bar(stat = 'identity') +
-    ggplot2::xlab(paste0('mean ', method)) +
+    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::xlab(paste0("mean ", method)) +
     ggplot2::theme(text = ggplot2::element_text(size = 8)))
 }

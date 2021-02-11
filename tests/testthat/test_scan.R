@@ -1,4 +1,4 @@
-context('scan_motifs')
+context("scan_motifs")
 data("scan_interactions_example", package = "spatzie")
 test_that("can scan motifs with motifmatchr", {
   motif_file <- system.file(
