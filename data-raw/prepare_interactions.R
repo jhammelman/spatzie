@@ -53,3 +53,13 @@ enhancer_ranges <- c(anchor2[promoter_left],
 yy1_interactions <- GenomicInteractions::GenomicInteractions(promoter_ranges,
                                                          enhancer_ranges)
 save(yy1_interactions, file = "data/yy1_interactions.rda", compress = "xz")
+yy1P_interactions <- get_specific_interactions(yy1_interactions,anchor1_motif="TYY1_MOUSE.H11MO.0.A")
+save(yy1P_interactions, file = "data/yy1P_interactions.rda", compress = "xz")
+
+yy1E_interactions <- get_specific_interactions(yy1_interactions,anchor2_motif="TYY1_MOUSE.H11MO.0.A")
+save(yy1E_interactions, file = "data/yy1E_interactions.rda", compress = "xz")
+
+yy1P_yy1E_interactions <- get_specific_interactions(yy1_interactions,
+                                                    anchor1_motif="TYY1_MOUSE.H11MO.0.A",
+                                                    anchor2_motif="TYY1_MOUSE.H11MO.0.A")
+save(yy1P_yy1E_interactions, file = "data/yy1E_interactions.rda", compress = "xz")
