@@ -5,7 +5,7 @@
 \alias{anchor_pair_example_scorecorr}
 \title{spatzie score correlation data set}
 \format{
-A interactionData object
+An interactionData object
 }
 \usage{
 data(anchor_pair_example_scorecorr)

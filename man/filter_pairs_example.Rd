@@ -5,7 +5,7 @@
 \alias{filter_pairs_example}
 \title{spatzie score correlation filtered data set}
 \format{
-A interactionData object
+An interactionData object
 }
 \usage{
 data(filter_pairs_example)

@@ -18,7 +18,8 @@ get_specific_interactions(
 \item{anchor2_motif}{Motif name from \code{interactionData$anchor2_motifs}}
 }
 \value{
-a subset of interactions that only contain \code{anchor1_motif}
+a GenomicInteractions object containing a subset subset of interactions
+that contain an instance of \code{anchor1_motif}
 in anchor 1 and \code{anchor2_motif} in anchor 2
 }
 \description{

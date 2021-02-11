@@ -7,7 +7,8 @@
 #' @param interaction_data an interactionData object of paired genomic regions
 #' @param anchor1_motif Motif name from \code{interactionData$anchor1_motifs}
 #' @param anchor2_motif Motif name from \code{interactionData$anchor2_motifs}
-#' @return a subset of interactions that only contain \code{anchor1_motif}
+#' @return a GenomicInteractions object containing a subset subset of interactions
+#' that contain an instance of \code{anchor1_motif}
 #' in anchor 1 and \code{anchor2_motif} in anchor 2
 #'
 #' @examples
@@ -31,17 +32,17 @@
 get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
                                       anchor2_motif = NULL) {
   if (is.null(anchor1_motif) && is.null(anchor2_motif)) {
-    return(interaction_data)
+    return(interaction_data$interactions)
   } else if (is.null(anchor1_motif)) {
-    motif_mask <- which(
+    motif_mask_anchor2 <- which(
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
-    interaction_mask <- (interaction_data$anchor2_motifs$motifInstances[, motif_mask] == TRUE)
+    interaction_mask <- (interaction_data$anchor2_motifs$motifInstances[, motif_mask_anchor2] == TRUE)
     if(motif_mask_anchor2==0){stop(paste('No match found for motif ',anchor2_motif))}
     return(interaction_data$interactions[interaction_mask])
   } else if (is.null(anchor2_motif)) {
-    motif_mask <- which(
+    motif_mask_anchor1 <- which(
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
-    interaction_mask <- (interaction_data$anchor1_motifs$motifInstances[, motif_mask] == TRUE)
+    interaction_mask <- (interaction_data$anchor1_motifs$motifInstances[, motif_mask_anchor1] == TRUE)
     if(motif_mask_anchor1==0){stop(paste('No match found for motif ',anchor1_motif))}
     return(interaction_data$interactions[interaction_mask])
   } else {
