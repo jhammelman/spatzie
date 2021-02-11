@@ -13,14 +13,16 @@ filter_pair_motifs(
 \arguments{
 \item{interaction_data}{an interactionData object of paired genomic regions}
 
-\item{method}{statistical method for multiple hypothesis correction (see stats package for options)}
+\item{method}{statistical method for multiple hypothesis correction
+(see stats package for options)}
 
 \item{threshold}{p-value threshold for significance cut-off}
 }
 \value{
 an interactionData object where \code{obj$pair_motif_enrich} contains
-multiple hypothesis corrected p-values for significance of seeing a higher co-occurrence than
-what we get by chance and \code{obj$pair_motif_enrich_sig} contains only motifs that have at least one
+multiple hypothesis corrected p-values for significance of seeing a
+higher co-occurrence than what we get by chance and
+\code{obj$pair_motif_enrich_sig} contains only motifs that have at least one
 significant interaction.
 }
 \description{

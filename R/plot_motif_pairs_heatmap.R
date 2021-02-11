@@ -3,7 +3,8 @@
 #' @description
 #' Creates heatmap to plot values associated with interaction pairs
 #'
-#' @param pair_enrichment_matrix matrix of format \code{obj$pair_motif_enrich} or \code{obj$pair_motif_enrich_sig}
+#' @param pair_enrichment_matrix matrix of format \code{obj$pair_motif_enrich}
+#' or \code{obj$pair_motif_enrich_sig}
 #' @return heatmap of input data
 #'
 #' @examples

@@ -16,9 +16,10 @@
 #'         significantly differential between between two interactionData sets
 #'
 #' @examples
-#' #  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataK562,
-#' #                                                spatzie:::interactionDataMSLCL))
-#'
+#' \dontrun{
+#' plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataK562,
+#'                                              spatzie:::interactionDataMSLCL))
+#' }
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs
 #' @importFrom matrixStats colMaxs

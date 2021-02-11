@@ -5,11 +5,13 @@
 #' interactions.
 #'
 #' @param interaction_data an interactionData object of paired genomic regions
-#' @param method statistical method for multiple hypothesis correction (see stats package for options)
+#' @param method statistical method for multiple hypothesis correction
+#' (see stats package for options)
 #' @param threshold p-value threshold for significance cut-off
 #' @return an interactionData object where \code{obj$pair_motif_enrich} contains
-#' multiple hypothesis corrected p-values for significance of seeing a higher co-occurrence than
-#' what we get by chance and \code{obj$pair_motif_enrich_sig} contains only motifs that have at least one
+#' multiple hypothesis corrected p-values for significance of seeing a
+#' higher co-occurrence than what we get by chance and
+#' \code{obj$pair_motif_enrich_sig} contains only motifs that have at least one
 #' significant interaction.
 #'
 #' @examples

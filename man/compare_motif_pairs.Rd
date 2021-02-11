@@ -31,9 +31,10 @@ two interaction datasets. Note that motif pair significance should have
 been computed using the same method for both datasets.
 }
 \examples{
-#  plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataK562,
-#                                                spatzie:::interactionDataMSLCL))
-
+\dontrun{
+plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataK562,
+                                             spatzie:::interactionDataMSLCL))
+}
 }
 \author{
 Jennifer Hammelman

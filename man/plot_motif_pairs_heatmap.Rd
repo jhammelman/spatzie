@@ -7,7 +7,8 @@
 plot_motif_pairs_heatmap(pair_enrichment_matrix)
 }
 \arguments{
-\item{pair_enrichment_matrix}{matrix of format \code{obj$pair_motif_enrich} or \code{obj$pair_motif_enrich_sig}}
+\item{pair_enrichment_matrix}{matrix of format \code{obj$pair_motif_enrich}
+or \code{obj$pair_motif_enrich_sig}}
 }
 \value{
 heatmap of input data

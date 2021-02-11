@@ -13,7 +13,7 @@ data(anchor_pair_example_counthyper)
 \description{
 This object contains genomic interactions obtained by mouse YY1 ChIA-PET
 scanned for mouse transcription factor motifs, filtered for motifs present
-in at least 10% of interactions, and processed for significant motif:motif
-interactions with using the Hypergeometric test.  It serves as unit test data.
+in at least 10 % of interactions, and processed for significant motif:motif
+interactions with using the Hypergeometric test. It serves as unit test data.
 }
 \keyword{datasets}

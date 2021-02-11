@@ -11,7 +11,7 @@ An interactionData object
 data(yy1_pd_interaction)
 }
 \description{
-This is a interactionData object containing processed results from YY1 ChIA-PET
-interaction data. It serves as unit test data.
+This is a interactionData object containing processed results from YY1
+ChIA-PET interaction data. It serves as unit test data.
 }
 \keyword{datasets}

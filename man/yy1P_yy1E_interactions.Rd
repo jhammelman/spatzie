@@ -11,8 +11,9 @@ A GenomicInteractions object
 data(yy1P_yy1E_interactions)
 }
 \description{
-This is a GenomicInteractions object containing proccessed results from YY1 ChIA-PET
-of interactions that contain a YY1 motif in the promoter (anchor 1) region and a YY1
-motif in the enhancer (anchor 2) region. It serves as unit test data.
+This is a GenomicInteractions object containing proccessed results from YY1
+ChIA-PET of interactions that contain a YY1 motif in the promoter
+(anchor 1) region and a YY1 motif in the enhancer (anchor 2) region.
+It serves as unit test data.
 }
 \keyword{datasets}

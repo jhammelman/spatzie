@@ -18,9 +18,9 @@ get_specific_interactions(
 \item{anchor2_motif}{Motif name from \code{interactionData$anchor2_motifs}}
 }
 \value{
-a GenomicInteractions object containing a subset subset of interactions
-that contain an instance of \code{anchor1_motif}
-in anchor 1 and \code{anchor2_motif} in anchor 2
+a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+containing a subset subset of interactions that contain an instance of
+\code{anchor1_motif} in anchor 1 and \code{anchor2_motif} in anchor 2
 }
 \description{
 Select interactions that contain anchor1_motif within anchor 1 and
@@ -37,9 +37,10 @@ yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "scoreCorrelation")
-yy1_yy1_interactions <- get_specific_interactions(yy1_pd_interaction,
-                                                  anchor1_motif="TYY1_MOUSE.H11MO.0.A",
-                                                  anchor2_motif="TYY1_MOUSE.H11MO.0.A")
+yy1_yy1_interactions <- get_specific_interactions(
+  yy1_pd_interaction,
+  anchor1_motif = "TYY1_MOUSE.H11MO.0.A",
+  anchor2_motif = "TYY1_MOUSE.H11MO.0.A")
 
 }
 \author{

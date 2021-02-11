@@ -72,8 +72,8 @@
 #'
 #' This object contains genomic interactions obtained by mouse YY1 ChIA-PET
 #' scanned for mouse transcription factor motifs, filtered for motifs present
-#' in at least 10% of interactions, and processed for significant motif:motif
-#' interactions with using the Hypergeometric test.  It serves as unit test data.
+#' in at least 10 % of interactions, and processed for significant motif:motif
+#' interactions with using the Hypergeometric test. It serves as unit test data.
 #'
 #' @format A interactionData object
 #' @usage data(anchor_pair_example_counthyper)
@@ -83,7 +83,7 @@
 #'
 #' This object contains genomic interactions obtained by mouse YY1 ChIA-PET
 #' scanned for mouse transcription factor motifs, filtered for motifs present
-#' in at least 10% of interactions, and processed for significant motif:motif
+#' in at least 10 % of interactions, and processed for significant motif:motif
 #' interactions with score correlation. It serves as unit test data.
 #'
 #' @format An interactionData object
@@ -114,8 +114,8 @@
 
 #' yy1_pd_interaction
 #'
-#' This is a interactionData object containing processed results from YY1 ChIA-PET
-#' interaction data. It serves as unit test data.
+#' This is a interactionData object containing processed results from YY1
+#' ChIA-PET interaction data. It serves as unit test data.
 #'
 #' @format An interactionData object
 #' @usage data(yy1_pd_interaction)
@@ -123,9 +123,9 @@
 
 #' yy1E_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1 ChIA-PET
-#' of interactions that contain a YY1 motif in the enhancer (anchor 2) region. It serves
-#' as unit test data.
+#' This is a GenomicInteractions object containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the enhancer
+#' (anchor 2) region. It serves as unit test data.
 #'
 #' @format A GenomicInteractions object
 #' @usage data(yy1E_interactions)
@@ -133,9 +133,9 @@
 
 #' yy1P_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1 ChIA-PET
-#' of interactions that contain a YY1 motif in the promoter (anchor 1) region. It serves
-#' as unit test data.
+#' This is a GenomicInteractions object containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the promoter
+#' (anchor 1) region. It serves as unit test data.
 #'
 #' @format A GenomicInteractions object
 #' @usage data(yy1P_interactions)
@@ -143,9 +143,10 @@
 
 #' yy1P_yy1E_interactions
 #'
-#' This is a GenomicInteractions object containing proccessed results from YY1 ChIA-PET
-#' of interactions that contain a YY1 motif in the promoter (anchor 1) region and a YY1
-#' motif in the enhancer (anchor 2) region. It serves as unit test data.
+#' This is a GenomicInteractions object containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the promoter
+#' (anchor 1) region and a YY1 motif in the enhancer (anchor 2) region.
+#' It serves as unit test data.
 #'
 #' @format A GenomicInteractions object
 #' @usage data(yy1P_yy1E_interactions)
