@@ -16,12 +16,16 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 remotes::install_github("jhammelman/spatzie")
 ```
 
+## Usage
+
+TODO refer to vignettes
+
 ## Citation
 
 If you use *spatzie* in your research, please cite:
 
-**spatzie paper**  
-Jennifer Hammelman, Konstantin Krismer, and David Gifford  
+**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**  
+Jennifer Hammelman, Konstantin Krismer, and David K. Gifford  
 Journal name, Volume *TODO*, Issue *TODO*, *TODO*; DOI: https://doi.org/*TODO*
 
 ## Funding
