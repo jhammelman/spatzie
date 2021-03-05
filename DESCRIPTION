@@ -30,25 +30,31 @@ Depends:
     R (>= 3.5.0)
 Imports:
     BiocGenerics,
+    biomaRt,
+    GenomeInfoDb,
     GenomicFeatures,
     GenomicInteractions,
-    IRanges,
     GenomicRanges,
     ggplot2,
+    IRanges,
     matrixStats,
     motifmatchr,
     pheatmap,
-    SummarizedExperiment
-Suggests: 
-    biomaRt,
-    BSgenome.Mmusculus.UCSC.mm9,
+    S4Vectors,
+    SummarizedExperiment,
+    TFBSTools
+Suggests:
     BSgenome.Hsapiens.UCSC.hg19,
+    BSgenome.Hsapiens.UCSC.hg38,
+    BSgenome.Mmusculus.UCSC.mm9,
+    BSgenome.Mmusculus.UCSC.mm10,
     knitr,
     rmarkdown,
-    S4Vectors,
     testthat,
-    TFBSTools,
-    TxDb.Mmusculus.UCSC.mm9.knownGene
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
+    TxDb.Hsapiens.UCSC.hg38.knownGene,
+    TxDb.Mmusculus.UCSC.mm9.knownGene,
+    TxDb.Mmusculus.UCSC.mm10.knownGene
 VignetteBuilder: 
     knitr
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection,
