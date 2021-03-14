@@ -63,6 +63,7 @@ filter_pair_motifs <- function(interaction_data,
     anchor2_motif_indices = interaction_data$anchor2_motif_indices,
     pair_motif_enrich = adjusted_p_interactions,
     pair_motif_enrich_sig = adjusted_p_interactions_sig,
+    pair_motif_scores = interaction_data$pair_motif_scores,
     is_multiple_hypothesis_corrected = TRUE)
   class(interaction_data) <- "interactionData"
   return(interaction_data)
