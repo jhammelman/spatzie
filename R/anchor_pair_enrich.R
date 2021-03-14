@@ -105,6 +105,8 @@ anchor_pair_enrich <- function(interaction_data,
   }
   rownames(significance) <- names(interaction_data$anchor1_motif_indices)
   colnames(significance) <- names(interaction_data$anchor2_motif_indices)
+  rownames(values) <- names(interaction_data$anchor1_motif_indices)
+  colnames(values) <- names(interaction_data$anchor2_motif_indices)
 
   interaction_data <- list(
     interactions = interaction_data$interactions,
