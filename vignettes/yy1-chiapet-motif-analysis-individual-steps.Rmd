@@ -4,7 +4,7 @@ author: "Jennifer Hammelman, Konstantin Krismer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{paired-motif-analysis}
+  %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (step-by-step)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

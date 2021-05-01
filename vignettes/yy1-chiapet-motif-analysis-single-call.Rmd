@@ -1,10 +1,10 @@
 ---
-title: "YY1 ChIA-PET motif analysis"
+title: "YY1 ChIA-PET motif analysis (single call)"
 author: "Jennifer Hammelman, Konstantin Krismer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{paired-motif-analysis}
+  %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (single call)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
