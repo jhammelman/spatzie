@@ -26,6 +26,15 @@
 #' }
 #' @param motifs_file \href{http://jaspar.genereg.net/faq/}{JASPAR format}
 #' matrix file containing multiple motifs to scan for
+#' @param motifs_file_matrix_format type of position-specific scoring matrices
+#' in \code{motifs_file}, valid options include:
+#' \tabular{rl}{
+#'   \code{pfm}: \tab position frequency matrix, elements are absolute
+#'   frequencies, i.e., counts (default)\cr
+#'   \code{ppm}: \tab position probability matrix, elements are probabilities,
+#'   i.e., Laplace smoothing corrected relative frequencies\cr
+#'   \code{pwm}: \tab position weight matrix, elements are log likelihoods
+#' }
 #' @param genome_id ID of genome assembly interactions in \code{int_raw_data}
 #' were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},
 #' and \code{mm10}, defaults to \code{hg38}
@@ -61,7 +70,9 @@
 #'   package = "spatzie")
 #'
 #' df <- read.table(interactions_file, header = FALSE, sep = "\t")
-#' res <- find_ep_coenrichment(df, motifs_file, genome_id = "mm10")
+#' res <- find_ep_coenrichment(df, motifs_file,
+#'                             motifs_file_matrix_format = "pfm",
+#'                             genome_id = "mm10")
 #' }
 #'
 #' @author Jennifer Hammelman
@@ -86,12 +97,16 @@
 #' @export
 find_ep_coenrichment <- function(int_raw_data,
                                  motifs_file,
+                                 motifs_file_matrix_format = c("pfm", "ppm",
+                                                               "pwm"),
                                  genome_id = c("hg38", "hg19", "mm9", "mm10"),
                                  cooccurrence_method = c("countCorrelation",
                                                          "scoreCorrelation",
                                                          "countHypergeom",
                                                          "countFisher"),
                                  filter_threshold = 0.4) {
+  motifs_file_matrix_format <- match.arg(motifs_file_matrix_format,
+                                         c("pfm", "ppm", "pwm"))
   genome_id <- match.arg(genome_id, c("hg19", "hg38", "mm9", "mm10"))
 
   if (genome_id == "hg19") {
@@ -187,7 +202,16 @@ find_ep_coenrichment <- function(int_raw_data,
   int_data <- GenomicInteractions::GenomicInteractions(promoter_ranges,
                                                        enhancer_ranges)
 
-  motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
+  if (motifs_file_matrix_format == "pfm") {
+    jaspar_matrix_class <- "PFM"
+  } else if (motifs_file_matrix_format == "ppm") {
+    jaspar_matrix_class <- "PWMProb"
+  } else if (motifs_file_matrix_format == "pwm") {
+    jaspar_matrix_class <- "PWM"
+  }
+
+  motifs <- TFBSTools::readJASPARMatrix(motifs_file,
+                                        matrixClass = jaspar_matrix_class)
   int_data_motifs <- scan_motifs(int_data, motifs, genome)
   filtered_int_data_motifs <- filter_motifs(int_data_motifs, filter_threshold)
 

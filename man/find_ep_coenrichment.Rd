@@ -7,6 +7,7 @@
 find_ep_coenrichment(
   int_raw_data,
   motifs_file,
+  motifs_file_matrix_format = c("pfm", "ppm", "pwm"),
   genome_id = c("hg38", "hg19", "mm9", "mm10"),
   cooccurrence_method = c("countCorrelation", "scoreCorrelation", "countHypergeom",
     "countFisher"),
@@ -32,6 +33,16 @@ find_ep_coenrichment(
 
 \item{motifs_file}{\href{http://jaspar.genereg.net/faq/}{JASPAR format}
 matrix file containing multiple motifs to scan for}
+
+\item{motifs_file_matrix_format}{type of position-specific scoring matrices
+in \code{motifs_file}, valid options include:
+\tabular{rl}{
+  \code{pfm}: \tab position frequency matrix, elements are absolute
+  frequencies, i.e., counts (default)\cr
+  \code{ppm}: \tab position probability matrix, elements are probabilities,
+  i.e., Laplace smoothing corrected relative frequencies\cr
+  \code{pwm}: \tab position weight matrix, elements are log likelihoods
+}}
 
 \item{genome_id}{ID of genome assembly interactions in \code{int_raw_data}
 were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},
@@ -80,7 +91,9 @@ motifs_file <- system.file(
   package = "spatzie")
 
 df <- read.table(interactions_file, header = FALSE, sep = "\t")
-res <- find_ep_coenrichment(df, motifs_file, genome_id = "mm10")
+res <- find_ep_coenrichment(df, motifs_file,
+                            motifs_file_matrix_format = "pfm",
+                            genome_id = "mm10")
 }
 
 }
