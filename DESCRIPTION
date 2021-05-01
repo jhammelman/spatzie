@@ -39,7 +39,6 @@ Imports:
     IRanges,
     matrixStats,
     motifmatchr,
-    pheatmap,
     S4Vectors,
     SummarizedExperiment,
     TFBSTools
@@ -49,6 +48,7 @@ Suggests:
     BSgenome.Mmusculus.UCSC.mm9,
     BSgenome.Mmusculus.UCSC.mm10,
     knitr,
+    pheatmap,
     rmarkdown,
     testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene,

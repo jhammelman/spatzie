@@ -17,8 +17,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' plot_motif_pairs_heatmap(compare_motif_pairs(spatzie:::interactionDataK562,
-#'                                              spatzie:::interactionDataMSLCL))
+#' pheatmap::pheatmap(compare_motif_pairs(spatzie:::interactionDataK562,
+#'                                        spatzie:::interactionDataMSLCL),
+#'                    fontsize = 6)
 #' }
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs
