@@ -6,7 +6,7 @@
 \usage{
 find_ep_coenrichment(
   int_raw_data,
-  piq_motif_file,
+  motifs_file,
   genome_id = c("hg38", "hg19", "mm9", "mm10"),
   cooccurrence_method = c("countCorrelation", "scoreCorrelation", "countHypergeom",
     "countFisher"),
@@ -30,7 +30,8 @@ find_ep_coenrichment(
   end coordinate
 }}
 
-\item{piq_motif_file}{PIQ file containing motifs to scan for}
+\item{motifs_file}{\href{http://jaspar.genereg.net/faq/}{JASPAR format}
+matrix file containing multiple motifs to scan for}
 
 \item{genome_id}{ID of genome assembly interactions in \code{int_raw_data}
 were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},

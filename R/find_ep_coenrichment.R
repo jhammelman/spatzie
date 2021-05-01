@@ -24,7 +24,8 @@
 #'   column 6: \tab integer; genomic location of interaction anchor 2 -
 #'   end coordinate
 #' }
-#' @param piq_motif_file PIQ file containing motifs to scan for
+#' @param motifs_file \href{http://jaspar.genereg.net/faq/}{JASPAR format}
+#' matrix file containing multiple motifs to scan for
 #' @param genome_id ID of genome assembly interactions in \code{int_raw_data}
 #' were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},
 #' and \code{mm10}, defaults to \code{hg38}
@@ -84,7 +85,7 @@
 #' @importFrom S4Vectors elementMetadata
 #' @export
 find_ep_coenrichment <- function(int_raw_data,
-                                 piq_motif_file,
+                                 motifs_file,
                                  genome_id = c("hg38", "hg19", "mm9", "mm10"),
                                  cooccurrence_method = c("countCorrelation",
                                                          "scoreCorrelation",
@@ -186,7 +187,7 @@ find_ep_coenrichment <- function(int_raw_data,
   int_data <- GenomicInteractions::GenomicInteractions(promoter_ranges,
                                                        enhancer_ranges)
 
-  motifs <- TFBSTools::readJASPARMatrix(piq_motif_file, matrixClass = "PFM")
+  motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
   int_data_motifs <- scan_motifs(int_data, motifs, genome)
   filtered_int_data_motifs <- filter_motifs(int_data_motifs, filter_threshold)
 
