@@ -1,6 +1,6 @@
 ---
-title: "YY1 ChIA-PET motif analysis"
-author: "Jennifer Hammelman"
+title: "YY1 ChIA-PET motif analysis (step-by-step)"
+author: "Jennifer Hammelman, Konstantin Krismer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r setup, message=FALSE}
+set.seed(17)
 library(spatzie)
 ```
 
@@ -107,7 +108,7 @@ yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 ```{r compute_cosignificance_count}
 yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "countCorrelation")
-plot_motif_pairs_heatmap(-log2(yy1_pd_count_corr$pair_motif_enrich))
+pheatmap::pheatmap(-log2(yy1_pd_count_corr$pair_motif_enrich), fontsize = 6)
 ```
 
 ## Score correlation
@@ -115,13 +116,5 @@ plot_motif_pairs_heatmap(-log2(yy1_pd_count_corr$pair_motif_enrich))
 ```{r compute_cosignificance_score}
 yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "scoreCorrelation")
-plot_motif_pairs_heatmap(-log2(yy1_pd_score_corr$pair_motif_enrich))
-```
-
-## Count hypergeometric
-
-```{r compute_cosignificance_hyper}
-yy1_pd_count_hyper <- anchor_pair_enrich(yy1_pd_interaction,
-                                         method = "countHypergeom")
-plot_motif_pairs_heatmap(-log2(yy1_pd_count_hyper$pair_motif_enrich))
+pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich), fontsize = 6)
 ```
