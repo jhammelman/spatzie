@@ -4,10 +4,24 @@
 #' Identifies co-enriched pairs of motifs in enhancer-promoter interactions
 #' selected from a data frame of general genomic interactions.
 #'
+#' If \code{identify_ep}: Promoters and enhancers are identified
+#' using genomic annotations, where
+#' anchors close to transcription start sites are considered promoters and
+#' distal anchors are considered enhancers. Only interactions in
+#' \code{int_raw_data} between promoters and enhancers are used for motif
+#' co-enrichment analysis.
+#'
+#' If \code{!identify_ep}: Instead of automatically identifying
+#' promoters and enhancers based on genomic annotations, all interactions
+#' in \code{int_raw_data} must be preprocessed in a way that anchor 1 contains
+#' promoters and anchor 2 contains enhancers. Motif
+#' co-enrichment analysis is performed under this assumption.
+#'
 #' Calls functions \code{\link{scan_motifs}}, \code{\link{filter_motifs}},
 #' and \code{\link{anchor_pair_enrich}} internally.
 #'
-#' Uses \code{biomaRt} to retrieve annotations.
+#' Uses \code{biomaRt} to retrieve annotations (only if
+#' \code{genome_id != "custom"}).
 #'
 #' @param int_raw_data a data frame with at least six columns:
 #' \tabular{rl}{
@@ -38,6 +52,13 @@
 #' @param genome_id ID of genome assembly interactions in \code{int_raw_data}
 #' were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},
 #' and \code{mm10}, defaults to \code{hg38}
+#' @param identify_ep logical, set \code{FALSE} if enhancers and promoters
+#' should not be identified based on genomic annotations, but instead
+#' assumes anchor 1 contains promoters and anchor 2 contains enhancers,
+#' for all interactions in \code{int_raw_data}, defaults to \code{TRUE}, i.e.,
+#' do identify enhancers and promoters of interactions in \code{int_raw_data}
+#' based on genomic interactions and filter all interactions which are not
+#' between promoters and enhancers
 #' @param cooccurrence_method choice of method for co-occurrence include
 #' \code{countCorrelation}, \code{scoreCorrelation}, \code{countHypergeom}, or
 #' \code{countFisher}, see \code{\link{anchor_pair_enrich}}, defaults to
@@ -100,6 +121,7 @@ find_ep_coenrichment <- function(int_raw_data,
                                  motifs_file_matrix_format = c("pfm", "ppm",
                                                                "pwm"),
                                  genome_id = c("hg38", "hg19", "mm9", "mm10"),
+                                 identify_ep = TRUE,
                                  cooccurrence_method = c("countCorrelation",
                                                          "scoreCorrelation",
                                                          "countHypergeom",
@@ -108,36 +130,6 @@ find_ep_coenrichment <- function(int_raw_data,
   motifs_file_matrix_format <- match.arg(motifs_file_matrix_format,
                                          c("pfm", "ppm", "pwm"))
   genome_id <- match.arg(genome_id, c("hg19", "hg38", "mm9", "mm10"))
-
-  if (genome_id == "hg19") {
-    check_required_package("BSgenome.Hsapiens.UCSC.hg19")
-    check_required_package("TxDb.Hsapiens.UCSC.hg19.knownGene")
-    genome <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
-    txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
-    ensembl_data_set <- "hsapiens_gene_ensembl"
-    gene_symbol <- "hgnc_symbol"
-  } else if (genome_id == "hg38") {
-    check_required_package("BSgenome.Hsapiens.UCSC.hg38")
-    check_required_package("TxDb.Hsapiens.UCSC.hg38.knownGene")
-    genome <- BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38
-    txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene
-    ensembl_data_set <- "hsapiens_gene_ensembl"
-    gene_symbol <- "hgnc_symbol"
-  } else if (genome_id == "mm9") {
-    check_required_package("BSgenome.Mmusculus.UCSC.mm9")
-    check_required_package("TxDb.Mmusculus.UCSC.mm9.knownGene")
-    genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
-    txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
-    ensembl_data_set <- "mmusculus_gene_ensembl"
-    gene_symbol <- "mgi_symbol"
-  } else if (genome_id == "mm10") {
-    check_required_package("BSgenome.Mmusculus.UCSC.mm10")
-    check_required_package("TxDb.Mmusculus.UCSC.mm10.knownGene")
-    genome <- BSgenome.Mmusculus.UCSC.mm10::BSgenome.Mmusculus.UCSC.mm10
-    txdb <- TxDb.Mmusculus.UCSC.mm10.knownGene::TxDb.Mmusculus.UCSC.mm10.knownGene
-    ensembl_data_set <- "mmusculus_gene_ensembl"
-    gene_symbol <- "mgi_symbol"
-  }
 
   left_anchor <- GenomicRanges::GRanges(
     seqnames = int_raw_data[, 1],
@@ -157,50 +149,97 @@ find_ep_coenrichment <- function(int_raw_data,
   int_data <- GenomicInteractions::GenomicInteractions(left_anchor,
                                                        right_anchor)
 
-  promoter_ranges <- GenomicFeatures::promoters(
-    txdb, upstream = 2500, downstream = 2500, columns = c("tx_name", "gene_id"))
+  if (identify_ep) {
+    if (genome_id == "hg19") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg19")
+      check_required_package("TxDb.Hsapiens.UCSC.hg19.knownGene")
+      genome <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
+      txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
+      ensembl_data_set <- "hsapiens_gene_ensembl"
+      gene_symbol <- "hgnc_symbol"
+    } else if (genome_id == "hg38") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg38")
+      check_required_package("TxDb.Hsapiens.UCSC.hg38.knownGene")
+      genome <- BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38
+      txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene
+      ensembl_data_set <- "hsapiens_gene_ensembl"
+      gene_symbol <- "hgnc_symbol"
+    } else if (genome_id == "mm9") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm9")
+      check_required_package("TxDb.Mmusculus.UCSC.mm9.knownGene")
+      genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+      txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
+      ensembl_data_set <- "mmusculus_gene_ensembl"
+      gene_symbol <- "mgi_symbol"
+    } else if (genome_id == "mm10") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm10")
+      check_required_package("TxDb.Mmusculus.UCSC.mm10.knownGene")
+      genome <- BSgenome.Mmusculus.UCSC.mm10::BSgenome.Mmusculus.UCSC.mm10
+      txdb <- TxDb.Mmusculus.UCSC.mm10.knownGene::TxDb.Mmusculus.UCSC.mm10.knownGene
+      ensembl_data_set <- "mmusculus_gene_ensembl"
+      gene_symbol <- "mgi_symbol"
+    }
 
-  # trims out-of-bound ranges located on non-circular sequences
-  promoter_ranges <- GenomicRanges::trim(promoter_ranges)
+    promoter_ranges <- GenomicFeatures::promoters(
+      txdb, upstream = 2500, downstream = 2500, columns = c("tx_name", "gene_id"))
 
-  # remove duplicate promoters from transcript isoforms
-  promoter_ranges <- BiocGenerics::unique(promoter_ranges)
+    # trims out-of-bound ranges located on non-circular sequences
+    promoter_ranges <- GenomicRanges::trim(promoter_ranges)
 
-  promoters_df <- as.data.frame(promoter_ranges)
-  promoters_df$gene_id <- as.character(promoters_df$gene_id)
+    # remove duplicate promoters from transcript isoforms
+    promoter_ranges <- BiocGenerics::unique(promoter_ranges)
 
-  ensembl <- biomaRt::useMart("ensembl", dataset = ensembl_data_set)
+    promoters_df <- as.data.frame(promoter_ranges)
+    promoters_df$gene_id <- as.character(promoters_df$gene_id)
 
-  id_df <- biomaRt::getBM(attributes = c("entrezgene_id", gene_symbol),
-                          filters = "entrezgene_id",
-                          values = unique(promoters_df$gene_id),
-                          mart = ensembl)
+    ensembl <- biomaRt::useMart("ensembl", dataset = ensembl_data_set)
 
-  names(promoter_ranges) <- id_df[match(promoters_df$gene_id,
-                                        id_df$entrezgene_id), gene_symbol]
-  missing_idx <- is.na(names(promoter_ranges)) | names(promoter_ranges) == ""
-  names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
+    id_df <- biomaRt::getBM(attributes = c("entrezgene_id", gene_symbol),
+                            filters = "entrezgene_id",
+                            values = unique(promoters_df$gene_id),
+                            mart = ensembl)
 
-  annotation_features <- list(promoter = promoter_ranges)
+    names(promoter_ranges) <- id_df[match(promoters_df$gene_id,
+                                          id_df$entrezgene_id), gene_symbol]
+    missing_idx <- is.na(names(promoter_ranges)) | names(promoter_ranges) == ""
+    names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
 
-  GenomicInteractions::annotateInteractions(int_data, annotation_features)
-  annotation_pie_chart <- GenomicInteractions::plotInteractionAnnotations(
-    int_data)
+    annotation_features <- list(promoter = promoter_ranges)
 
-  distal_promoter_idx <- GenomicInteractions::isInteractionType(
-    int_data, "distal", "promoter")
-  int_data <- int_data[distal_promoter_idx]
-  anchor1 <- GenomicInteractions::anchorOne(int_data)
-  anchor2 <- GenomicInteractions::anchorTwo(int_data)
+    GenomicInteractions::annotateInteractions(int_data, annotation_features)
+    annotation_pie_chart <- GenomicInteractions::plotInteractionAnnotations(
+      int_data)
 
-  promoter_left <- S4Vectors::elementMetadata(anchor1)[, "node.class"] == "promoter"
-  promoter_right <- S4Vectors::elementMetadata(anchor2)[, "node.class"] == "promoter"
-  promoter_ranges <- c(anchor1[promoter_left],
-                       anchor2[promoter_right])
-  enhancer_ranges <- c(anchor2[promoter_left],
-                       anchor1[promoter_right])
-  int_data <- GenomicInteractions::GenomicInteractions(promoter_ranges,
-                                                       enhancer_ranges)
+    distal_promoter_idx <- GenomicInteractions::isInteractionType(
+      int_data, "distal", "promoter")
+    int_data <- int_data[distal_promoter_idx]
+    anchor1 <- GenomicInteractions::anchorOne(int_data)
+    anchor2 <- GenomicInteractions::anchorTwo(int_data)
+
+    promoter_left <- S4Vectors::elementMetadata(anchor1)[, "node.class"] == "promoter"
+    promoter_right <- S4Vectors::elementMetadata(anchor2)[, "node.class"] == "promoter"
+    promoter_ranges <- c(anchor1[promoter_left],
+                         anchor2[promoter_right])
+    enhancer_ranges <- c(anchor2[promoter_left],
+                         anchor1[promoter_right])
+    int_data <- GenomicInteractions::GenomicInteractions(promoter_ranges,
+                                                         enhancer_ranges)
+  } else {
+    if (genome_id == "hg19") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg19")
+      genome <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
+    } else if (genome_id == "hg38") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg38")
+      genome <- BSgenome.Hsapiens.UCSC.hg38::BSgenome.Hsapiens.UCSC.hg38
+    } else if (genome_id == "mm9") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm9")
+      genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+    } else if (genome_id == "mm10") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm10")
+      genome <- BSgenome.Mmusculus.UCSC.mm10::BSgenome.Mmusculus.UCSC.mm10
+    }
+    annotation_pie_chart <- NULL
+  }
 
   if (motifs_file_matrix_format == "pfm") {
     jaspar_matrix_class <- "PFM"

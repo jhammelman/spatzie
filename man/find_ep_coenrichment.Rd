@@ -9,6 +9,7 @@ find_ep_coenrichment(
   motifs_file,
   motifs_file_matrix_format = c("pfm", "ppm", "pwm"),
   genome_id = c("hg38", "hg19", "mm9", "mm10"),
+  identify_ep = TRUE,
   cooccurrence_method = c("countCorrelation", "scoreCorrelation", "countHypergeom",
     "countFisher"),
   filter_threshold = 0.4
@@ -48,6 +49,14 @@ in \code{motifs_file}, valid options include:
 were aligned to, valid options include \code{hg19}, \code{hg38}, \code{mm9},
 and \code{mm10}, defaults to \code{hg38}}
 
+\item{identify_ep}{logical, set \code{FALSE} if enhancers and promoters
+should not be identified based on genomic annotations, but instead
+assumes anchor 1 contains promoters and anchor 2 contains enhancers,
+for all interactions in \code{int_raw_data}, defaults to \code{TRUE}, i.e.,
+do identify enhancers and promoters of interactions in \code{int_raw_data}
+based on genomic interactions and filter all interactions which are not
+between promoters and enhancers}
+
 \item{cooccurrence_method}{choice of method for co-occurrence include
 \code{countCorrelation}, \code{scoreCorrelation}, \code{countHypergeom}, or
 \code{countFisher}, see \code{\link{anchor_pair_enrich}}, defaults to
@@ -77,10 +86,24 @@ a list with the following items:
 Identifies co-enriched pairs of motifs in enhancer-promoter interactions
 selected from a data frame of general genomic interactions.
 
+If \code{identify_ep}: Promoters and enhancers are identified
+using genomic annotations, where
+anchors close to transcription start sites are considered promoters and
+distal anchors are considered enhancers. Only interactions in
+\code{int_raw_data} between promoters and enhancers are used for motif
+co-enrichment analysis.
+
+If \code{!identify_ep}: Instead of automatically identifying
+promoters and enhancers based on genomic annotations, all interactions
+in \code{int_raw_data} must be preprocessed in a way that anchor 1 contains
+promoters and anchor 2 contains enhancers. Motif
+co-enrichment analysis is performed under this assumption.
+
 Calls functions \code{\link{scan_motifs}}, \code{\link{filter_motifs}},
 and \code{\link{anchor_pair_enrich}} internally.
 
-Uses \code{biomaRt} to retrieve annotations.
+Uses \code{biomaRt} to retrieve annotations (only if
+\code{genome_id != "custom"}).
 }
 \examples{
 \dontrun{
