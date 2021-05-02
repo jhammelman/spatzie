@@ -57,23 +57,12 @@
 #' @usage data(anchor_pair_example_countcorr)
 "anchor_pair_example_countcorr"
 
-#' spatzie count fisher data set
-#'
-#' This object contains genomic interactions obtained by mouse YY1 ChIA-PET
-#' scanned for mouse transcription factor motifs, filtered for motifs present
-#' in at least 10% of interactions, and processed for significant motif:motif
-#' interactions with using Fisher's test.  It serves as unit test data.
-#'
-#' @format An interactionData object
-#' @usage data(anchor_pair_example_countfisher)
-"anchor_pair_example_countfisher"
-
-#' spatzie count hyper data set
+#' spatzie match association data set
 #'
 #' This object contains genomic interactions obtained by mouse YY1 ChIA-PET
 #' scanned for mouse transcription factor motifs, filtered for motifs present
 #' in at least 10 % of interactions, and processed for significant motif:motif
-#' interactions with using the Hypergeometric test. It serves as unit test data.
+#' interactions with using the hypergeometric test. It serves as unit test data.
 #'
 #' @format A interactionData object
 #' @usage data(anchor_pair_example_counthyper)

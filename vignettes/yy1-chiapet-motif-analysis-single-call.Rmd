@@ -31,7 +31,7 @@ motifs_file <- system.file("extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.pi
 res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
                                      motifs_file_matrix_format = "pfm",
                                      genome_id = "mm9",
-                                     cooccurrence_method = "countCorrelation")
+                                     cooccurrence_method = "count")
 ```
 
 # Results

@@ -103,18 +103,18 @@ yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 
 # Compute motif co-significance
 
-## Count correlation
+## Correlation between motif counts
 
 ```{r compute_cosignificance_count}
 yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
-                                        method = "countCorrelation")
+                                        method = "count")
 pheatmap::pheatmap(-log2(yy1_pd_count_corr$pair_motif_enrich), fontsize = 6)
 ```
 
-## Score correlation
+## Correlation between max motif scores
 
 ```{r compute_cosignificance_score}
 yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
-                                        method = "scoreCorrelation")
+                                        method = "score")
 pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich), fontsize = 6)
 ```

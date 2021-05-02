@@ -14,13 +14,12 @@ scan_interactions_example <- spatzie::scan_motifs(
 scan_interactions_example_filtered <- spatzie::filter_motifs(
   scan_interactions_example, threshold = 0.1)
 anchor_pair_example_scorecorr <- spatzie::anchor_pair_enrich(
-  scan_interactions_example_filtered, method = "scoreCorrelation")
+  scan_interactions_example_filtered, method = "score")
 anchor_pair_example_countcorr <- spatzie::anchor_pair_enrich(
-  scan_interactions_example_filtered, method = "countCorrelation")
+  scan_interactions_example_filtered, method = "count")
 anchor_pair_example_counthyper <- spatzie::anchor_pair_enrich(
-  scan_interactions_example_filtered, method = "countHypergeom")
-anchor_pair_example_countfisher <- spatzie::anchor_pair_enrich(
-  scan_interactions_example_filtered, method = "countFisher")
+  scan_interactions_example_filtered, method = "match")
+
 save(scan_interactions_example,
      file = "data/scan_interactions_example.rda", compress = "xz")
 save(scan_interactions_example_filtered,
@@ -31,8 +30,6 @@ save(anchor_pair_example_countcorr,
      file = "data/anchor_pair_example_countcorr.rda", compress = "xz")
 save(anchor_pair_example_counthyper,
      file = "data/anchor_pair_example_counthyper.rda", compress = "xz")
-save(anchor_pair_example_countfisher,
-     file = "data/anchor_pair_example_countfisher.rda", compress = "xz")
 
 filter_pairs_example <- spatzie::filter_pair_motifs(
   anchor_pair_example_countcorr, threshold = 0.5)

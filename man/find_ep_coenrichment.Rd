@@ -10,8 +10,7 @@ find_ep_coenrichment(
   motifs_file_matrix_format = c("pfm", "ppm", "pwm"),
   genome_id = c("hg38", "hg19", "mm9", "mm10"),
   identify_ep = TRUE,
-  cooccurrence_method = c("countCorrelation", "scoreCorrelation", "countHypergeom",
-    "countFisher"),
+  cooccurrence_method = c("count", "score", "match"),
   filter_threshold = 0.4
 )
 }
@@ -57,14 +56,21 @@ do identify enhancers and promoters of interactions in \code{int_raw_data}
 based on genomic interactions and filter all interactions which are not
 between promoters and enhancers}
 
-\item{cooccurrence_method}{choice of method for co-occurrence include
-\code{countCorrelation}, \code{scoreCorrelation}, \code{countHypergeom}, or
-\code{countFisher}, see \code{\link{anchor_pair_enrich}}, defaults to
-\code{countCorrelation}}
-
 \item{filter_threshold}{fraction of interactions that should contain a
 motif for a motif to be considered, see \code{\link{filter_motifs}},
 defaults to \code{0.4}}
+
+\item{method}{method for co-occurrence, valid options include:
+\tabular{rl}{
+  \code{count}: \tab correlation between counts (for each anchor, tally
+  positions where motif score > \eqn{5 * 10^{-5}})\cr
+  \code{score}: \tab correlation between motif scores (for each anchor, use
+  the maximum score over all positions)\cr
+  \code{match}: \tab association between motif matches (for each anchor,
+  a match is defined if the is at least one position with a motif score
+  > \eqn{5 * 10^{-5}})
+}
+See \code{\link{anchor_pair_enrich}} for details.}
 }
 \value{
 a list with the following items:
