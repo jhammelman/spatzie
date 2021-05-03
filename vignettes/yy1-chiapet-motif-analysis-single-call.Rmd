@@ -17,11 +17,12 @@ library(spatzie)
 # Load data
 
 ```{r load_interactions}
-yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe",
+yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                      package = "spatzie")
-int_data_df <- read.table(yy1_interactions_file, header = FALSE, sep = "\t")
+int_data_df <- read.table(gzfile(yy1_interactions_file), header = TRUE,
+                          sep = "\t")
 
-motifs_file <- system.file("extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
+motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 ```
 

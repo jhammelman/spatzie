@@ -26,7 +26,7 @@ gene_symbol <- "mgi_symbol"
 # Load data
 
 ```{r load_interactions}
-yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe",
+yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                      package = "spatzie")
 yy1_interactions <- GenomicInteractions::makeGenomicInteractionsFromFile(
   yy1_interactions_file,
@@ -94,9 +94,9 @@ yy1_pd <- GenomicInteractions::GenomicInteractions(promoter_ranges,
 # Scan motifs
 
 ```{r scan_motifs}
-motif_file <- system.file("extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
-                          package = "spatzie")
-motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+motifs_file <- system.file("extdata/motifs_subset.txt.gz",
+                           package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 yy1_pd_interaction <- scan_motifs(yy1_pd, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 ```

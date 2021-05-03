@@ -32,7 +32,7 @@ find_ep_coenrichment(
 }}
 
 \item{motifs_file}{\href{http://jaspar.genereg.net/faq/}{JASPAR format}
-matrix file containing multiple motifs to scan for}
+matrix file containing multiple motifs to scan for, gz-zipped files allowed}
 
 \item{motifs_file_matrix_format}{type of position-specific scoring matrices
 in \code{motifs_file}, valid options include:
@@ -113,13 +113,12 @@ Uses \code{biomaRt} to retrieve annotations (only if
 }
 \examples{
 \dontrun{
-interactions_file <- system.file("extdata/yy1_interactions.bedpe",
+interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                  package = "spatzie")
-motifs_file <- system.file(
-  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
-  package = "spatzie")
+motifs_file <- system.file("extdata/motifs_subset.txt.gz",
+                           package = "spatzie")
 
-df <- read.table(interactions_file, header = FALSE, sep = "\t")
+df <- read.table(gzfile(interactions_file), header = TRUE, sep = "\t")
 res <- find_ep_coenrichment(df, motifs_file,
                             motifs_file_matrix_format = "pfm",
                             genome_id = "mm10")

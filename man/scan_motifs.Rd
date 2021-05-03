@@ -24,10 +24,9 @@ Uses motifmatchR to scan interaction regions for given motifs.
 }
 \examples{
 genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
-motif_file <- system.file(
-  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq",
-  package = "spatzie")
-motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
+motifs_file <- system.file("extdata/motifs_subset.txt.gz",
+                           package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 
 yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 
