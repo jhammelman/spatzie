@@ -4,17 +4,14 @@
 \alias{filter_pair_motifs}
 \title{Filter significant motif interactions}
 \usage{
-filter_pair_motifs(
-  interaction_data,
-  method = stats::p.adjust.methods,
-  threshold = 0.05
-)
+filter_pair_motifs(interaction_data, method = "fdr", threshold = 0.05)
 }
 \arguments{
 \item{interaction_data}{an interactionData object of paired genomic regions}
 
-\item{method}{statistical method for multiple hypothesis correction
-(see stats package for options)}
+\item{method}{statistical method for multiple hypothesis correction,
+defaults to Benjamini-Hochberg (\code{"fdr"}) (see
+\code{\link[stats]{p.adjust}} for options)}
 
 \item{threshold}{p-value threshold for significance cut-off}
 }
@@ -39,7 +36,7 @@ motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
 yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
-                                        method = "scoreCorrelation")
+                                        method = "score")
 yy1_pd_score_corr_adj <- filter_pair_motifs(yy1_pd_score_corr)
 
 }

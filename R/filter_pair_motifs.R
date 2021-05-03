@@ -5,8 +5,9 @@
 #' interactions.
 #'
 #' @param interaction_data an interactionData object of paired genomic regions
-#' @param method statistical method for multiple hypothesis correction
-#' (see stats package for options)
+#' @param method statistical method for multiple hypothesis correction,
+#' defaults to Benjamini-Hochberg (\code{"fdr"}) (see
+#' \code{\link[stats]{p.adjust}} for options)
 #' @param threshold p-value threshold for significance cut-off
 #' @return an interactionData object where \code{obj$pair_motif_enrich} contains
 #' multiple hypothesis corrected p-values for significance of seeing a
@@ -24,17 +25,16 @@
 #' yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 #' yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
-#'                                         method = "scoreCorrelation")
+#'                                         method = "score")
 #' yy1_pd_score_corr_adj <- filter_pair_motifs(yy1_pd_score_corr)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom stats p.adjust
-#' @importFrom stats p.adjust.methods
 #' @importFrom matrixStats rowMins
 #' @importFrom matrixStats colMins
 #' @export
 filter_pair_motifs <- function(interaction_data,
-                               method = stats::p.adjust.methods,
+                               method = "fdr",
                                threshold = 0.05) {
   adjusted_p_interactions <- matrix(stats::p.adjust(
     as.vector(as.matrix(interaction_data$pair_motif_enrich, method = method))),
