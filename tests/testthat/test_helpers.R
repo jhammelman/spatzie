@@ -1,13 +1,15 @@
 context("helpers")
 data("compare_pairs_example", package = "spatzie")
+data("anchor_pair_example_score", package = "spatzie")
+data("anchor_pair_example_count", package = "spatzie")
 data("int_data_yy1", package = "spatzie")
 data("interactions_yy1_promoter", package = "spatzie")
 data("interactions_yy1_enhancer", package = "spatzie")
 data("interactions_yy1_ep", package = "spatzie")
 
 test_that("compare_motifs_heatmap produces output", {
-  pairs_compared <- compare_motif_pairs(anchor_pair_example_scorecorr,
-                                        anchor_pair_example_countcorr)
+  pairs_compared <- compare_motif_pairs(anchor_pair_example_score,
+                                        anchor_pair_example_count)
   expect_equal(pairs_compared, compare_pairs_example)
 })
 

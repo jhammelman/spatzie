@@ -97,8 +97,8 @@
 #' interactions with count correlation. It serves as unit test data.
 #'
 #' @format An interactionData object
-#' @usage data(anchor_pair_example_countcorr)
-"anchor_pair_example_countcorr"
+#' @usage data(anchor_pair_example_count)
+"anchor_pair_example_count"
 
 #' spatzie match association data set
 #'
@@ -108,8 +108,8 @@
 #' interactions with using the hypergeometric test. It serves as unit test data.
 #'
 #' @format A interactionData object
-#' @usage data(anchor_pair_example_counthyper)
-"anchor_pair_example_counthyper"
+#' @usage data(anchor_pair_example_match)
+"anchor_pair_example_match"
 
 #' spatzie score correlation data set
 #'
@@ -119,8 +119,8 @@
 #' interactions with score correlation. It serves as unit test data.
 #'
 #' @format An interactionData object
-#' @usage data(anchor_pair_example_scorecorr)
-"anchor_pair_example_scorecorr"
+#' @usage data(anchor_pair_example_score)
+"anchor_pair_example_score"
 
 #' spatzie score correlation filtered data set
 #'

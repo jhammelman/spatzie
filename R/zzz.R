@@ -10,8 +10,3 @@
 #' @author Konstantin Krismer
 #' @name spatzie
 NULL
-
-#.onLoad <- function(libname = find.package("spatzie"), pkgname = "spatzie") {
-#  envir <- parent.env(environment())
-#  utils::data("yy1_interactions", package = pkgname, envir = envir)
-#}
