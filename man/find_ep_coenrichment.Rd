@@ -56,11 +56,7 @@ do identify enhancers and promoters of interactions in \code{int_raw_data}
 based on genomic interactions and filter all interactions which are not
 between promoters and enhancers}
 
-\item{filter_threshold}{fraction of interactions that should contain a
-motif for a motif to be considered, see \code{\link{filter_motifs}},
-defaults to \code{0.4}}
-
-\item{method}{method for co-occurrence, valid options include:
+\item{cooccurrence_method}{method for co-occurrence, valid options include:
 \tabular{rl}{
   \code{count}: \tab correlation between counts (for each anchor, tally
   positions where motif score > \eqn{5 * 10^{-5}})\cr
@@ -71,6 +67,10 @@ defaults to \code{0.4}}
   > \eqn{5 * 10^{-5}})
 }
 See \code{\link{anchor_pair_enrich}} for details.}
+
+\item{filter_threshold}{fraction of interactions that should contain a
+motif for a motif to be considered, see \code{\link{filter_motifs}},
+defaults to \code{0.4}}
 }
 \value{
 a list with the following items:
@@ -93,9 +93,9 @@ Identifies co-enriched pairs of motifs in enhancer-promoter interactions
 selected from a data frame of general genomic interactions.
 
 If \code{identify_ep}: Promoters and enhancers are identified
-using genomic annotations, where
-anchors close to transcription start sites are considered promoters and
-distal anchors are considered enhancers. Only interactions in
+using genomic annotations, where anchors close to promoter annotations
+(within 2500 base pairs) are considered promoters and all other anchors are
+considered gene-distal enhancers. Only interactions in
 \code{int_raw_data} between promoters and enhancers are used for motif
 co-enrichment analysis.
 

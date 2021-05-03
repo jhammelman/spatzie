@@ -5,9 +5,9 @@
 #' selected from a data frame of general genomic interactions.
 #'
 #' If \code{identify_ep}: Promoters and enhancers are identified
-#' using genomic annotations, where
-#' anchors close to transcription start sites are considered promoters and
-#' distal anchors are considered enhancers. Only interactions in
+#' using genomic annotations, where anchors close to promoter annotations
+#' (within 2500 base pairs) are considered promoters and all other anchors are
+#' considered gene-distal enhancers. Only interactions in
 #' \code{int_raw_data} between promoters and enhancers are used for motif
 #' co-enrichment analysis.
 #'
