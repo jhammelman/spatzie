@@ -23,7 +23,7 @@ interactions}
 }
 \value{
 a matrix of the log likelihood ratio of motif pairs that are
-        significantly differential between between two interactionData sets
+        significantly differential between two interactionData sets
 }
 \description{
 Compute the log-likelihood ratio that a motif pair is differential between
@@ -32,8 +32,8 @@ been computed using the same method for both datasets.
 }
 \examples{
 \dontrun{
-pheatmap::pheatmap(compare_motif_pairs(spatzie:::interactionDataK562,
-                                       spatzie:::interactionDataMSLCL),
+pheatmap::pheatmap(compare_motif_pairs(spatzie::int_data_k562,
+                                       spatzie::int_data_mslcl, 5e-06),
                    fontsize = 6)
 }
 }

@@ -13,12 +13,12 @@
 #'                          interactions
 #' @param differential_p threshold for significance of differential p-value
 #' @return a matrix of the log likelihood ratio of motif pairs that are
-#'         significantly differential between between two interactionData sets
+#'         significantly differential between two interactionData sets
 #'
 #' @examples
 #' \dontrun{
-#' pheatmap::pheatmap(compare_motif_pairs(spatzie:::interactionDataK562,
-#'                                        spatzie:::interactionDataMSLCL),
+#' pheatmap::pheatmap(compare_motif_pairs(spatzie::int_data_k562,
+#'                                        spatzie::int_data_mslcl, 5e-06),
 #'                    fontsize = 6)
 #' }
 #' @author Jennifer Hammelman

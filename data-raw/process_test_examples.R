@@ -1,5 +1,5 @@
 motif_file <- system.file(
-  "extdata/consensus_HOCOMOCOv11_core_MOUSE-plus_YY1.piq", package = "spatzie")
+  "extdata/motifs_subset.txt.gz", package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motif_file, matrixClass = "PFM")
 left <- GenomicRanges::GRanges(seqnames = c("chr1", "chr1", "chr1"),
                 ranges = IRanges::IRanges(start = c(100000, 100550, 101050),

@@ -13,18 +13,18 @@
 #' This object contains genomic interactions obtained by human RAD21 ChIA-PET
 #' from K562 cells and serves as unit test data.
 #'
-#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(interactionDataK562)
-"interactionDataK562"
+#' @format An \code{interactionData} object
+#' @usage data(int_data_k562)
+"int_data_k562"
 
 #' MSLCL Enhancer - Promoter Interactions Data Set
 #'
 #' This object contains genomic interactions obtained by human RAD21 ChIA-PET
 #' from MSLCL cells and serves as unit test data.
 #'
-#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(interactionDataMSLCL)
-"interactionDataMSLCL"
+#' @format An \code{interactionData} object
+#' @usage data(int_data_mslcl)
+"int_data_mslcl"
 
 #' Interactions scanned for motifs - interactionData object
 #'
