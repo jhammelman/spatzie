@@ -5,8 +5,51 @@
 #' the vignette.
 #'
 #' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(yy1_interactions)
-"yy1_interactions"
+#' @usage data(interactions_yy1)
+"interactions_yy1"
+
+#' Mouse YY1 Enhancer - Promoter Interactions Data Set - YY1 promoters
+#'
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the promoter
+#' (anchor 1) region. It serves as unit test data.
+#'
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(interactions_yy1_promoter)
+"interactions_yy1_promoter"
+
+#' Mouse YY1 Enhancer - Promoter Interactions Data Set - YY1 enhancers
+#'
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the enhancer
+#' (anchor 2) region. It serves as unit test data.
+#'
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(interactions_yy1_enhancer)
+"interactions_yy1_enhancer"
+
+#' Mouse YY1 Enhancer - Promoter Interactions Data Set - YY1 enhancers/promoters
+#'
+#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' containing proccessed results from YY1
+#' ChIA-PET of interactions that contain a YY1 motif in the promoter
+#' (anchor 1) region and a YY1 motif in the enhancer (anchor 2) region.
+#' It serves as unit test data.
+#'
+#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
+#' @usage data(interactions_yy1_ep)
+"interactions_yy1_ep"
+
+#' Mouse YY1 Enhancer - Promoter Interactions Data Set
+#'
+#' This object contains genomic interactions obtained by mouse YY1 ChIA-PET
+#' and serves as example and unit test data.
+#'
+#' @format An \code{interactionData} object
+#' @usage data(int_data_yy1)
+"int_data_yy1"
 
 #' K562 Enhancer - Promoter Interactions Data Set
 #'
@@ -101,45 +144,3 @@
 #'
 "compare_pairs_example"
 
-#' yy1_pd_interaction
-#'
-#' This is a interactionData object containing processed results from YY1
-#' ChIA-PET interaction data. It serves as unit test data.
-#'
-#' @format An interactionData object
-#' @usage data(yy1_pd_interaction)
-"yy1_pd_interaction"
-
-#' yy1e_interactions
-#'
-#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' containing proccessed results from YY1
-#' ChIA-PET of interactions that contain a YY1 motif in the enhancer
-#' (anchor 2) region. It serves as unit test data.
-#'
-#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(yy1e_interactions)
-"yy1e_interactions"
-
-#' yy1p_interactions
-#'
-#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' containing proccessed results from YY1
-#' ChIA-PET of interactions that contain a YY1 motif in the promoter
-#' (anchor 1) region. It serves as unit test data.
-#'
-#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(yy1p_interactions)
-"yy1p_interactions"
-
-#' yy1p_yy1e_interactions
-#'
-#' This is a \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' containing proccessed results from YY1
-#' ChIA-PET of interactions that contain a YY1 motif in the promoter
-#' (anchor 1) region and a YY1 motif in the enhancer (anchor 2) region.
-#' It serves as unit test data.
-#'
-#' @format A \code{\link[GenomicInteractions]{GenomicInteractions}} object
-#' @usage data(yy1p_yy1e_interactions)
-"yy1p_yy1e_interactions"

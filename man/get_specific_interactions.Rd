@@ -32,14 +32,14 @@ motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 
-yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
+yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "score")
 yy1_yy1_interactions <- get_specific_interactions(
   yy1_pd_interaction,
-  anchor1_motif = "TYY1_MOUSE.H11MO.0.A",
-  anchor2_motif = "TYY1_MOUSE.H11MO.0.A")
+  anchor1_motif = "YY1",
+  anchor2_motif = "YY1")
 
 }
 \author{

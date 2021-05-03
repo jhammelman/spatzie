@@ -17,7 +17,7 @@
 #'                            package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 #'
-#' yy1_pd_interaction <- scan_motifs(spatzie:::yy1_interactions, motifs, genome)
+#' yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom motifmatchr matchMotifs
