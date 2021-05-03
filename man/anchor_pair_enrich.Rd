@@ -112,5 +112,7 @@ yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "count")
 }
 \author{
-Jennifer Hammelman, Konstantin Krismer
+Jennifer Hammelman
+
+Konstantin Krismer
 }

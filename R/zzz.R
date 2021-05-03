@@ -7,6 +7,7 @@
 #'
 #' @docType package
 #' @author Jennifer Hammelman
+#' @author Konstantin Krismer
 #' @name spatzie
 NULL
 

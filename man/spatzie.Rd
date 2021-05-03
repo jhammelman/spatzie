@@ -12,4 +12,6 @@ experiments.
 }
 \author{
 Jennifer Hammelman
+
+Konstantin Krismer
 }

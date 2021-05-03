@@ -94,7 +94,8 @@
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 #' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
 #'                                         method = "count")
-#' @author Jennifer Hammelman, Konstantin Krismer
+#' @author Jennifer Hammelman
+#' @author Konstantin Krismer
 #' @importFrom stats cor.test
 #' @importFrom SummarizedExperiment assays
 #' @importFrom stats phyper
