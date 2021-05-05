@@ -1,3 +1,5 @@
+set.seed(17)
+
 # data origin of 'interactions_file'
 # publication DOI: https://doi.org/10.1016/j.cell.2017.11.008
 # GEO ID: GSM2645440
@@ -23,6 +25,11 @@ res <- spatzie::find_ep_coenrichment(df, motifs_file, genome_id = "mm9",
 
 interactions_yy1 <- res$int_data
 save(interactions_yy1, file = "data/interactions_yy1.rda", compress = "xz")
+
+df <- df[sample(nrow(df), 5000), ]
+
+res <- spatzie::find_ep_coenrichment(df, motifs_file, genome_id = "mm9",
+                                     cooccurrence_method = "score")
 
 interactions_yy1_promoter <- spatzie::get_specific_interactions(
   res$int_data_motifs, anchor1_motif = "YY1")
