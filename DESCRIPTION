@@ -27,7 +27,7 @@ Description: Looks for motifs which are significantly
     experiments.
 License: GPL-3
 Depends: 
-    R (>= 3.5.0)
+    R (>= 4.0)
 Imports:
     BiocGenerics,
     biomaRt,
