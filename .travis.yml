@@ -5,6 +5,8 @@ dist: focal
 language: r
 cache: packages
 r: bioc-release
+r_build_args: "--no-build-vignettes --no-manual"
+r_check_args: "--no-build-vignettes --no-vignettes --ignore-vignettes --no-manual --as-cran --no-tests --no-examples"
 
 before_install:
   - sudo apt-get update
