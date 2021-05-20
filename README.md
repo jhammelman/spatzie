@@ -1,6 +1,6 @@
 # spatzie: Identification of enriched motif pairs from chromatin interaction data
 
-[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0)
+[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
 
 Given a database of DNA sequence motifs representing transcription factors and enhancer promoter interaction data, spatzie performs statistical analysis to identify co-enriched transcription factors.
 
@@ -19,6 +19,12 @@ remotes::install_github("jhammelman/spatzie")
 ## Usage
 
 TODO refer to vignettes
+
+## Build status
+
+| Platform | Status |
+|------|------|
+| Travis CI | [![Travis build status](https://travis-ci.com/jhammelman/spatzie.svg?branch=master)](https://travis-ci.com/jhammelman/spatzie) |
 
 ## Citation
 
