@@ -16,9 +16,11 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 remotes::install_github("jhammelman/spatzie")
 ```
 
+<!---
 ## Usage
 
 TODO refer to vignettes
+-->
 
 ## Build status
 
