@@ -100,7 +100,7 @@ the number of enhancers.
 }
 
 \examples{
-genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")

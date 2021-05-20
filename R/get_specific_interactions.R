@@ -12,7 +12,7 @@
 #' \code{anchor1_motif} in anchor 1 and \code{anchor2_motif} in anchor 2
 #'
 #' @examples
-#' genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+#' genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
 #' motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 #'                            package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")

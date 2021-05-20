@@ -15,7 +15,7 @@ test_that("can scan motifs with motifmatchr", {
   test_interactions <- GenomicInteractions::GenomicInteractions(left, right)
   scanned_interactions <- scan_motifs(
     test_interactions, motifs,
-    BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19)
+    BSgenome::getBSgenome("BSgenome.Hsapiens.UCSC.hg19"))
   expect_is(scanned_interactions, "interactionData")
   expect_is(scanned_interactions$anchor1_motifs, "RangedSummarizedExperiment")
   expect_is(scanned_interactions$anchor2_motifs, "RangedSummarizedExperiment")

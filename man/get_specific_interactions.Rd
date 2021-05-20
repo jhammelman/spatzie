@@ -27,7 +27,7 @@ Select interactions that contain anchor1_motif within anchor 1 and
 anchor2_motif within anchor 2.
 }
 \examples{
-genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")

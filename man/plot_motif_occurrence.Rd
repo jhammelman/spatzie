@@ -25,7 +25,7 @@ Plots a histogram of motif values (either counts, instances, or scores)
 for anchor 1 and anchor 2 regions.
 }
 \examples{
-genome <- BSgenome.Mmusculus.UCSC.mm9::BSgenome.Mmusculus.UCSC.mm9
+genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
