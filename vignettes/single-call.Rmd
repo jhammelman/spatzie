@@ -28,7 +28,7 @@ motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 
 # Run spatzie enhancer-promoter motif co-enrichment analysis
 
-```{r load_promoters}
+```{r load_promoters, message=FALSE, warning=FALSE, results='hide'}
 res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
                                      motifs_file_matrix_format = "pfm",
                                      genome_id = "mm9",
