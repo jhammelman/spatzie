@@ -1,7 +1,7 @@
 Type: Package
 Package: spatzie
-Title: Identification of enriched motif pairs from chromatin
-    interaction data
+Title: Identification of enriched motif pairs from chromatin interaction
+    data
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Jennifer",
@@ -19,11 +19,10 @@ Authors@R:
              role = c("ths", "cph"),
              email = "gifford@mit.edu",
              comment = c(ORCID = "0000-0003-1709-4034")))
-Description: Looks for motifs which are significantly
-    co-enriched from enhancer-promoter interaction data, derived from
-    assays such as as HiC, ChIA-PET, etc. It can also look for
-    differentially enriched motif pairs between to interaction
-    experiments.
+Description: Looks for motifs which are significantly co-enriched from
+    enhancer-promoter interaction data, derived from assays such as as
+    HiC, ChIA-PET, etc. It can also look for differentially enriched motif
+    pairs between to interaction experiments.
 License: GPL-3
 Depends: 
     R (>= 4.0)
@@ -39,25 +38,27 @@ Imports:
     matrixStats,
     motifmatchr,
     S4Vectors,
+    stats,
     SummarizedExperiment,
-    TFBSTools
+    TFBSTools,
+    utils
 Suggests:
     BSgenome.Hsapiens.UCSC.hg19,
     BSgenome.Hsapiens.UCSC.hg38,
-    BSgenome.Mmusculus.UCSC.mm9,
     BSgenome.Mmusculus.UCSC.mm10,
+    BSgenome.Mmusculus.UCSC.mm9,
     knitr,
     pheatmap,
     rmarkdown,
     testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene,
     TxDb.Hsapiens.UCSC.hg38.knownGene,
-    TxDb.Mmusculus.UCSC.mm9.knownGene,
-    TxDb.Mmusculus.UCSC.mm10.knownGene
+    TxDb.Mmusculus.UCSC.mm10.knownGene,
+    TxDb.Mmusculus.UCSC.mm9.knownGene
 VignetteBuilder: 
     knitr
-biocViews: DNA3DStructure, GeneRegulation, PeakDetection,
-    Epigenetics, FunctionalGenomics, Classification, HiC
+biocViews: DNA3DStructure, GeneRegulation, PeakDetection, Epigenetics,
+    FunctionalGenomics, Classification, HiC
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
