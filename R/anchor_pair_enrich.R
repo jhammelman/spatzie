@@ -84,15 +84,25 @@
 #' the number of enhancers.
 #'
 #' @examples
-#' genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+#' \dontrun{
+#' genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+#' if (!(genome_id %in% rownames(utils::installed.packages()))) {
+#'   BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+#' }
+#' genome <- BSgenome::getBSgenome(genome_id)
+#'
 #' motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 #'                            package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 #'
 #' yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
-#' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
-#'                                         method = "count")
+#' yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction, method = "count")
+#' }
+#'
+#' res <- anchor_pair_enrich(spatzie::scan_interactions_example_filtered,
+#'                           method = "score")
+#'
 #' @author Jennifer Hammelman
 #' @author Konstantin Krismer
 #' @importFrom stats cor.test

@@ -27,7 +27,13 @@ Select interactions that contain anchor1_motif within anchor 1 and
 anchor2_motif within anchor 2.
 }
 \examples{
-genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+\dontrun{
+genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+if (!(genome_id \%in\% rownames(utils::installed.packages()))) {
+  BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
@@ -40,6 +46,11 @@ yy1_yy1_interactions <- get_specific_interactions(
   yy1_pd_interaction,
   anchor1_motif = "YY1",
   anchor2_motif = "YY1")
+}
+
+res <- get_specific_interactions(spatzie::int_data_yy1,
+                                 anchor1_motif = "YY1",
+                                 anchor2_motif = "YY1")
 
 }
 \author{

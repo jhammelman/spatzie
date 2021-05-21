@@ -11,7 +11,7 @@ scan_motifs(interactions, motifs, genome)
 
 \item{motifs}{a TFBS tools matrix of DNA binding motifs}
 
-\item{genome}{a Biostrings genome must match chromosomes from interaction
+\item{genome}{BSgenome object, must match chromosomes from interaction
 data file}
 }
 \value{
@@ -23,12 +23,39 @@ to motifs from anchor one and anchor two of interaction data genomic regions
 Uses motifmatchR to scan interaction regions for given motifs.
 }
 \examples{
-genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+\dontrun{
+genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+if (!(genome_id \%in\% rownames(utils::installed.packages()))) {
+  BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 
 yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
+}
+
+motifs_file <- system.file("extdata/motifs_subset.txt.gz",
+                           package = "spatzie")
+motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
+left <- GenomicRanges::GRanges(
+  seqnames = c("chr1", "chr1", "chr1"),
+  ranges = IRanges::IRanges(start = c(1, 15, 20),
+                            end = c(10, 35, 31)))
+right <- GenomicRanges::GRanges(
+  seqnames = c("chr1", "chr2", "chr2"),
+  ranges = IRanges::IRanges(start = c(17, 47, 41),
+                            end = c(28, 54, 53)))
+test_interactions <- GenomicInteractions::GenomicInteractions(left, right)
+
+# toy DNAStringSet to replace BSgenome object
+seqs <- c("chr1" = "CCACTAGCCACGCGTCACTGGTTAGCGTGATTGAAACTAAATCGTATGAAAATCC",
+          "chr2" = "CTACAAACTAGGAATTTAGGCAAACCTGTGTTAAAATCTTAGCTCATTCATTAAT")
+toy_genome <- Biostrings::DNAStringSet(seqs, use.names = TRUE)
+
+res <- scan_motifs(test_interactions, motifs, toy_genome)
 
 }
 \author{

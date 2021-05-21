@@ -25,7 +25,13 @@ Plots a histogram of motif values (either counts, instances, or scores)
 for anchor 1 and anchor 2 regions.
 }
 \examples{
-genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+\dontrun{
+genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+if (!(genome_id \%in\% rownames(utils::installed.packages()))) {
+  BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
@@ -33,6 +39,9 @@ motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
 yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 plot_motif_occurrence(yy1_pd_interaction,"counts")
+}
+
+plot_motif_occurrence(spatzie::anchor_pair_example_score)
 
 }
 \author{

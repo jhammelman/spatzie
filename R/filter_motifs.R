@@ -13,13 +13,22 @@
 #' present in a threshold fraction of interactions
 #'
 #' @examples
-#' genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+#' \dontrun{
+#' genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+#' if (!(genome_id %in% rownames(utils::installed.packages()))) {
+#'   BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+#' }
+#' genome <- BSgenome::getBSgenome(genome_id)
+#'
 #' motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 #'                            package = "spatzie")
 #' motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
 #'
 #' yy1_pd_interaction <- scan_motifs(spatzie::interactions_yy1, motifs, genome)
 #' yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
+#' }
+#'
+#' res <- filter_motifs(spatzie::scan_interactions_example, threshold = 0.1)
 #'
 #' @author Jennifer Hammelman
 #' @importFrom SummarizedExperiment assays

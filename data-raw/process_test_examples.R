@@ -8,9 +8,15 @@ right <- GenomicRanges::GRanges(seqnames = c("chr1", "chr2", "chr2"),
                  ranges = IRanges::IRanges(start = c(200000, 200550, 201050),
                                 end = c(200550, 201050, 201600)))
 interactions <- GenomicInteractions::GenomicInteractions(left, right)
+
+genome_id <- "BSgenome.Hsapiens.UCSC.hg19"
+if (!(genome_id %in% rownames(installed.packages()))) {
+   BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
 scan_interactions_example <- spatzie::scan_motifs(
-  interactions, motifs,
-  BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19)
+  interactions, motifs, genome)
 scan_interactions_example_filtered <- spatzie::filter_motifs(
   scan_interactions_example, threshold = 0.1)
 anchor_pair_example_score <- spatzie::anchor_pair_enrich(
