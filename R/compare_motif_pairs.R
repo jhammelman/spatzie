@@ -16,11 +16,9 @@
 #'         significantly differential between two interactionData sets
 #'
 #' @examples
-#' \dontrun{
 #' pheatmap::pheatmap(compare_motif_pairs(spatzie::int_data_k562,
 #'                                        spatzie::int_data_mslcl, 5e-06),
 #'                    fontsize = 6)
-#' }
 #' @author Jennifer Hammelman
 #' @importFrom matrixStats rowMaxs
 #' @importFrom matrixStats colMaxs

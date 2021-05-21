@@ -31,11 +31,9 @@ two interaction datasets. Note that motif pair significance should have
 been computed using the same method for both datasets.
 }
 \examples{
-\dontrun{
 pheatmap::pheatmap(compare_motif_pairs(spatzie::int_data_k562,
                                        spatzie::int_data_mslcl, 5e-06),
                    fontsize = 6)
-}
 }
 \author{
 Jennifer Hammelman
