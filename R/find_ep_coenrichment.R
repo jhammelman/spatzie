@@ -157,27 +157,33 @@ find_ep_coenrichment <- function(int_raw_data,
 
   if (identify_ep) {
     if (genome_id == "hg19") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg19")
       check_required_package("TxDb.Hsapiens.UCSC.hg19.knownGene")
+
       genome <- BSgenome::getBSgenome("BSgenome.Hsapiens.UCSC.hg19")
       txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
       ensembl_data_set <- "hsapiens_gene_ensembl"
       gene_symbol <- "hgnc_symbol"
     } else if (genome_id == "hg38") {
-
+      check_required_package("BSgenome.Hsapiens.UCSC.hg38")
       check_required_package("TxDb.Hsapiens.UCSC.hg38.knownGene")
+
       genome <- BSgenome::getBSgenome("BSgenome.Hsapiens.UCSC.hg38")
       txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene
       ensembl_data_set <- "hsapiens_gene_ensembl"
       gene_symbol <- "hgnc_symbol"
     } else if (genome_id == "mm9") {
-
+      check_required_package("BSgenome.Mmusculus.UCSC.mm9")
       check_required_package("TxDb.Mmusculus.UCSC.mm9.knownGene")
+
       genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
       txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
       ensembl_data_set <- "mmusculus_gene_ensembl"
       gene_symbol <- "mgi_symbol"
     } else if (genome_id == "mm10") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm10")
       check_required_package("TxDb.Mmusculus.UCSC.mm10.knownGene")
+
       genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm10")
       txdb <- TxDb.Mmusculus.UCSC.mm10.knownGene::TxDb.Mmusculus.UCSC.mm10.knownGene
       ensembl_data_set <- "mmusculus_gene_ensembl"
@@ -230,12 +236,16 @@ find_ep_coenrichment <- function(int_raw_data,
                                                          enhancer_ranges)
   } else {
     if (genome_id == "hg19") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg19")
       genome <- BSgenome::getBSgenome("BSgenome.Hsapiens.UCSC.hg19")
     } else if (genome_id == "hg38") {
+      check_required_package("BSgenome.Hsapiens.UCSC.hg38")
       genome <- BSgenome::getBSgenome("BSgenome.Hsapiens.UCSC.hg38")
     } else if (genome_id == "mm9") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm9")
       genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
     } else if (genome_id == "mm10") {
+      check_required_package("BSgenome.Mmusculus.UCSC.mm10")
       genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm10")
     }
     annotation_pie_chart <- NULL
