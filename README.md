@@ -2,6 +2,8 @@
 
 [![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
 
+https://spatzie.mit.edu
+
 Given a database of DNA sequence motifs representing transcription factors and enhancer promoter interaction data, spatzie performs statistical analysis to identify co-enriched transcription factors.
 
 ## Installation
@@ -22,6 +24,8 @@ For interaction data aligned to the most recent human or mouse genome assemblies
 ```
 vignette("single-call", package = "spatzie")
 ```
+
+The functionality displayed in the vignette above is also available online at [spatzie.mit.edu](https://spatzie.mit.edu).
 
 If more flexibility is required, e.g., different genome assemblies, locally cached promoter annotations, non-standard ways to filter interactions, this vignette is a good starting point:
 ```
