@@ -11,8 +11,8 @@ scan_motifs(interactions, motifs, genome)
 
 \item{motifs}{a TFBS tools matrix of DNA binding motifs}
 
-\item{genome}{BSgenome object, must match chromosomes from interaction
-data file}
+\item{genome}{BSgenome object or DNAStringSet object, must match chromosomes
+from interaction data file}
 }
 \value{
 an interaction data object where \code{obj$anchor1_motifs} and
