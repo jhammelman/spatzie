@@ -13,14 +13,20 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
 
-remotes::install_github("jhammelman/spatzie")
+remotes::install_github("jhammelman/spatzie", build_vignettes = TRUE)
 ```
 
-<!---
 ## Usage
 
-TODO refer to vignettes
--->
+For interaction data aligned to the most recent human or mouse genome assemblies (`hg38`, `hg19`, `mm10`, or `mm9`), the most common spatzie use cases are covered by the function `find_ep_coenrichment`, which is prominently featured in one of the vignettes:
+```
+vignette("single-call", package = "spatzie")
+```
+
+If more flexibility is required, e.g., different genome assemblies, locally cached promoter annotations, non-standard ways to filter interactions, this vignette is a good starting point:
+```
+vignette("individual-steps", package = "spatzie")
+```
 
 ## Build status
 
