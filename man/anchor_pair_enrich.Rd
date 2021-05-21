@@ -87,8 +87,8 @@ thus \eqn{\boldsymbol{x^{\prime\prime\prime}}} and
 \deqn{x^{\prime\prime\prime}_i = \boldsymbol{1}_{x^{\prime\prime}_i > 0}}
 
 Instance co-occurrence is computed using the hypergeometric test:
-\deqn{p = \sum_{k=I_{ab}}^{P_a} \frac{\text{binom}(P_a, k)
-\text{binom}(n - P_a, E_b - k)}{\text{binom}(n, E_b)},}
+\deqn{p = \sum_{k=I_{ab}}^{P_a} \frac{binom(P_a, k)
+binom(n - P_a, E_b - k)}{binom(n, E_b)},}
 where \eqn{I_{ab}} is the number of interactions that contain a match for
 motif \eqn{a} in the promoter and motif \eqn{b} in the enhancer, \eqn{P_a}
 is the number of promoters that contain motif \eqn{a}
