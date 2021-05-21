@@ -16,9 +16,20 @@ library(spatzie)
 
 # Genome assembly specific configuration
 
-```{r is_genome_assembly_config}
-genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+```{r is_genome_assembly_config, message=FALSE, warning=FALSE, results='hide'}
+genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+if (!(genome_id %in% rownames(utils::installed.packages()))) {
+  BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
+
+txdb_id <- "TxDb.Mmusculus.UCSC.mm9.knownGene"
+if (!(txdb_id %in% rownames(utils::installed.packages()))) {
+  BiocManager::install(txdb_id, update = FALSE, ask = FALSE)
+}
 txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
+
 ensembl_data_set <- "mmusculus_gene_ensembl"
 gene_symbol <- "mgi_symbol"
 ```

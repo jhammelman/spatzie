@@ -1,7 +1,7 @@
 ---
 title: "YY1 ChIA-PET motif analysis (step-by-step)"
 author: "Jennifer Hammelman, Konstantin Krismer"
-date: "2021-05-20"
+date: "2021-05-21"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (step-by-step)}
@@ -19,8 +19,19 @@ library(spatzie)
 
 
 ```r
-genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
+genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
+if (!(genome_id %in% rownames(utils::installed.packages()))) {
+  BiocManager::install(genome_id, update = FALSE, ask = FALSE)
+}
+genome <- BSgenome::getBSgenome(genome_id)
+
+
+txdb_id <- "TxDb.Mmusculus.UCSC.mm9.knownGene"
+if (!(txdb_id %in% rownames(utils::installed.packages()))) {
+  BiocManager::install(txdb_id, update = FALSE, ask = FALSE)
+}
 txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
+
 ensembl_data_set <- "mmusculus_gene_ensembl"
 gene_symbol <- "mgi_symbol"
 ```
