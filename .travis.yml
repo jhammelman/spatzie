@@ -6,17 +6,15 @@ language: r
 warnings_are_errors: true
 cache: packages
 r: bioc-release
-r_build_args: "--no-build-vignettes --no-manual"
-r_check_args: "--no-build-vignettes --no-vignettes --ignore-vignettes --no-manual --as-cran --no-tests --no-examples"
 bioc_check: true
 
 jobs:
   include:
     - stage: prepare cache
       script:
-        - echo No R CMD check since this is a cache warmup
+        - echo cache warm-up, do not run R CMD check
       after_success:
-        - echo No codecov / biocheck since this is a cache warmup
+        - echo cache warm-up, do not run coveralls
     - stage: test
 
 apt_packages:
