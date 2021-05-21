@@ -1,7 +1,7 @@
 ---
 title: "YY1 ChIA-PET motif analysis (single call)"
 author: "Jennifer Hammelman, Konstantin Krismer"
-date: "2021-05-20"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (single call)}
@@ -9,16 +9,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-```r
+```{r sc_setup, message=FALSE}
 set.seed(17)
 library(spatzie)
 ```
 
 # Load data
 
-
-```r
+```{r sc_load_interactions}
 yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                      package = "spatzie")
 int_data_df <- read.table(gzfile(yy1_interactions_file), header = TRUE,
@@ -30,8 +28,7 @@ motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 
 # Run spatzie enhancer-promoter motif co-enrichment analysis
 
-
-```r
+```{r sc_load_promoters, message=FALSE, warning=FALSE, results='hide'}
 res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
                                      motifs_file_matrix_format = "pfm",
                                      genome_id = "mm9",
@@ -42,19 +39,20 @@ res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
 
 ## Interaction type pie chart
 
-
-```r
+```{r sc_annotate_interactions, message=FALSE, warning=FALSE}
 plot(res$annotation_pie_chart)
 ```
 
-![plot of chunk sc_annotate_interactions](figure/sc_annotate_interactions-1.png)
-
 ## Motif co-enrichment matrix
 
-
-```r
+```{r sc_compute_cosignificance_count, fig.keep="none"}
 pheatmap::pheatmap(-log2(res$motif_cooccurrence$pair_motif_enrich),
                    fontsize = 6)
 ```
 
-<img src="figure/sc_compute_cosignificance_count-1.png" title="plot of chunk sc_compute_cosignificance_count_save" alt="plot of chunk sc_compute_cosignificance_count_save" width="95%" style="display: block; margin: auto;" />
+```{r sc_compute_cosignificance_count_save, message=FALSE, warning=FALSE, echo=FALSE, out.width="95%", fig.cap=NULL, fig.align="center"}
+pheatmap::pheatmap(-log2(res$motif_cooccurrence$pair_motif_enrich),
+                   fontsize = 6,
+                   filename = "./figure/sc_compute_cosignificance_count-1.png")
+knitr::include_graphics("figure/sc_compute_cosignificance_count-1.png")
+```

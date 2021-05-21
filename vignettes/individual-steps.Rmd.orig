@@ -1,7 +1,7 @@
 ---
 title: "YY1 ChIA-PET motif analysis (step-by-step)"
 author: "Jennifer Hammelman, Konstantin Krismer"
-date: "2021-05-20"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (step-by-step)}
@@ -9,16 +9,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-```r
+```{r is_setup, message=FALSE}
 set.seed(17)
 library(spatzie)
 ```
 
 # Genome assembly specific configuration
 
-
-```r
+```{r is_genome_assembly_config}
 genome <- BSgenome::getBSgenome("BSgenome.Mmusculus.UCSC.mm9")
 txdb <- TxDb.Mmusculus.UCSC.mm9.knownGene::TxDb.Mmusculus.UCSC.mm9.knownGene
 ensembl_data_set <- "mmusculus_gene_ensembl"
@@ -27,8 +25,7 @@ gene_symbol <- "mgi_symbol"
 
 # Load data
 
-
-```r
+```{r is_load_interactions}
 yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                      package = "spatzie")
 yy1_interactions <- GenomicInteractions::makeGenomicInteractionsFromFile(
@@ -39,14 +36,9 @@ yy1_interactions <- GenomicInteractions::makeGenomicInteractionsFromFile(
 length(yy1_interactions)
 ```
 
-```
-## [1] 40000
-```
-
 # Load mouse promoter information
 
-
-```r
+```{r is_load_promoters, message=FALSE, warning=FALSE, results='hide'}
 promoter_ranges <- GenomicFeatures::promoters(txdb,
                                               upstream = 2500,
                                               downstream = 2500,
@@ -74,19 +66,15 @@ names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
 
 # Annotate interactions with promoters
 
-
-```r
+```{r is_annotate_interactions, message=FALSE, warning=FALSE}
 annotation_features <- list(promoter = promoter_ranges)
 GenomicInteractions::annotateInteractions(yy1_interactions, annotation_features)
 GenomicInteractions::plotInteractionAnnotations(yy1_interactions)
 ```
 
-![plot of chunk is_annotate_interactions](figure/is_annotate_interactions-1.png)
-
 # Limit and sort interactions to enhancer:promoter
 
-
-```r
+```{r is_filter_interactions}
 distal_promoter_idx <- GenomicInteractions::isInteractionType(
   yy1_interactions, "distal", "promoter")
 yy1_pd <- yy1_interactions[distal_promoter_idx]
@@ -105,8 +93,7 @@ yy1_pd <- GenomicInteractions::GenomicInteractions(promoter_ranges,
 
 # Scan motifs
 
-
-```r
+```{r is_scan_motifs}
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
 motifs <- TFBSTools::readJASPARMatrix(motifs_file, matrixClass = "PFM")
@@ -118,22 +105,30 @@ yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 
 ## Correlation between motif counts
 
-
-```r
+```{r is_compute_cosignificance_count, fig.keep="none"}
 yy1_pd_count_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "count")
 pheatmap::pheatmap(-log2(yy1_pd_count_corr$pair_motif_enrich), fontsize = 6)
 ```
 
-<img src="figure/is_compute_cosignificance_count-1.png" title="plot of chunk is_compute_cosignificance_count_save" alt="plot of chunk is_compute_cosignificance_count_save" width="95%" style="display: block; margin: auto;" />
+```{r is_compute_cosignificance_count_save, message=FALSE, warning=FALSE, echo=FALSE, out.width="95%", fig.cap=NULL, fig.align="center"}
+pheatmap::pheatmap(-log2(yy1_pd_count_corr$pair_motif_enrich),
+                   fontsize = 6,
+                   filename = "./figure/is_compute_cosignificance_count-1.png")
+knitr::include_graphics("figure/is_compute_cosignificance_count-1.png")
+```
 
 ## Correlation between max motif scores
 
-
-```r
+```{r is_compute_cosignificance_score, fig.keep="none"}
 yy1_pd_score_corr <- anchor_pair_enrich(yy1_pd_interaction,
                                         method = "score")
 pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich), fontsize = 6)
 ```
 
-<img src="figure/is_compute_cosignificance_score-1.png" title="plot of chunk is_compute_cosignificance_score_save" alt="plot of chunk is_compute_cosignificance_score_save" width="95%" style="display: block; margin: auto;" />
+```{r is_compute_cosignificance_score_save, message=FALSE, warning=FALSE, echo=FALSE, out.width="95%", fig.cap=NULL, fig.align="center"}
+pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich),
+                   fontsize = 6,
+                   filename = "./figure/is_compute_cosignificance_score-1.png")
+knitr::include_graphics("figure/is_compute_cosignificance_score-1.png")
+```
