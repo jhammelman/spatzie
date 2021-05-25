@@ -48,4 +48,4 @@ Journal name, Volume *TODO*, Issue *TODO*, *TODO*; DOI: https://doi.org/*TODO*
 
 ## Funding
 
-The development of this method was supported by National Institutes of Health (NIH) grants 1R01HG008363, 1R01HF008754, 1R01NS109217, and a  National Science Foundation Graduate Research Fellowship (1122374).
+The development of this method was supported by National Institutes of Health (NIH) grants 1R01HG008754 and 1R01NS109217, and a National Science Foundation Graduate Research Fellowship (1122374).
