@@ -11,7 +11,7 @@ citEntry(
   month = 5,
   doi = "10.1101/2021.05.25.445606",
   URL = "https://doi.org/10.1101/2021.05.25.445606",
-	publisher = {Cold Spring Harbor Laboratory},
+	publisher = "Cold Spring Harbor Laboratory",
   textVersion =
     paste("spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions",
           "Jennifer Hammelman, Konstantin Krismer, David K. Gifford",
