@@ -1,6 +1,6 @@
 # spatzie: Identification of enriched motif pairs from chromatin interaction data
 
-[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
+[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![DOI](https://img.shields.io/badge/DOI-10.1101%2F2021.05.25.445606-blue.svg)](https://doi.org/10.1101/2021.05.25.445606) [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
 
 https://spatzie.mit.edu
 
@@ -44,7 +44,7 @@ If you use *spatzie* in your research, please cite:
 
 **spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**  
 Jennifer Hammelman, Konstantin Krismer, and David K. Gifford  
-Journal name, Volume *TODO*, Issue *TODO*, *TODO*; DOI: https://doi.org/*TODO*
+bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
 
 ## Funding
 
