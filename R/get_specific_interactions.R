@@ -54,7 +54,7 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
 
     if (motif_mask_anchor2 == 0) {
-      stop(paste("No match found for motif ", anchor2_motif))
+      stop("No match found for motif ", anchor2_motif)
     }
 
     interaction_mask <- (anchor2_motifs$motifMatches[, motif_mask_anchor2] == TRUE)
@@ -65,7 +65,7 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
 
     if (motif_mask_anchor1 == 0) {
-      stop(paste("No match found for motif ", anchor1_motif))
+      stop("No match found for motif ", anchor1_motif)
     }
 
     interaction_mask <- (anchor1_motifs$motifMatches[, motif_mask_anchor1] == TRUE)
@@ -76,7 +76,7 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
       anchor1_motif == colnames(interaction_data$anchor1_motifs))
 
     if (motif_mask_anchor1 == 0) {
-      stop(paste("No match found for motif ", anchor1_motif))
+      stop("No match found for motif ", anchor1_motif)
     }
 
     interaction_mask_anchor1 <- (anchor1_motifs$motifMatches[, motif_mask_anchor1] == TRUE)
@@ -85,7 +85,7 @@ get_specific_interactions <- function(interaction_data, anchor1_motif = NULL,
       anchor2_motif == colnames(interaction_data$anchor2_motifs))
 
     if (motif_mask_anchor2 == 0) {
-      stop(paste("No match found for motif ", anchor2_motif))
+      stop("No match found for motif ", anchor2_motif)
     }
 
     interaction_mask_anchor2 <- (anchor2_motifs$motifMatches[, motif_mask_anchor2] == TRUE)

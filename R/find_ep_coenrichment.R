@@ -277,8 +277,8 @@ find_ep_coenrichment <- function(int_raw_data,
 #' @importFrom utils installed.packages
 check_required_package <- function(package_name) {
   if (!(package_name %in% rownames(utils::installed.packages()))) {
-    stop(paste0("Bioconductor package missing (", package_name,
-                "), install with command: BiocManager::install(\"",
-                package_name, "\")"))
+    stop("Bioconductor package missing (", package_name,
+         "), install with command: BiocManager::install(\"",
+         package_name, "\")")
   }
 }
