@@ -20,9 +20,6 @@
 #' Calls functions \code{\link{scan_motifs}}, \code{\link{filter_motifs}},
 #' and \code{\link{anchor_pair_enrich}} internally.
 #'
-#' Uses \code{biomaRt} to retrieve annotations (only if
-#' \code{genome_id != "custom"}).
-#'
 #' @param int_raw_data a data frame with at least six columns:
 #' \tabular{rl}{
 #'   column 1: \tab character; genomic location of interaction anchor 1 -
@@ -111,7 +108,6 @@
 #' @importFrom BiocGenerics unique
 #' @importFrom GenomicInteractions GenomicInteractions
 #' @importFrom GenomicFeatures promoters
-#' @importFrom biomaRt useMart
 #' @importFrom GenomicInteractions annotateInteractions
 #' @importFrom GenomicInteractions plotInteractionAnnotations
 #' @importFrom GenomicInteractions isInteractionType
@@ -191,7 +187,8 @@ find_ep_coenrichment <- function(int_raw_data,
     }
 
     promoter_ranges <- GenomicFeatures::promoters(
-      txdb, upstream = 2500, downstream = 2500, columns = c("tx_name", "gene_id"))
+      txdb, upstream = 2500, downstream = 2500,
+      columns = c("tx_name", "gene_id"))
 
     # trims out-of-bound ranges located on non-circular sequences
     promoter_ranges <- GenomicRanges::trim(promoter_ranges)
@@ -201,18 +198,6 @@ find_ep_coenrichment <- function(int_raw_data,
 
     promoters_df <- as.data.frame(promoter_ranges)
     promoters_df$gene_id <- as.character(promoters_df$gene_id)
-
-    ensembl <- biomaRt::useMart("ensembl", dataset = ensembl_data_set)
-
-    id_df <- biomaRt::getBM(attributes = c("entrezgene_id", gene_symbol),
-                            filters = "entrezgene_id",
-                            values = unique(promoters_df$gene_id),
-                            mart = ensembl)
-
-    names(promoter_ranges) <- id_df[match(promoters_df$gene_id,
-                                          id_df$entrezgene_id), gene_symbol]
-    missing_idx <- is.na(names(promoter_ranges)) | names(promoter_ranges) == ""
-    names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
 
     annotation_features <- list(promoter = promoter_ranges)
 

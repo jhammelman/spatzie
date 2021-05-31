@@ -33,7 +33,6 @@ Depends:
     R (>= 4.0)
 Imports:
     BiocGenerics,
-    biomaRt,
     BSgenome,
     GenomeInfoDb,
     GenomicFeatures,

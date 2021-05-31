@@ -69,18 +69,6 @@ promoter_ranges <- BiocGenerics::unique(promoter_ranges)
 
 promoters_df <- as.data.frame(promoter_ranges)
 promoters_df$gene_id <- as.character(promoters_df$gene_id)
-
-ensembl <- biomaRt::useMart("ensembl", dataset = ensembl_data_set)
-
-id_df <- biomaRt::getBM(attributes = c("entrezgene_id", gene_symbol),
-                        filters = "entrezgene_id",
-                        values = unique(promoters_df$gene_id),
-                        mart = ensembl)
-
-names(promoter_ranges) <- id_df[match(promoters_df$gene_id,
-                                      id_df$entrezgene_id), gene_symbol]
-missing_idx <- is.na(names(promoter_ranges)) | names(promoter_ranges) == ""
-names(promoter_ranges)[missing_idx] <- promoters_df$tx_name[missing_idx]
 ```
 
 # Annotate interactions with promoters

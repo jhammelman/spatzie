@@ -107,9 +107,6 @@ co-enrichment analysis is performed under this assumption.
 
 Calls functions \code{\link{scan_motifs}}, \code{\link{filter_motifs}},
 and \code{\link{anchor_pair_enrich}} internally.
-
-Uses \code{biomaRt} to retrieve annotations (only if
-\code{genome_id != "custom"}).
 }
 \examples{
 \dontrun{
