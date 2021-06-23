@@ -14,7 +14,16 @@ set.seed(17)
 library(spatzie)
 ```
 
+This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET, HiChIP or HiC are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses. In this case we used interactions data in BEDPE format based on a ChIA-PET assay targeting the transcription factor YY1.
+
+*Interactions data* in BEDPE format is a tab-separated file, where each line describes one interaction between two *anchors*, i.e., two regions of the genome that are potentially far away from each other.
+
+In order to find motif pairs co-enriched in enhancers and promoters that interact with each other, we first need to annotate all interaction anchors and discard interactions that are not between enhancers and promoters.
+
+
 # Genome assembly specific configuration
+
+The interactions data was aligned to the mouse genome assembly *mm9* (i.e., the coordinates in the BEDPE file are *mm9* genome coordinates). The annotation package `BSgenome.Mmusculus.UCSC.mm9` contains the genomic sequence, which we need in order to detect transcription factor motifs in the interaction anchor regions. `TxDb.Mmusculus.UCSC.mm9.knownGene` contains promoter annotations.
 
 ```{r is_genome_assembly_config, message=FALSE, warning=FALSE, results='hide'}
 genome_id <- "BSgenome.Mmusculus.UCSC.mm9"
@@ -36,6 +45,8 @@ gene_symbol <- "mgi_symbol"
 
 # Load data
 
+For this vignette we load toy BEDPE example data from a ChIA-PET experiment in murine embryonic stem cells.
+
 ```{r is_load_interactions}
 yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
                                      package = "spatzie")
@@ -48,6 +59,8 @@ length(yy1_interactions)
 ```
 
 # Load mouse promoter information
+
+Promoter regions are loaded, including the surrounding 2500 base pairs.
 
 ```{r is_load_promoters, message=FALSE, warning=FALSE, results='hide'}
 promoter_ranges <- GenomicFeatures::promoters(txdb,
@@ -65,13 +78,15 @@ promoters_df$gene_id <- as.character(promoters_df$gene_id)
 
 # Annotate interactions with promoters
 
-```{r is_annotate_interactions, message=FALSE, warning=FALSE}
+```{r is_annotate_interactions, message=FALSE, warning=FALSE, fig.cap=""}
 annotation_features <- list(promoter = promoter_ranges)
 GenomicInteractions::annotateInteractions(yy1_interactions, annotation_features)
 GenomicInteractions::plotInteractionAnnotations(yy1_interactions)
 ```
 
 # Limit and sort interactions to enhancer:promoter
+
+As we have seen above, the interactions data contains not only interactions between enhancers and promoters. Here all interactions that are not between enhancers and promoters are discarded and enhancer-promoter interactions are sorted in a way that the promoters are always in anchor 1 and the enhancers are always in anchor 2.
 
 ```{r is_filter_interactions}
 distal_promoter_idx <- GenomicInteractions::isInteractionType(
@@ -92,6 +107,12 @@ yy1_pd <- GenomicInteractions::GenomicInteractions(promoter_ranges,
 
 # Scan motifs
 
+For the purpose of this vignette, we use a toy motif database. The HOCOMOCO motif database is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
+
+`spatzie::scan_motifs()` takes the filtered interactions data and scans the anchors of each interaction with the motifs of the provided motif database, usually a set of transcription factor sequence motifs.
+
+`spatzie::filter_motifs()` operates on the object returned by `spatzie::scan_motifs()` and removes motifs that are present in - in this case - fewer than 40% of the interactions.
+
 ```{r is_scan_motifs}
 motifs_file <- system.file("extdata/motifs_subset.txt.gz",
                            package = "spatzie")
@@ -101,6 +122,8 @@ yy1_pd_interaction <- filter_motifs(yy1_pd_interaction, 0.4)
 ```
 
 # Compute motif co-significance
+
+`spatzie::anchor_pair_enrich()` operates on the object returned by `spatzie::filter_motifs()` and calculates the co-enrichment of all motif pairs. It supports three methods to determine co-enrichment, count-based correlation, score-based correlation, and match-based assocation. For details, see the help page (`?spatzie::anchor_pair_enrich`) or the spatzie paper (`citation("spatzie")`).
 
 ## Correlation between motif counts
 

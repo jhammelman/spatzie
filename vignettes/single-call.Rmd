@@ -1,7 +1,7 @@
 ---
 title: "YY1 ChIA-PET motif analysis (single call)"
 author: "Jennifer Hammelman, Konstantin Krismer"
-date: "2021-05-21"
+date: "2021-06-23"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (single call)}
@@ -14,8 +14,16 @@ vignette: >
 set.seed(17)
 library(spatzie)
 ```
+This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET, HiChIP or HiC are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses.
+
 
 # Load data
+
+Here we use interactions data in BEDPE format based on a ChIA-PET assay. *Interactions data* in BEDPE format is a tab-separated file, where each line describes one interaction between two *anchors*, i.e., two regions of the genome that are potentially far away from each other.
+
+`yy1_interactions_file` is a toy BEDPE example data from a ChIA-PET experiment in murine embryonic stem cells, targeting the transcription factor YY1.
+
+`motifs_file` is a toy motif database. The HOCOMOCO motif database is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
 
 
 ```r
@@ -30,6 +38,8 @@ motifs_file <- system.file("extdata/motifs_subset.txt.gz",
 
 # Run spatzie enhancer-promoter motif co-enrichment analysis
 
+`spatzie::find_ep_coenrichment()` identifies co-enriched pairs of motifs in enhancer-promoter interactions by first annotating interaction anchors in `int_data_df` and discarding interactions that are not between promoters and enhancers. Second, anchor regions are scanned for motif hits using `spatzie::scan_motifs()`. Third, motifs present in less than a certain fraction of interactions are discarded (`spatzie::filter_motifs()`). And fourth, `spatzie::anchor_pair_enrich()` identifies co-enriched motif pairs, i.e., motif A is consistently present in promoters that interact with enhancers containing motif B.
+
 
 ```r
 res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
@@ -38,18 +48,24 @@ res <- spatzie::find_ep_coenrichment(int_data_df, motifs_file,
                                      cooccurrence_method = "count")
 ```
 
+For more information, please see the help page (`?spatzie::find_ep_coenrichment`) and the spatzie paper (`citation("spatzie")`).
+
 # Results
 
 ## Interaction type pie chart
+
+The plot shows the types of interactions before filtering.
 
 
 ```r
 plot(res$annotation_pie_chart)
 ```
 
-![plot of chunk sc_annotate_interactions](figure/sc_annotate_interactions-1.png)
+![](figure/sc_annotate_interactions-1.png)
 
 ## Motif co-enrichment matrix
+
+The heatmap shows co-enrichment for all motif pairs.
 
 
 ```r
