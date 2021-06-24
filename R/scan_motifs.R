@@ -3,7 +3,8 @@
 #' @description
 #' Uses motifmatchR to scan interaction regions for given motifs.
 #'
-#' @param interactions an interactionData object of paired genomic regions
+#' @param int_data a \code{\link[GenomicInteractions]{GenomicInteractions}}
+#' object of paired genomic regions
 #' @param motifs a TFBS tools matrix of DNA binding motifs
 #' @param genome BSgenome object or DNAStringSet object, must match chromosomes
 #' from interaction data file
@@ -51,15 +52,15 @@
 #' @importFrom GenomicInteractions anchorOne
 #' @importFrom GenomicInteractions anchorTwo
 #' @export
-scan_motifs <- function(interactions, motifs, genome) {
+scan_motifs <- function(int_data, motifs, genome) {
   anchor1_matches <- motifmatchr::matchMotifs(
-    motifs, GenomicInteractions::anchorOne(interactions),
+    motifs, GenomicInteractions::anchorOne(int_data),
     genome = genome, out = "scores", bg = "subject")
   anchor2_matches <- motifmatchr::matchMotifs(
-    motifs, GenomicInteractions::anchorTwo(interactions),
+    motifs, GenomicInteractions::anchorTwo(int_data),
     genome = genome, out = "scores", bg = "subject")
   interaction_data <- list(
-    interactions = interactions,
+    interactions = int_data,
     anchor1_motifs = anchor1_matches,
     anchor2_motifs = anchor2_matches,
     anchor1_motif_indices = seq(length(anchor1_matches$name)),

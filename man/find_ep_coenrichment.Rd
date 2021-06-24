@@ -15,7 +15,8 @@ find_ep_coenrichment(
 )
 }
 \arguments{
-\item{int_raw_data}{a data frame with at least six columns:
+\item{int_raw_data}{a \code{\link[GenomicInteractions]{GenomicInteractions}}
+object or a data frame with at least six columns:
 \tabular{rl}{
   column 1: \tab character; genomic location of interaction anchor 1 -
   chromosome (e.g., \code{"chr3"})\cr

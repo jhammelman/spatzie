@@ -4,10 +4,11 @@
 \alias{scan_motifs}
 \title{Scans interaction file for motif instances}
 \usage{
-scan_motifs(interactions, motifs, genome)
+scan_motifs(int_data, motifs, genome)
 }
 \arguments{
-\item{interactions}{an interactionData object of paired genomic regions}
+\item{int_data}{a \code{\link[GenomicInteractions]{GenomicInteractions}}
+object of paired genomic regions}
 
 \item{motifs}{a TFBS tools matrix of DNA binding motifs}
 

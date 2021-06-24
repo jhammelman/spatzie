@@ -20,7 +20,8 @@
 #' Calls functions \code{\link{scan_motifs}}, \code{\link{filter_motifs}},
 #' and \code{\link{anchor_pair_enrich}} internally.
 #'
-#' @param int_raw_data a data frame with at least six columns:
+#' @param int_raw_data a \code{\link[GenomicInteractions]{GenomicInteractions}}
+#' object or a data frame with at least six columns:
 #' \tabular{rl}{
 #'   column 1: \tab character; genomic location of interaction anchor 1 -
 #'   chromosome (e.g., \code{"chr3"})\cr
@@ -133,23 +134,29 @@ find_ep_coenrichment <- function(int_raw_data,
                                          c("pfm", "ppm", "pwm"))
   genome_id <- match.arg(genome_id, c("hg19", "hg38", "mm9", "mm10"))
 
-  left_anchor <- GenomicRanges::GRanges(
-    seqnames = int_raw_data[, 1],
-    ranges = IRanges::IRanges(start = int_raw_data[, 2],
-                              end = int_raw_data[, 3]),
-    seqinfo = GenomeInfoDb::Seqinfo(genome = genome_id))
-  right_anchor <- GenomicRanges::GRanges(
-    seqnames = int_raw_data[, 4],
-    ranges = IRanges::IRanges(start = int_raw_data[, 5],
-                              end = int_raw_data[, 6]),
-    seqinfo = GenomeInfoDb::Seqinfo(genome = genome_id))
+  if (inherits(int_raw_data, "GenomicInteractions")) {
+    int_data <- int_raw_data
+  } else if (inherits(int_raw_data, "data.frame")) {
+    left_anchor <- GenomicRanges::GRanges(
+      seqnames = int_raw_data[, 1],
+      ranges = IRanges::IRanges(start = int_raw_data[, 2],
+                                end = int_raw_data[, 3]),
+      seqinfo = GenomeInfoDb::Seqinfo(genome = genome_id))
+    right_anchor <- GenomicRanges::GRanges(
+      seqnames = int_raw_data[, 4],
+      ranges = IRanges::IRanges(start = int_raw_data[, 5],
+                                end = int_raw_data[, 6]),
+      seqinfo = GenomeInfoDb::Seqinfo(genome = genome_id))
 
-  # trims out-of-bound ranges located on non-circular sequences
-  left_anchor <- GenomicRanges::trim(left_anchor)
-  right_anchor <- GenomicRanges::trim(right_anchor)
+    # trims out-of-bound ranges located on non-circular sequences
+    left_anchor <- GenomicRanges::trim(left_anchor)
+    right_anchor <- GenomicRanges::trim(right_anchor)
 
-  int_data <- GenomicInteractions::GenomicInteractions(left_anchor,
-                                                       right_anchor)
+    int_data <- GenomicInteractions::GenomicInteractions(left_anchor,
+                                                         right_anchor)
+  } else {
+    stop("'int_raw_data' data type unsupported: ", class(int_raw_data))
+  }
 
   if (identify_ep) {
     if (genome_id == "hg19") {
