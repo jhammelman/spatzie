@@ -1,3 +1,10 @@
-CHANGES IN VERSION 0.1.0
+CHANGES IN VERSION 0.99.0
 -------------------------
-    o initial release
+    o initial pre-release
+
+CHANGES IN VERSION 0.99.7
+-------------------------
+    o added direct support for GenomicInteractions objects
+    o improved vignettes
+    o removed biomaRt requests
+    o added support for R 4.1
