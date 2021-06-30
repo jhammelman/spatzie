@@ -30,7 +30,7 @@ Description: Identifies motifs that are significantly co-enriched from
 License: GPL-3
 URL: https://spatzie.mit.edu
 Depends: 
-    R (>= 4.0)
+    R (>= 4.1)
 Imports:
     BiocGenerics,
     BSgenome,
