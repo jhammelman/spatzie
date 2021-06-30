@@ -72,3 +72,9 @@ pheatmap::pheatmap(-log2(res$motif_cooccurrence$pair_motif_enrich),
                    filename = "./figure/sc_compute_cosignificance_count-1.png")
 knitr::include_graphics("figure/sc_compute_cosignificance_count-1.png")
 ```
+
+# Session info
+
+```{r session_info}
+sessionInfo()
+```

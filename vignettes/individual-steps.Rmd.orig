@@ -154,3 +154,9 @@ pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich),
                    filename = "./figure/is_compute_cosignificance_score-1.png")
 knitr::include_graphics("figure/is_compute_cosignificance_score-1.png")
 ```
+
+# Session info
+
+```{r session_info}
+sessionInfo()
+```
