@@ -8,3 +8,7 @@ CHANGES IN VERSION 0.99.7
     o improved vignettes
     o removed biomaRt requests
     o added support for R 4.1
+
+CHANGES IN VERSION 0.99.7
+-------------------------
+    o added 'Transcription' Bioconductor Views annotation
