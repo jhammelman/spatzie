@@ -61,7 +61,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 biocViews: DNA3DStructure, GeneRegulation, PeakDetection, Epigenetics,
-    FunctionalGenomics, Classification, HiC
+    FunctionalGenomics, Classification, HiC, Transcription
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
