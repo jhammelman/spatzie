@@ -3,6 +3,7 @@ title: "YY1 ChIA-PET motif analysis (single call)"
 author: "Jennifer Hammelman, Konstantin Krismer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (single call)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -13,7 +14,7 @@ vignette: >
 set.seed(17)
 library(spatzie)
 ```
-This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET, HiChIP or HiC are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses.
+This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET [@pmid19247990], HiChIP [@pmid27643841] or Hi-C [@pmid19815776] are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses.
 
 
 # Load data
@@ -22,7 +23,7 @@ Here we use interactions data in BEDPE format based on a ChIA-PET assay. *Intera
 
 `yy1_interactions_file` is a toy BEDPE example data from a ChIA-PET experiment in murine embryonic stem cells, targeting the transcription factor YY1.
 
-`motifs_file` is a toy motif database. The HOCOMOCO motif database is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
+`motifs_file` is a toy motif database. The HOCOMOCO motif database [@Kulakovskiy2018] is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
 
 ```{r sc_load_interactions}
 yy1_interactions_file <- system.file("extdata/yy1_interactions.bedpe.gz",
@@ -73,8 +74,28 @@ pheatmap::pheatmap(-log2(res$motif_cooccurrence$pair_motif_enrich),
 knitr::include_graphics("figure/sc_compute_cosignificance_count-1.png")
 ```
 
+YY1 binds enhancer and promoter sites providing scaffolding that forms enhancer-promoter interactions in mouse stem cells [@Weintraub2017]. As expected, spatzie identified a statistically significant co-occurrence of YY1 motifs indicating this dependency.
+
+When interpreting spatzie results, keep in mind that motif databases such as HOCOMOCO often include groups of transcription factors with highly similar DNA-binding motifs (in this example YY1 and ZF.5), and the putative co-enrichment of one pair of transcription factor binding sites might be explained by another pair with highly similar motifs.
+
+Please note that the motifs and the interactions data used in this vignette are dummy data used for demonstration purposes only.
+
+# Additional information
+
+Most of the functionality of the spatzie package is also offered through
+the website at https://spatzie.mit.edu.
+
+For a more detailed discussion on spatzie, please have a look at
+the paper:
+
+**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**
+Jennifer Hammelman, Konstantin Krismer, and David K. Gifford
+bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
+
 # Session info
 
 ```{r session_info}
 sessionInfo()
 ```
+
+# References

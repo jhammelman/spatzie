@@ -3,6 +3,7 @@ title: "YY1 ChIA-PET motif analysis (step-by-step)"
 author: "Jennifer Hammelman, Konstantin Krismer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (step-by-step)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,7 +15,7 @@ set.seed(17)
 library(spatzie)
 ```
 
-This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET, HiChIP or HiC are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses. In this case we used interactions data in BEDPE format based on a ChIA-PET assay targeting the transcription factor YY1.
+This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET [@pmid19247990], HiChIP [@pmid27643841] or Hi-C[@pmid19815776] are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses. In this case we used interactions data in BEDPE format based on a ChIA-PET assay targeting the transcription factor YY1.
 
 *Interactions data* in BEDPE format is a tab-separated file, where each line describes one interaction between two *anchors*, i.e., two regions of the genome that are potentially far away from each other.
 
@@ -60,7 +61,9 @@ length(yy1_interactions)
 
 # Load mouse promoter information
 
-Promoter regions are loaded, including the surrounding 2500 base pairs.
+Unless the interactions data was preprocessed in such a way to include only enhancers in one anchor and only promoters in the other (or any other meaningful grouping), it is imperative to filter out non-enhancer-promoter interactions. To do this, we annotate interaction anchors as either close to a promoter or promoter-distal (i.e., putative enhancer).
+
+Here, promoter regions are loaded, including the surrounding 2500 base pairs.
 
 ```{r is_load_promoters, message=FALSE, warning=FALSE, results='hide'}
 promoter_ranges <- GenomicFeatures::promoters(txdb,
@@ -77,6 +80,8 @@ promoters_df$gene_id <- as.character(promoters_df$gene_id)
 ```
 
 # Annotate interactions with promoters
+
+We use `annotateInteractions` from the `GenomicInteractions` package to annotate the interactions with the promoters obtained in the previous step, thus splitting the interactions into three groups: (1) interactions between promoter regions and regions far away from promoters (i.e., putative enhancers), (2) interactions between two promoter regions, and (3) interactions between two promoter-distal regions.
 
 ```{r is_annotate_interactions, message=FALSE, warning=FALSE, fig.cap=""}
 annotation_features <- list(promoter = promoter_ranges)
@@ -107,7 +112,7 @@ yy1_pd <- GenomicInteractions::GenomicInteractions(promoter_ranges,
 
 # Scan motifs
 
-For the purpose of this vignette, we use a toy motif database. The HOCOMOCO motif database is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
+For the purpose of this vignette, we use a toy motif database. The HOCOMOCO motif database [@Kulakovskiy2018] is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
 
 `spatzie::scan_motifs()` takes the filtered interactions data and scans the anchors of each interaction with the motifs of the provided motif database, usually a set of transcription factor sequence motifs.
 
@@ -155,8 +160,28 @@ pheatmap::pheatmap(-log2(yy1_pd_score_corr$pair_motif_enrich),
 knitr::include_graphics("figure/is_compute_cosignificance_score-1.png")
 ```
 
+YY1 binds enhancer and promoter sites providing scaffolding that forms enhancer-promoter interactions in mouse stem cells [@Weintraub2017]. As expected, spatzie identified a statistically significant co-occurrence of YY1 motifs indicating this dependency.
+
+When interpreting spatzie results, keep in mind that motif databases such as HOCOMOCO often include groups of transcription factors with highly similar DNA-binding motifs (in this example YY1 and ZF.5), and the putative co-enrichment of one pair of transcription factor binding sites might be explained by another pair with highly similar motifs.
+
+Please note that the motifs and the interactions data used in this vignette are dummy data used for demonstration purposes only.
+
+# Additional information
+
+Most of the functionality of the spatzie package is also offered through
+the website at https://spatzie.mit.edu.
+
+For a more detailed discussion on spatzie, please have a look at
+the paper:
+
+**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**
+Jennifer Hammelman, Konstantin Krismer, and David K. Gifford
+bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
+
 # Session info
 
 ```{r session_info}
 sessionInfo()
 ```
+
+# References

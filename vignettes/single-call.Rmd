@@ -1,8 +1,9 @@
 ---
 title: "YY1 ChIA-PET motif analysis (single call)"
 author: "Jennifer Hammelman, Konstantin Krismer"
-date: "2021-06-30"
+date: "2021-07-12"
 output: rmarkdown::html_vignette
+bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{YY1 ChIA-PET motif analysis (single call)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,7 +15,7 @@ vignette: >
 set.seed(17)
 library(spatzie)
 ```
-This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET, HiChIP or HiC are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses.
+This vignette describes how to use spatzie to identify pairs of transcription factors whose sequence motifs (that describe their binding sites) are co-enriched in enhancers and promoters that interact with each other. ChIA-PET [@pmid19247990], HiChIP [@pmid27643841] or Hi-C [@pmid19815776] are molecular biology assays commonly used to investigate long-range genomic interactions and the data they generate, once properly processed (BEDPE format), serves as input to spatzie co-enrichment analyses.
 
 
 # Load data
@@ -23,7 +24,7 @@ Here we use interactions data in BEDPE format based on a ChIA-PET assay. *Intera
 
 `yy1_interactions_file` is a toy BEDPE example data from a ChIA-PET experiment in murine embryonic stem cells, targeting the transcription factor YY1.
 
-`motifs_file` is a toy motif database. The HOCOMOCO motif database is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
+`motifs_file` is a toy motif database. The HOCOMOCO motif database [@Kulakovskiy2018] is commonly used, but any motif file compatible with `TFBSTools::readJASPARMatrix()` can be used.
 
 
 ```r
@@ -75,6 +76,24 @@ pheatmap::pheatmap(-log2(res$motif_cooccurrence$pair_motif_enrich),
 
 <img src="figure/sc_compute_cosignificance_count-1.png" title="plot of chunk sc_compute_cosignificance_count_save" alt="plot of chunk sc_compute_cosignificance_count_save" width="95%" style="display: block; margin: auto;" />
 
+YY1 binds enhancer and promoter sites providing scaffolding that forms enhancer-promoter interactions in mouse stem cells [@Weintraub2017]. As expected, spatzie identified a statistically significant co-occurrence of YY1 motifs indicating this dependency.
+
+When interpreting spatzie results, keep in mind that motif databases such as HOCOMOCO often include groups of transcription factors with highly similar DNA-binding motifs (in this example YY1 and ZF.5), and the putative co-enrichment of one pair of transcription factor binding sites might be explained by another pair with highly similar motifs.
+
+Please note that the motifs and the interactions data used in this vignette are dummy data used for demonstration purposes only.
+
+# Additional information
+
+Most of the functionality of the spatzie package is also offered through
+the website at https://spatzie.mit.edu.
+
+For a more detailed discussion on spatzie, please have a look at
+the paper:
+
+**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**
+Jennifer Hammelman, Konstantin Krismer, and David K. Gifford
+bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
+
 # Session info
 
 
@@ -99,13 +118,12 @@ sessionInfo()
 ## other attached packages:
 ##  [1] BSgenome.Mmusculus.UCSC.mm9_1.4.0 BSgenome_1.60.0                   rtracklayer_1.52.0               
 ##  [4] Biostrings_2.60.1                 XVector_0.32.0                    GenomicRanges_1.44.0             
-##  [7] GenomeInfoDb_1.28.0               IRanges_2.26.0                    S4Vectors_0.30.0                 
-## [10] BiocGenerics_0.38.0               spatzie_0.99.6                    motifmatchr_1.14.0               
-## [13] TFBSTools_1.30.0                 
+##  [7] GenomeInfoDb_1.28.1               IRanges_2.26.0                    S4Vectors_0.30.0                 
+## [10] BiocGenerics_0.38.0               spatzie_0.99.6                    usethis_2.0.1                    
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] colorspace_2.0-2                        rjson_0.2.20                            ellipsis_0.3.2                         
-##   [4] htmlTable_2.2.1                         biovizBase_1.40.0                       base64enc_0.1-3                        
+##   [4] biovizBase_1.40.0                       htmlTable_2.2.1                         base64enc_0.1-3                        
 ##   [7] fs_1.5.0                                dichromat_2.0-0                         rstudioapi_0.13                        
 ##  [10] farver_2.1.0                            bit64_4.0.5                             AnnotationDbi_1.54.1                   
 ##  [13] fansi_0.5.0                             xml2_1.3.2                              splines_4.1.0                          
@@ -113,39 +131,41 @@ sessionInfo()
 ##  [19] Formula_1.2-4                           Rsamtools_2.8.0                         seqLogo_1.58.0                         
 ##  [22] annotate_1.70.0                         cluster_2.1.2                           GO.db_3.13.0                           
 ##  [25] dbplyr_2.1.1                            png_0.1-7                               R.oo_1.24.0                            
-##  [28] pheatmap_1.0.12                         BiocManager_1.30.16                     readr_1.4.0                            
-##  [31] compiler_4.1.0                          httr_1.4.2                              backports_1.2.1                        
-##  [34] lazyeval_0.2.2                          assertthat_0.2.1                        Matrix_1.3-4                           
-##  [37] fastmap_1.1.0                           htmltools_0.5.1.1                       prettyunits_1.1.1                      
-##  [40] tools_4.1.0                             igraph_1.2.6                            gtable_0.3.0                           
-##  [43] glue_1.4.2                              TFMPvalue_0.0.8                         GenomeInfoDbData_1.2.6                 
-##  [46] reshape2_1.4.4                          dplyr_1.0.7                             rappdirs_0.3.3                         
-##  [49] Rcpp_1.0.6                              TxDb.Mmusculus.UCSC.mm9.knownGene_3.2.2 Biobase_2.52.0                         
-##  [52] vctrs_0.3.8                             xfun_0.24                               CNEr_1.28.0                            
-##  [55] stringr_1.4.0                           lifecycle_1.0.0                         ensembldb_2.16.0                       
-##  [58] restfulr_0.0.13                         poweRlaw_0.70.6                         gtools_3.9.2                           
-##  [61] InteractionSet_1.20.0                   XML_3.99-0.6                            zlibbioc_1.38.0                        
-##  [64] scales_1.1.1                            VariantAnnotation_1.38.0                ProtGenerics_1.24.0                    
-##  [67] GenomicInteractions_1.26.0              hms_1.1.0                               MatrixGenerics_1.4.0                   
-##  [70] SummarizedExperiment_1.22.0             AnnotationFilter_1.16.0                 RColorBrewer_1.1-2                     
-##  [73] yaml_2.2.1                              curl_4.3.2                              gridExtra_2.3                          
-##  [76] memoise_2.0.0                           ggplot2_3.3.5                           biomaRt_2.48.1                         
-##  [79] rpart_4.1-15                            latticeExtra_0.6-29                     stringi_1.6.2                          
-##  [82] RSQLite_2.2.7                           highr_0.9                               BiocIO_1.2.0                           
-##  [85] checkmate_2.0.0                         GenomicFeatures_1.44.0                  caTools_1.18.2                         
-##  [88] filelock_1.0.2                          BiocParallel_1.26.0                     rlang_0.4.11                           
-##  [91] pkgconfig_2.0.3                         matrixStats_0.59.0                      bitops_1.0-7                           
-##  [94] evaluate_0.14                           pracma_2.3.3                            lattice_0.20-44                        
-##  [97] purrr_0.3.4                             labeling_0.4.2                          htmlwidgets_1.5.3                      
-## [100] GenomicAlignments_1.28.0                bit_4.0.4                               tidyselect_1.1.1                       
-## [103] plyr_1.8.6                              magrittr_2.0.1                          R6_2.5.0                               
-## [106] generics_0.1.0                          Hmisc_4.5-0                             DelayedArray_0.18.0                    
-## [109] DBI_1.1.1                               pillar_1.6.1                            foreign_0.8-81                         
-## [112] survival_3.2-11                         KEGGREST_1.32.0                         RCurl_1.98-1.3                         
-## [115] nnet_7.3-16                             tibble_3.1.2                            crayon_1.4.1                           
-## [118] utf8_1.2.1                              BiocFileCache_2.0.0                     jpeg_0.1-8.1                           
-## [121] progress_1.2.2                          usethis_2.0.1                           grid_4.1.0                             
+##  [28] pheatmap_1.0.12                         readr_1.4.0                             compiler_4.1.0                         
+##  [31] httr_1.4.2                              backports_1.2.1                         lazyeval_0.2.2                         
+##  [34] assertthat_0.2.1                        Matrix_1.3-4                            fastmap_1.1.0                          
+##  [37] htmltools_0.5.1.1                       prettyunits_1.1.1                       tools_4.1.0                            
+##  [40] igraph_1.2.6                            gtable_0.3.0                            glue_1.4.2                             
+##  [43] TFMPvalue_0.0.8                         GenomeInfoDbData_1.2.6                  reshape2_1.4.4                         
+##  [46] dplyr_1.0.7                             rappdirs_0.3.3                          Rcpp_1.0.7                             
+##  [49] TxDb.Mmusculus.UCSC.mm9.knownGene_3.2.2 Biobase_2.52.0                          vctrs_0.3.8                            
+##  [52] xfun_0.24                               CNEr_1.28.0                             stringr_1.4.0                          
+##  [55] lifecycle_1.0.0                         ensembldb_2.16.2                        restfulr_0.0.13                        
+##  [58] poweRlaw_0.70.6                         gtools_3.9.2                            InteractionSet_1.20.0                  
+##  [61] XML_3.99-0.6                            zlibbioc_1.38.0                         scales_1.1.1                           
+##  [64] VariantAnnotation_1.38.0                ProtGenerics_1.24.0                     GenomicInteractions_1.26.0             
+##  [67] hms_1.1.0                               MatrixGenerics_1.4.0                    SummarizedExperiment_1.22.0            
+##  [70] AnnotationFilter_1.16.0                 RColorBrewer_1.1-2                      yaml_2.2.1                             
+##  [73] curl_4.3.2                              memoise_2.0.0                           gridExtra_2.3                          
+##  [76] ggplot2_3.3.5                           biomaRt_2.48.2                          rpart_4.1-15                           
+##  [79] latticeExtra_0.6-29                     stringi_1.6.2                           RSQLite_2.2.7                          
+##  [82] highr_0.9                               BiocIO_1.2.0                            checkmate_2.0.0                        
+##  [85] GenomicFeatures_1.44.0                  caTools_1.18.2                          filelock_1.0.2                         
+##  [88] BiocParallel_1.26.1                     rlang_0.4.11                            pkgconfig_2.0.3                        
+##  [91] matrixStats_0.59.0                      bitops_1.0-7                            evaluate_0.14                          
+##  [94] pracma_2.3.3                            lattice_0.20-44                         purrr_0.3.4                            
+##  [97] labeling_0.4.2                          htmlwidgets_1.5.3                       GenomicAlignments_1.28.0               
+## [100] bit_4.0.4                               tidyselect_1.1.1                        plyr_1.8.6                             
+## [103] magrittr_2.0.1                          R6_2.5.0                                generics_0.1.0                         
+## [106] Hmisc_4.5-0                             DelayedArray_0.18.0                     DBI_1.1.1                              
+## [109] pillar_1.6.1                            foreign_0.8-81                          survival_3.2-11                        
+## [112] KEGGREST_1.32.0                         RCurl_1.98-1.3                          nnet_7.3-16                            
+## [115] tibble_3.1.2                            crayon_1.4.1                            utf8_1.2.1                             
+## [118] BiocFileCache_2.0.0                     rmarkdown_2.9                           jpeg_0.1-8.1                           
+## [121] progress_1.2.2                          TFBSTools_1.30.0                        grid_4.1.0                             
 ## [124] data.table_1.14.0                       blob_1.2.1                              digest_0.6.27                          
 ## [127] xtable_1.8-4                            R.utils_2.10.1                          munsell_0.5.0                          
-## [130] DirichletMultinomial_1.34.0             Gviz_1.36.1
+## [130] DirichletMultinomial_1.34.0             motifmatchr_1.14.0                      Gviz_1.36.2
 ```
+
+# References
