@@ -8,7 +8,20 @@ Given a database of DNA sequence motifs representing transcription factors and e
 
 ## Installation
 
-The *spatzie* package can be installed directly from this repository:
+The *spatzie* package is part of Bioconductor since release 3.14. To install it on your system, enter:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")
+}
+
+# currently spatzie is only part of the Bioconductor development branch
+BiocManager::install(version = "devel")
+
+BiocManager::install("spatzie")
+```
+
+Alternatively, the latest version can be installed directly from this repository:
 
 ```
 if (!requireNamespace("remotes", quietly = TRUE)) {
@@ -17,6 +30,8 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 
 remotes::install_github("jhammelman/spatzie", build_vignettes = TRUE)
 ```
+
+Note: For most use cases it is not necessary to install the *spatzie* package locally, as a substantial part of its functionality is offered as an online service at https://spatzie.mit.edu.
 
 ## Usage
 
