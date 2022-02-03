@@ -5,17 +5,17 @@ citEntry(
   author = personList(as.person("Jennifer Hammelman"),
                       as.person("Konstanin Krismer"),
                       as.person("David K. Gifford")),
-  journal = "bioRxiv",
-  pages = "2021.05.25.445606",
-  year = 2021,
-  month = 5,
-  doi = "10.1101/2021.05.25.445606",
-  URL = "https://doi.org/10.1101/2021.05.25.445606",
-	publisher = "Cold Spring Harbor Laboratory",
+  journal = "Nucleic Acids Research",
+  pages = "gkac036",
+  year = 2022,
+  month = 1,
+  doi = "10.1093/nar/gkac036",
+  URL = "https://doi.org/10.1093/nar/gkac036",
+	publisher = "Oxford University Press",
   textVersion =
     paste("spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions",
           "Jennifer Hammelman, Konstantin Krismer, David K. Gifford",
-          "bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606",
+          "Nucleic Acids Research, 2022, gkac036; DOI: https://doi.org/10.1093/nar/gkac036",
           sep = "\n")
 )
 citFooter("This free open-source software implements academic

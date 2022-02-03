@@ -179,9 +179,9 @@ the website at https://spatzie.mit.edu.
 For a more detailed discussion on spatzie, please have a look at
 the paper:
 
-**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**
-Jennifer Hammelman, Konstantin Krismer, and David K. Gifford
-bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
+**spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**  
+Jennifer Hammelman, Konstantin Krismer, and David K. Gifford  
+Nucleic Acids Research, 2022, gkac036; DOI: https://doi.org/10.1093/nar/gkac036  
 
 # Session info
 

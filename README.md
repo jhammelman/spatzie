@@ -1,6 +1,6 @@
 # spatzie: Identification of enriched motif pairs from chromatin interaction data
 
-[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![DOI](https://img.shields.io/badge/DOI-10.1101%2F2021.05.25.445606-blue.svg)](https://doi.org/10.1101/2021.05.25.445606) [![BioC](https://img.shields.io/badge/BioC-1.0.0-brightgreen.svg)](https://doi.org/doi:10.18129/B9.bioc.spatzie) [![platforms](https://www.bioconductor.org/shields/availability/devel/spatzie.svg)](https://www.bioconductor.org/packages/devel/bioc/html/spatzie.html#archives)  [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
+[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![DOI](https://img.shields.io/badge/DOI-10.1101%2F2021.05.25.445606-blue.svg)](https://doi.org/10.1093/nar/gkac036) [![BioC](https://img.shields.io/badge/BioC-1.0.0-brightgreen.svg)](https://doi.org/doi:10.18129/B9.bioc.spatzie) [![platforms](https://www.bioconductor.org/shields/availability/devel/spatzie.svg)](https://www.bioconductor.org/packages/devel/bioc/html/spatzie.html#archives)  [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
 
 https://spatzie.mit.edu
 
@@ -59,7 +59,7 @@ If you use *spatzie* in your research, please cite:
 
 **spatzie: An R package for identifying significant transcription factor motif co-enrichment from enhancer-promoter interactions**  
 Jennifer Hammelman, Konstantin Krismer, and David K. Gifford  
-bioRxiv 2021.05.25.445606; DOI: https://doi.org/10.1101/2021.05.25.445606
+Nucleic Acids Research, 2022, gkac036; DOI: https://doi.org/10.1093/nar/gkac036
 
 ## Funding
 
