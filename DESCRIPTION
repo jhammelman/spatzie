@@ -2,7 +2,7 @@ Type: Package
 Package: spatzie
 Title: Identification of enriched motif pairs from chromatin interaction
     data
-Version: 1.5.0
+Version: 1.5.1
 Authors@R: 
     c(person(given = "Jennifer",
              family = "Hammelman",
@@ -30,7 +30,7 @@ Description: Identifies motifs that are significantly co-enriched from
 License: GPL-3
 URL: https://spatzie.mit.edu
 Depends: 
-    R (>= 4.1)
+    R (>= 4.3)
 Imports:
     BiocGenerics,
     BSgenome,
@@ -40,6 +40,7 @@ Imports:
     GenomicRanges,
     ggplot2,
     IRanges,
+    MatrixGenerics,
     matrixStats,
     motifmatchr,
     S4Vectors,
@@ -64,4 +65,4 @@ biocViews: DNA3DStructure, GeneRegulation, PeakDetection, Epigenetics,
     FunctionalGenomics, Classification, HiC, Transcription
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3

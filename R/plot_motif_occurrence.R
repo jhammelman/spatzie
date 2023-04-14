@@ -31,7 +31,7 @@
 #' plot_motif_occurrence(spatzie::anchor_pair_example_score)
 #'
 #' @author Jennifer Hammelman
-#' @importFrom BiocGenerics colMeans
+#' @importFrom MatrixGenerics colMeans
 #' @importFrom SummarizedExperiment assays
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 aes
@@ -47,14 +47,14 @@ plot_motif_occurrence <- function(interaction_data,
   anchor2_motifs <- SummarizedExperiment::assays(
     interaction_data$anchor2_motifs)
   if (method == "counts") {
-    anchor1_values <- BiocGenerics::colMeans(anchor1_motifs$motifCounts)
-    anchor2_values <- BiocGenerics::colMeans(anchor2_motifs$motifCounts)
+    anchor1_values <- MatrixGenerics::colMeans(anchor1_motifs$motifCounts)
+    anchor2_values <- MatrixGenerics::colMeans(anchor2_motifs$motifCounts)
   } else if (method == "matches") {
-    anchor1_values <- BiocGenerics::colMeans(anchor1_motifs$motifMatches)
-    anchor2_values <- BiocGenerics::colMeans(anchor2_motifs$motifMatches)
+    anchor1_values <- MatrixGenerics::colMeans(anchor1_motifs$motifMatches)
+    anchor2_values <- MatrixGenerics::colMeans(anchor2_motifs$motifMatches)
   } else {
-    anchor1_values <- BiocGenerics::colMeans(anchor1_motifs$motifScores)
-    anchor2_values <- BiocGenerics::colMeans(anchor2_motifs$motifScores)
+    anchor1_values <- MatrixGenerics::colMeans(anchor1_motifs$motifScores)
+    anchor2_values <- MatrixGenerics::colMeans(anchor2_motifs$motifScores)
   }
   plotting_data <- data.frame(id = c(names(anchor1_values),
                                      names(anchor2_values)),
