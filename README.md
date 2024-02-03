@@ -1,6 +1,6 @@
 # spatzie: Identification of enriched motif pairs from chromatin interaction data
 
-[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![DOI](https://img.shields.io/badge/DOI-10.1093%2Fnar%2Fgkac036-blue.svg)](https://doi.org/10.1093/nar/gkac036) [![BioC](https://img.shields.io/badge/BioC-1.6.0-brightgreen.svg)](https://doi.org/doi:10.18129/B9.bioc.spatzie) [![platforms](https://bioconductor.org/shields/availability/release/spatzie.svg)](https://bioconductor.org/packages/release/bioc/html/spatzie.html#archives)  [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
+[![license: GPL-3](https://img.shields.io/badge/license-GPL--3-blue)](https://opensource.org/licenses/GPL-3.0) [![DOI](https://img.shields.io/badge/DOI-10.1093%2Fnar%2Fgkac036-blue.svg)](https://doi.org/10.1093/nar/gkac036) [![BioC](https://img.shields.io/badge/BioC-1.8.0-brightgreen.svg)](https://doi.org/doi:10.18129/B9.bioc.spatzie) [![platforms](https://bioconductor.org/shields/availability/release/spatzie.svg)](https://bioconductor.org/packages/release/bioc/html/spatzie.html#archives)  [![Coverage Status](https://coveralls.io/repos/github/jhammelman/spatzie/badge.svg?branch=master)](https://coveralls.io/github/jhammelman/spatzie?branch=master)
 
 https://spatzie.mit.edu
 
@@ -49,8 +49,8 @@ vignette("individual-steps", package = "spatzie")
 | Platform | Status |
 |------|------|
 | Travis CI | [![Travis build status](https://travis-ci.com/jhammelman/spatzie.svg?branch=master)](https://travis-ci.com/jhammelman/spatzie) |
-| Bioconductor 3.17 (release) | [![BioC release](https://bioconductor.org/shields/build/release/bioc/spatzie.svg)](http://bioconductor.org/checkResults/release/bioc-LATEST/spatzie/) |
-| Bioconductor 3.18 (devel) | [![BioC devel](https://bioconductor.org/shields/build/devel/bioc/spatzie.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/spatzie/) |
+| Bioconductor 3.18 (release) | [![BioC release](https://bioconductor.org/shields/build/release/bioc/spatzie.svg)](http://bioconductor.org/checkResults/release/bioc-LATEST/spatzie/) |
+| Bioconductor 3.19 (devel) | [![BioC devel](https://bioconductor.org/shields/build/devel/bioc/spatzie.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/spatzie/) |
 
 
 ## Citation
